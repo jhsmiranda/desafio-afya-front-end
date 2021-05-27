@@ -1,0 +1,212 @@
+/*Tela de Login*/
+body{
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-image{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgb(1,49,69);
+    background: linear-gradient(90deg, rgba(1,49,69,1) 0%, rgba(0,36,50,0.85) 100%);
+    z-index: 1;
+}
+
+.background-image {
+    position: fixed;
+    top:0;
+    right:0;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+.signin-form{
+    width: auto;
+}
+@media (min-width:1050px) {
+    .signin-form {
+        width: 1000px;
+    }
+}
+@media (min-width:768px) and (max-width:1050px) {
+    .signin-form {
+        width: 720px;
+    }
+}
+
+.signup-form{
+    width: auto;
+}
+@media (min-width:1050px) {
+    .signup-form {
+        width: 1000px;
+    }
+}
+@media (min-width:768px) and (max-width:1050px) {
+    .signup-form {
+        width: 720px;
+    }
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+}
+
+.menu li{
+    list-style: none;
+    margin-right: 20px;
+}
+
+.inactive{
+    color: #949494;
+
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: 'Lato', sans-serif;
+}
+
+.inactive:hover{
+    color: #1C86A4;
+}
+
+.active{
+    color: #e5e5e5;
+
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: 'Lato', sans-serif;
+
+    padding: 3px 5px;
+    border-bottom: 2px solid #BE9667;
+}
+
+.active:hover{
+    color: #e5e5e5;
+}
+
+.input-login, .input-register{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input-login input, .input-register input{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+    margin-top: 30px;
+    padding: 5px 0px 5px 5px;
+    outline: none;
+}
+
+.forget{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.forget a{
+    color: #949494;
+
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: 'Lato', sans-serif;
+}
+@media (min-width:768px) and (max-width:1050px) {
+    .forget a {
+        font-size: 9px;
+    }
+}
+
+.forget a:hover{
+    color: #1C86A4;
+}
+
+.button-login, .button-register{
+    width: 100%;
+    height: 40px;
+
+    cursor: pointer;
+
+    background: #BE9667;
+
+    border-radius: 20px;
+    border: none;
+    margin-top: 75px;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: 0.16px;
+
+    color: #E0E0E0;
+
+    transition: 0.5s;
+}
+
+.button-register{
+    margin-top: 30px;
+}
+
+.button-login:hover, .button-register:hover{
+    background: #727272;
+}
+
+.brand{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
+
+.clinica-pomarola{
+    font-family: 'Dancing Script', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 29px;
+
+    color: #BE9667;
+}
+
+.cuidando-de-sua-saude, .onde-voce-estiver{   
+    font-family: 'Lato', serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+
+    color: #e5e5e5;
+}
+
+.cuidando-de-sua-saude{
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.onde-voce-estiver{
+    margin-top: 0px;
+}
