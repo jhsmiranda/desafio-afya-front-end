@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import '../../styles/login.css'
 import Fundo from '../../images/fundo2.png'
 import '../../assets/dist/css/bootstrap.min.css'
@@ -17,7 +17,7 @@ function Register() {
   }
 
   return (
-      <>
+      <div className="body-login">
         <div className="filter-image"></div>
         <img className="background-image" src={Fundo} alt="fundo do página"/>
         <div className="container">
@@ -30,8 +30,18 @@ function Register() {
 
                   <div>
                     <ul className="menu">
-                      <li><a className="inactive" href="/">LOGIN</a></li>
-                      <li><a className="active" href="/cadastro">CADASTRO</a></li>
+                      {/* <li><a className="inactive" href="/">LOGIN</a></li>
+                      <li><a className="active" href="/cadastro">CADASTRO</a></li> */}
+                        <Link to="/">
+                          <li className="inactive">
+                            LOGIN
+                          </li>
+                        </Link>
+                        <Link to="/cadastro">
+                          <li className="active">
+                            CADASTRAR
+                          </li>
+                        </Link>
                     </ul>
                     <form className="input-register">
                       <input type="text" className="name" placeholder="Nome Completo"></input>
@@ -62,7 +72,7 @@ function Register() {
           </div>
 
         </div>
-      </>
+      </div>
   );
 }
 

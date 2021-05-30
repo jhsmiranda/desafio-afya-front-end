@@ -1,5 +1,5 @@
 /*Tela de Login*/
-body{
+.body-login{
     max-width: 100%;
     height: 100vh;
     display: flex;
@@ -62,11 +62,16 @@ body{
     display: flex;
     flex-direction: row;
     padding-left: 0;
+    align-items: center;
 }
 
 .menu li{
     list-style: none;
     margin-right: 20px;
+}
+
+.menu a{
+    text-decoration: none;
 }
 
 .inactive{
@@ -115,6 +120,27 @@ body{
     margin-top: 30px;
     padding: 5px 0px 5px 5px;
     outline: none;
+    transition: 0.4s;
+    transition-delay: 0.2s;
+    color: #fff;
+}
+
+.input-login input:focus, .input-register input:focus{
+    background-color: #140f0849;
+    border-radius: 3px;
+}
+
+::-webkit-input-placeholder {
+    color: #be956779;
+}
+:-moz-placeholder {
+    color: #be956779;  
+}
+::-moz-placeholder {
+    color: #be956779;  
+}
+:-ms-input-placeholder {  
+    color: #be956779;  
 }
 
 .forget{

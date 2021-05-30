@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import '../../styles/login.css'
 import Fundo from '../../images/fundo4.jpg'
 import '../../assets/dist/css/bootstrap.min.css'
@@ -13,11 +13,11 @@ function Login() {
   let history = useHistory();
 
   const handleLogin = () => {
-    history.push("/dashboard");
+    history.push("/registro-clientes");
   }
 
   return (
-      <>
+      <div className="body-login">
         <div className="filter-image"></div>
         <img className="background-image" src={Fundo} alt="fundo do página"/>
         <div className="container">
@@ -30,8 +30,18 @@ function Login() {
 
                   <div>
                     <ul className="menu">
-                      <li><a className="active" href="/">LOGIN</a></li>
-                      <li><a className="inactive" href="/cadastro">CADASTRO</a></li>
+                      {/* <li><a className="active" href="/">LOGIN</a></li>
+                      <li><a className="inactive" href="/cadastro">CADASTRO</a></li> */}
+                      <Link to="/registro-clientes">
+                          <li className="active">
+                            LOGIN
+                          </li>
+                        </Link>
+                        <Link to="/cadastro">
+                          <li className="inactive">
+                            CADASTRAR
+                          </li>
+                        </Link>
                     </ul>
                     <form className="input-login">
                       <input type="text" className="login" placeholder="Nome de usuário"></input>
@@ -65,7 +75,7 @@ function Login() {
           </div>
 
         </div>
-      </>
+      </div>
   );
 }
 
