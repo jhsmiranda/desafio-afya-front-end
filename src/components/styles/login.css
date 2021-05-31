@@ -1,13 +1,13 @@
 /*Tela de Login*/
-.body-login{
+/* .body-login{
     max-width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.filter-image{
+/* .filter-image{
     position: fixed;
     top: 0;
     bottom: 0;
@@ -16,24 +16,21 @@
     background: rgb(1,49,69);
     background: linear-gradient(90deg, rgba(1,49,69,1) 0%, rgba(0,36,50,0.85) 100%);
     z-index: 1;
-}
+} */
 
-.background-image {
+/* .background-image {
     position: fixed;
     top:0;
     right:0;
     height: 100vh;
-}
+} */
 
-.container {
+/* .container {
     position: relative;
     z-index: 2;
-}
+} */
 
-.signin-form{
-    width: auto;
-}
-@media (min-width:1050px) {
+/* @media (min-width:1050px) {
     .signin-form {
         width: 1000px;
     }
@@ -42,39 +39,26 @@
     .signin-form {
         width: 720px;
     }
-}
+} */
 
-.signup-form{
-    width: auto;
-}
-@media (min-width:1050px) {
-    .signup-form {
-        width: 1000px;
-    }
-}
-@media (min-width:768px) and (max-width:1050px) {
-    .signup-form {
-        width: 720px;
-    }
-}
-
-.menu{
+/*estilo aplicado na <ul> mas não tinha interferência*/
+/* .menu{
     display: flex;
     flex-direction: row;
     padding-left: 0;
     align-items: center;
-}
+} */
 
-.menu li{
+/* .menu li{
     list-style: none;
     margin-right: 20px;
 }
 
 .menu a{
     text-decoration: none;
-}
+} */
 
-.inactive{
+/* .inactive{
     color: #949494;
 
     text-decoration: none;
@@ -83,13 +67,13 @@
     font-size: 16px;
     line-height: 19px;
     font-family: 'Lato', sans-serif;
-}
+} */
 
-.inactive:hover{
+/* .inactive:hover{
     color: #1C86A4;
-}
+} */
 
-.active{
+/* .active{
     color: #e5e5e5;
 
     text-decoration: none;
@@ -101,19 +85,19 @@
 
     padding: 3px 5px;
     border-bottom: 2px solid #BE9667;
-}
+} */
 
-.active:hover{
+/* .active:hover{
     color: #e5e5e5;
-}
+} */
 
-.input-login, .input-register{
+/* .input-login, .input-register{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-}
+} */
 
-.input-login input, .input-register input{
+/* .input-login input, .input-register input{
     background: none;
     border: none;
     border-bottom: 1px solid #e5e5e5;
@@ -123,14 +107,14 @@
     transition: 0.4s;
     transition-delay: 0.2s;
     color: #fff;
-}
+} */
 
-.input-login input:focus, .input-register input:focus{
+/* .input-login input:focus, .input-register input:focus{
     background-color: #140f0849;
     border-radius: 3px;
-}
+} */
 
-::-webkit-input-placeholder {
+/* ::-webkit-input-placeholder {
     color: #be956779;
 }
 :-moz-placeholder {
@@ -141,9 +125,9 @@
 }
 :-ms-input-placeholder {  
     color: #be956779;  
-}
+} */
 
-.forget{
+/* .forget{
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -167,9 +151,9 @@
 
 .forget a:hover{
     color: #1C86A4;
-}
+} */
 
-.button-login, .button-register{
+/* .button-login, .button-register{
     width: 100%;
     height: 40px;
 
@@ -192,47 +176,56 @@
     color: #E0E0E0;
 
     transition: 0.5s;
-}
+} */
 
-.button-register{
+/* .signup-form{
+    width: auto;
+}
+@media (min-width:1050px) {
+    .signup-form {
+        width: 1000px;
+    }
+}
+@media (min-width:768px) and (max-width:1050px) {
+    .signup-form {
+        width: 720px;
+    }
+} */
+
+/* .button-register{
     margin-top: 30px;
-}
+} */
 
-.button-login:hover, .button-register:hover{
+/* .button-login:hover, .button-register:hover{
     background: #727272;
-}
+} */
 
-.brand{
+/* .brand{
     display: flex;
     flex-direction: column;
     align-items:flex-end;
-}
+} */
 
-.clinica-pomarola{
+/* .clinica-pomarola{
     font-family: 'Dancing Script', serif;
     font-style: normal;
     font-weight: 600;
     font-size: 46px;
     line-height: 29px;
 
-    color: #BE9667;
-}
+    margin-bottom: 10px;
 
-.cuidando-de-sua-saude, .onde-voce-estiver{   
+    color: #BE9667;
+} */
+
+/* .cuidando-de-sua-saude, .onde-voce-estiver{   
     font-family: 'Lato', serif;
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
 
     color: #e5e5e5;
-}
 
-.cuidando-de-sua-saude{
     margin-top: 0px;
     margin-bottom: 0px;
-
-}
-
-.onde-voce-estiver{
-    margin-top: 0px;
-}
+} */

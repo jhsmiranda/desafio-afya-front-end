@@ -6,6 +6,7 @@ import { Collapse, Nav, Navbar, NavbarToggler, UncontrolledDropdown, DropdownTog
 import Logo from '../../images/fundo4.jpg'
 
 import '../../styles/globalstyles.css'
+import '../../styles/login.css'
 
 function Dashboard() {
 
