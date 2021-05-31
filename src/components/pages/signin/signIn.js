@@ -4,6 +4,7 @@ import { useHistory, Link } from 'react-router-dom'
 import Fundo from '../../images/fundo4.jpg'
 
 import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styles'
+import '../../assets/dist/css/bootstrap.min.css'
 
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
   let history = useHistory();
 
   const handleLogin = () => {
-    history.push("/registro-clientes");
+    history.push("/home");
   }
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import SignIn from './components/pages/signin/signIn'
 import SignUp from './components/pages/signup/signUp'
-import RegisterClients from './components/pages/register-clients/register-clients'
+import Home from './components/pages/home/home'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import { Container } from './styles';
@@ -22,8 +22,8 @@ function src() {
                 />
                 <Route
                     exact
-                    path="/registro-clientes"
-                    component={RegisterClients}
+                    path="/home"
+                    component={Home}
                 />
             </Switch>
         </Router>
