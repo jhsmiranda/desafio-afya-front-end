@@ -16,7 +16,7 @@ function Login() {
   let history = useHistory();
 
   const handleLogin = () => {
-    history.push("/home");
+    history.push("/cliente");
   }
 
   return (

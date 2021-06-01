@@ -1,7 +1,10 @@
 import React from 'react';
 import SignIn from './components/pages/signin/signIn'
 import SignUp from './components/pages/signup/signUp'
-import Home from './components/pages/home/home'
+import Client from './components/pages/client/client'
+import RegisterClient from './components/pages/client/register-client'
+import Specialist from './components/pages/specialist/specialist'
+import RegisterSpecialist from './components/pages/specialist/register-specialist'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import { Container } from './styles';
@@ -22,8 +25,23 @@ function src() {
                 />
                 <Route
                     exact
-                    path="/home"
-                    component={Home}
+                    path="/cliente"
+                    component={Client}
+                />
+                <Route
+                    exact
+                    path="/cadastro-cliente"
+                    component={RegisterClient}
+                />
+                <Route
+                    exact
+                    path="/especialista"
+                    component={Specialist}
+                />
+                <Route
+                    exact
+                    path="/cadastro-especialista"
+                    component={RegisterSpecialist}
                 />
             </Switch>
         </Router>
