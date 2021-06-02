@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
 
-import Logo from '../../components/images/logo16.png'
+import NavBarGlobal from '../../components/navbar/navbar'
+
+// import Logo from '../../components/images/logo16.png'
 
 import '../../styles/globalstyles.css'
 
-function Dashboard() {
+function Client() {
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Cliente"
@@ -49,7 +51,9 @@ function Dashboard() {
     return (
         <div className="body">
 
-            <Navbar expand="md" className="navbar-global navbar-dark">
+            <NavBarGlobal toggle={toggle}/>
+
+            {/* <Navbar expand="md" className="navbar-global navbar-dark">
                 <div className="navbar-brand-global">
                     <span>Clínica P</span>
                     <img
@@ -60,7 +64,7 @@ function Dashboard() {
                 </div>
 
                 <NavbarToggler onClick={toggle} className="navbar-toggle-global"/>
-            </Navbar>
+            </Navbar> */}
 
             <div className="container-fluid">
                 <div className="row">
@@ -142,4 +146,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Client;

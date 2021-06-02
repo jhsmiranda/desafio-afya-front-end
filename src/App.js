@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SignIn from './pages/login/signIn'
 import SignUp from './pages/login/signUp'
 import Client from './pages/client/client'
@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import { Container } from './styles';
 
-function src() {
+function App() {
 
     return (
         <Router>
@@ -49,4 +49,4 @@ function src() {
     );
 }
 
-export default src;
+export default App;
