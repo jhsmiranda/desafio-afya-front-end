@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
 
-import Logo from '../../images/logo16.png'
+import Logo from '../../components/images/logo16.png'
 
 import '../../styles/globalstyles.css'
 

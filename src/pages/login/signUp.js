@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
-import Fundo from '../../images/fundo4.jpg'
+import Fundo from '../../components/images/fundo2.png'
 
-import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styles'
-import '../../assets/dist/css/bootstrap.min.css'
+import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Brand } from '../../styles/styles'
 
-
-function Login() {
+function Register() {
 
   useEffect(() => {
-    document.title = "Clínica Pomarola | Login"
+    document.title = "Pomarola | Cadastro"
   }, []);
 
   let history = useHistory();
 
   const handleLogin = () => {
-    history.push("/cliente");
+    history.push("/");
   }
 
   return (
@@ -27,21 +25,18 @@ function Login() {
           <ContainerContent>
             <ul>
               <Link to="/">
-                <ListLogin active>LOGIN</ListLogin>
+                <ListLogin>LOGIN</ListLogin>
               </Link>
               <Link to="/cadastro">
-                <ListLogin>CADASTRAR</ListLogin>
+                <ListLogin active>CADASTRAR</ListLogin>
               </Link>
             </ul>
             <form>
+              <input type="text" placeholder="Nome Completo"></input>
               <input type="text" placeholder="Nome de usuário"></input>
               <input type="password" placeholder="Senha"></input>
             </form>
-            <Forget>
-              <a href="/">ESQUECI MINHA SENHA</a>
-              <a href="/">ESQUECI MEU NOME DE USUÁRIO</a>
-            </Forget>
-            <button onClick={handleLogin}>ENTRAR</button>
+            <button onClick={handleLogin} style={{ marginTop: 30 }}>CADASTRAR</button>
           </ContainerContent>
           <ContainerContent>
             <Brand>
@@ -55,4 +50,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
-import Fundo from '../../images/fundo2.png'
+import Fundo from '../../components/images/fundo4.jpg'
 
-import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Brand } from '../../styles/styles'
+import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styles'
+import '../../components/assets/dist/css/bootstrap.min.css'
 
-function Register() {
+
+function Login() {
 
   useEffect(() => {
-    document.title = "Pomarola | Cadastro"
+    document.title = "Clínica Pomarola | Login"
   }, []);
 
   let history = useHistory();
 
   const handleLogin = () => {
-    history.push("/");
+    history.push("/cliente");
   }
 
   return (
@@ -25,18 +27,21 @@ function Register() {
           <ContainerContent>
             <ul>
               <Link to="/">
-                <ListLogin>LOGIN</ListLogin>
+                <ListLogin active>LOGIN</ListLogin>
               </Link>
               <Link to="/cadastro">
-                <ListLogin active>CADASTRAR</ListLogin>
+                <ListLogin>CADASTRAR</ListLogin>
               </Link>
             </ul>
             <form>
-              <input type="text" placeholder="Nome Completo"></input>
               <input type="text" placeholder="Nome de usuário"></input>
               <input type="password" placeholder="Senha"></input>
             </form>
-            <button onClick={handleLogin} style={{ marginTop: 30 }}>CADASTRAR</button>
+            <Forget>
+              <a href="/">ESQUECI MINHA SENHA</a>
+              <a href="/">ESQUECI MEU NOME DE USUÁRIO</a>
+            </Forget>
+            <button onClick={handleLogin}>ENTRAR</button>
           </ContainerContent>
           <ContainerContent>
             <Brand>
@@ -50,4 +55,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

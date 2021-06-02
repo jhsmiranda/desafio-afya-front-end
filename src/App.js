@@ -1,10 +1,10 @@
 import React from 'react';
-import SignIn from './components/pages/login/signIn'
-import SignUp from './components/pages/login/signUp'
-import Client from './components/pages/client/client'
-import RegisterClient from './components/pages/client/register-client'
-import Specialist from './components/pages/specialist/specialist'
-import RegisterSpecialist from './components/pages/specialist/register-specialist'
+import SignIn from './pages/login/signIn'
+import SignUp from './pages/login/signUp'
+import Client from './pages/client/client'
+import RegisterClient from './pages/client/register-client'
+import Specialist from './pages/specialist/specialist'
+import RegisterSpecialist from './pages/specialist/register-specialist'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import { Container } from './styles';
