@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut, PlusSquare } from 'react-feather'
+import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
 
 import Logo from '../../images/logo16.png'
@@ -17,6 +17,34 @@ function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     
     const toggle = () => setIsOpen(!isOpen);
+
+    const clients =[
+        {name:"Laura Lima do Val Carneiro"},
+        {name:"Thiago Corrêa Diniz"},
+        {name:"Sarah Maria de Lucena Silva"},
+        {name:"Stephanie Oliver"},
+        {name:"Camila Attico Chirinhan"},
+        {name:"Bruna Barbosa Nunes da Silva"},
+        {name:"Gabriela de Araújo Egídio"},
+        {name:"Gustavo Rodrigues Pereira"},
+        {name:"Gustavo Henrique Souza Dyonísio"},
+        {name:"Kimberly Karoline Ramos da Costa"},
+        {name:"José Weider Pinheiro Neto"}
+    ];
+
+    const listtClients = clients.map(
+        (client, index) => {
+            let id = 1000 + index
+
+            return(
+                <tr key={id}>
+                    <td>{id}</td>
+                    <td>{client.name}</td>
+                    <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
+                </tr>
+            )
+        }
+    )
     
     return (
         <div className="body">
@@ -104,63 +132,7 @@ function Dashboard() {
                                         <th className="col-xs-2 col-md-2 col-lg-2">INFO</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1,001</td>
-                                        <td>Laura Lima do Val Carneiro</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,002</td>
-                                        <td>Thiago Corrêa Diniz</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,003</td>
-                                        <td>Sarah Maria de Lucena Silva</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,004</td>
-                                        <td>Stephanie Oliver</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,005</td>
-                                        <td>Camila Attico Chirinhan</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,006</td>
-                                        <td>Bruna Barbosa Nunes da Silva</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,007</td>
-                                        <td>Gabriela de Araújo Egídio</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,008</td>
-                                        <td>Gustavo Rodrigues Pereira</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,009</td>
-                                        <td>José Weider Pinheiro Neto</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,010</td>
-                                        <td>Gustavo Henrique Souza Dyonísio</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,011</td>
-                                        <td>Kimberly Karoline Ramos da Costa</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                </tbody>
+                                <tbody>{listtClients}</tbody>
                             </table>
                         </div>
                     </main>

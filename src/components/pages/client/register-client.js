@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut, PlusSquare } from 'react-feather'
+import { Activity, User, Clipboard, Calendar, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
+
+import ValidarCep from '../../assets/dist/js/validarcep'
 
 import Logo from '../../images/logo16.png'
 
@@ -84,66 +86,51 @@ function Dashboard() {
                             <h1 className="h4" style={{ marginTop:2, paddingBottom: 3 }}>Cadastro de Cliente</h1>
                         </div>
 
-                        <form action="/cliente" method="POST" className="needs-validation p-2" novalidate>
+                        <form action="/cliente" className="mx-2" method="POST">
                             <div className="row g-3">  
                                 <div className="col-sm-6">
                                     <label for="name" className="form-label">Nome Completo</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Insira o nome completo" value="" required></input>
-                                    <div className="invalid-feedback">
-                                        Este campo é obrigatório.
-                                    </div>
+                                    <input type="text" className="form-control" id="name" placeholder="Insira o nome completo" required></input>
                                 </div>
 
                                 <div className="col-sm-6">
                                     <label for="email" className="form-label">E-mail</label>
-                                    <input type="email" className="form-control" id="email" placeholder="Insira e-mail" value="" required></input>
-                                    <div className="invalid-feedback">
-                                        Este campo é obrigatório.
-                                    </div>
+                                    <input type="email" className="form-control" id="email" placeholder="Insira e-mail" required></input>
                                 </div>
 
-                                <div className="col-sm-2">
+                                <div className="col-sm-3">
+                                    <label for="document_cpf" className="form-label">CPF</label>
+                                    <input type="text" className="form-control" id="document_cpf" placeholder="Insira o CPF" required></input>
+                                </div>
+
+                                <div className="col-sm-3">
                                     <label for="blood-type" className="form-label">Tipo Sanguíneo</label>
                                     <select className="form-select" id="blood-type" aria-label="Default select example">
                                         <option selected>Selecione o tipo</option>
-                                        <option value="1">A+</option>
-                                        <option value="2">A-</option>
-                                        <option value="3">B+</option>
-                                        <option value="1">B-</option>
-                                        <option value="2">AB+</option>
-                                        <option value="3">AB-</option>
-                                        <option value="1">O+</option>
-                                        <option value="2">O-</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
                                     </select>
                                 </div>
 
-                                <div className="col-sm-2">
-                                    <label for="document_cpf" className="form-label">CPF</label>
-                                    <input type="text" className="form-control" id="document_cpf" placeholder="Insira o CPF" value="" required></input>
-                                    <div className="invalid-feedback">
-                                        Este campo é obrigatório.
-                                    </div>
-                                </div>
-
-                                <div className="col-sm-4">
-                                    <label for="cellphone" className="form-label">Celular</label>
-                                    <input type="tel" className="form-control" id="cellphone" placeholder="Insira o celular" value="" required></input>
-                                    <div className="invalid-feedback">
-                                        Este campo é obrigatório.
-                                    </div>
-                                </div>
-
-                                <div className="col-sm-4">
+                                <div className="col-sm-3">
                                     <label for="phone" className="form-label">Telefone<span className="text-muted"> (Opcional)</span></label>
-                                    <input type="tel" className="form-control" id="phone" placeholder="Insira o telefone" value=""></input>
+                                    <input type="tel" className="form-control" id="phone" placeholder="Insira o telefone"></input>
+                                </div>
+
+                                <div className="col-sm-3">
+                                    <label for="cellphone" className="form-label">Celular</label>
+                                    <input type="tel" className="form-control" id="cellphone" placeholder="Insira o celular" required></input>
                                 </div>
 
                                 <div className="col-sm-2">
                                     <label for="cep" className="form-label">CEP</label>
-                                    <input type="text" className="form-control" id="cep" placeholder="Insira o cep" value="" required></input>
-                                    <div className="invalid-feedback">
-                                        Este campo é obrigatório.
-                                    </div>
+                                    <input type="text" className="form-control" id="cep" placeholder="Insira o cep" onBlur={ValidarCep} required></input>
                                 </div>
 
                                 <div className="col-sm-8">
@@ -154,9 +141,6 @@ function Dashboard() {
                                 <div className="col-sm-2">
                                     <label for="number" className="form-label">Número</label>
                                     <input type="text" className="form-control" id="number" placeholder="Insira o número" required></input>
-                                    <div className="invalid-feedback">
-                                        Este campo é obrigatório.
-                                    </div>
                                 </div>
 
                                 <div className="col-sm-4">

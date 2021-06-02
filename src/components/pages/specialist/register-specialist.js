@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut, PlusSquare, Square } from 'react-feather'
+import { Activity, User, Clipboard, Calendar, LogOut, PlusSquare } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
 
 import Logo from '../../images/logo16.png'
 
 import '../../styles/globalstyles.css'
+
+import ValidarCep from '../../assets/dist/js/validarcep'
 
 function Dashboard() {
 
@@ -88,7 +90,7 @@ function Dashboard() {
                             <div className="row g-3">  
                                 <div className="col-sm-6">
                                     <label for="name" className="form-label">Nome Completo</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Insira o nome completo" value="" required></input>
+                                    <input type="text" className="form-control" id="name" placeholder="Insira o nome completo" required></input>
                                     <div className="invalid-feedback">
                                         Este campo é obrigatório.
                                     </div>
@@ -96,7 +98,7 @@ function Dashboard() {
 
                                 <div className="col-sm-6">
                                     <label for="email" className="form-label">E-mail</label>
-                                    <input type="email" className="form-control" id="email" placeholder="Insira e-mail" value="" required></input>
+                                    <input type="email" className="form-control" id="email" placeholder="Insira e-mail" required></input>
                                     <div className="invalid-feedback">
                                         Este campo é obrigatório.
                                     </div>
@@ -124,7 +126,7 @@ function Dashboard() {
 
                                 <div className="col-sm-3">
                                     <label for="register" className="form-label">Registro</label>
-                                    <input type="text" className="form-control" id="register" placeholder="Insira o registro" value="" required></input>
+                                    <input type="text" className="form-control" id="register" placeholder="Insira o registro" required></input>
                                     <div className="invalid-feedback">
                                         Este campo é obrigatório.
                                     </div>
@@ -132,7 +134,7 @@ function Dashboard() {
 
                                 <div className="col-sm-3">
                                     <label for="cellphone" className="form-label">Celular</label>
-                                    <input type="tel" className="form-control" id="cellphone" placeholder="Insira o celular" value="" required></input>
+                                    <input type="tel" className="form-control" id="cellphone" placeholder="Insira o celular" required></input>
                                     <div className="invalid-feedback">
                                         Este campo é obrigatório.
                                     </div>
@@ -140,12 +142,12 @@ function Dashboard() {
 
                                 <div className="col-sm-3">
                                     <label for="phone" className="form-label">Telefone<span className="text-muted"> (Opcional)</span></label>
-                                    <input type="tel" className="form-control" id="phone" placeholder="Insira o telefone" value=""></input>
+                                    <input type="tel" className="form-control" id="phone" placeholder="Insira o telefone"></input>
                                 </div>
 
                                 <div className="col-sm-2">
                                     <label for="cep" className="form-label">CEP</label>
-                                    <input type="text" className="form-control" id="cep" placeholder="Insira o cep" value="" required></input>
+                                    <input type="text" className="form-control" id="cep" placeholder="Insira o cep" onBlur={ValidarCep} required></input>
                                     <div className="invalid-feedback">
                                         Este campo é obrigatório.
                                     </div>

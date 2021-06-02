@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut, PlusSquare } from 'react-feather'
+import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
 
 import Logo from '../../images/logo16.png'
@@ -17,6 +17,35 @@ function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     
     const toggle = () => setIsOpen(!isOpen);
+
+    const specialists =[
+        {name:"Laura Lima do Val Carneiro", profession: "Clínico Geral"},
+        {name:"Thiago Corrêa Diniz", profession: "Oftalmologista"},
+        {name:"Sarah Maria de Lucena Silva", profession: "Ginecologista"},
+        {name:"Stephanie Oliver", profession: "Psicólogo"},
+        {name:"Camila Attico Chirinhan", profession: "Urologista"},
+        {name:"Bruna Barbosa Nunes da Silva", profession: "Pediatria"},
+        {name:"Gabriela de Araújo Egídio", profession: "Clínico Geral"},
+        {name:"Gustavo Rodrigues Pereira", profession: "Clínico Geral"},
+        {name:"Gustavo Henrique Souza Dyonísio", profession: "Endocrinologista"},
+        {name:"Kimberly Karoline Ramos da Costa", profession: "Ortopedista"},
+        {name:"José Weider Pinheiro Neto", profession: "Ginecologista"}
+    ];
+
+    const listSpecialists = specialists.map(
+        (spcialist, index) => {
+            let id = 1000 + index
+
+            return(
+                <tr key={id}>
+                    <td>{id}</td>
+                    <td>{spcialist.name}</td>
+                    <td>{spcialist.profession}</td>
+                    <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
+                </tr>
+            )
+        }
+    )
     
     return (
         <div className="body">
@@ -105,74 +134,7 @@ function Dashboard() {
                                         <th className="col-xs-2 col-md-2 col-lg-2">INFO</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1,001</td>
-                                        <td>Laura Lima do Val Carneiro</td>
-                                        <td>Clínico Geral</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,002</td>
-                                        <td>Thiago Corrêa Diniz</td>
-                                        <td>Oftalmologista</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,003</td>
-                                        <td>Sarah Maria de Lucena Silva</td>
-                                        <td>Ginecologista</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,004</td>
-                                        <td>Stephanie Oliver</td>
-                                        <td>Psicólogo</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,005</td>
-                                        <td>Camila Attico Chirinhan</td>
-                                        <td>Urologista</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,006</td>
-                                        <td>Bruna Barbosa Nunes da Silva</td>
-                                        <td>Pediatra</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,007</td>
-                                        <td>Gabriela de Araújo Egídio</td>
-                                        <td>Clínico Geral</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,008</td>
-                                        <td>Gustavo Rodrigues Pereira</td>
-                                        <td>Clínico Geral</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,009</td>
-                                        <td>José Weider Pinheiro Neto</td>
-                                        <td>Ginecologista</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,010</td>
-                                        <td>Gustavo Henrique Souza Dyonísio</td>
-                                        <td>Endocrinologista</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1,011</td>
-                                        <td>Kimberly Karoline Ramos da Costa</td>
-                                        <td>Ortopedista</td>
-                                        <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
-                                    </tr>
-                                </tbody>
+                                <tbody>{listSpecialists}</tbody>
                             </table>
                         </div>
                     </main>

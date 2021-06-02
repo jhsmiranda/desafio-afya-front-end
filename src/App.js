@@ -1,6 +1,6 @@
 import React from 'react';
-import SignIn from './components/pages/signin/signIn'
-import SignUp from './components/pages/signup/signUp'
+import SignIn from './components/pages/login/signIn'
+import SignUp from './components/pages/login/signUp'
 import Client from './components/pages/client/client'
 import RegisterClient from './components/pages/client/register-client'
 import Specialist from './components/pages/specialist/specialist'
@@ -10,8 +10,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { Container } from './styles';
 
 function src() {
-  return (
-    <Router>
+
+    return (
+        <Router>
             <Switch>
                 <Route
                     exact
@@ -45,7 +46,7 @@ function src() {
                 />
             </Switch>
         </Router>
-  );
+    );
 }
 
 export default src;
