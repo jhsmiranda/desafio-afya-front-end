@@ -40,7 +40,7 @@ function Client() {
                 <tr key={id}>
                     <td>{id}</td>
                     <td>{client.name}</td>
-                    <td><button class="btn btn-sm btn-outline-secondary">Abrir</button></td>
+                    <td><button className="btn btn-sm btn-outline-secondary">Abrir</button></td>
                 </tr>
             )
         }
