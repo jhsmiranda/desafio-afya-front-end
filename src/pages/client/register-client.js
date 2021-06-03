@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Activity, User, Clipboard, Calendar, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
 
-import ValidarCep from '../../scripts/validarcep'
+import PersquisarCep from '../../scripts/validarcep'
 
 import Logo from '../../components/images/logo16.png'
 
@@ -130,7 +130,7 @@ function Dashboard() {
 
                                 <div className="col-sm-2">
                                     <label for="cep" className="form-label">CEP</label>
-                                    <input type="text" className="form-control" id="cep" placeholder="Insira o cep" onBlur={ValidarCep} required></input>
+                                    <input type="text" className="form-control" id="cep" placeholder="Insira o cep" onBlur={PersquisarCep} required></input>
                                 </div>
 
                                 <div className="col-sm-8">

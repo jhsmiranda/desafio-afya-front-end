@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Navbar, NavbarToggler } from 'reactstrap'
 
 import Logo from '../images/logo16.png'
 
 export default function NavbarGlobal({toggle}) {
-
-    // const [isOpen, setIsOpen] = useState(false);
-    
-    // const toggle = () => setIsOpen(!isOpen);
-
-    // console.log(`console do navbar ${isOpen}`);
 
     return(
         <Navbar expand="md" className="navbar-global navbar-dark">

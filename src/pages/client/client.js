@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Activity, User, Clipboard, Calendar, PlusCircle, LogOut } from 'react-feather'
-import { Collapse, Nav, Navbar, NavbarToggler } from 'reactstrap';
+import { PlusCircle } from 'react-feather'
 
 import NavBarGlobal from '../../components/navbar/navbar'
-
-// import Logo from '../../components/images/logo16.png'
+import SideBarGlobal from '../../components/sidebar/sidebar'
 
 import '../../styles/globalstyles.css'
 
@@ -50,66 +48,10 @@ function Client() {
     
     return (
         <div className="body">
-
             <NavBarGlobal toggle={toggle}/>
-
-            {/* <Navbar expand="md" className="navbar-global navbar-dark">
-                <div className="navbar-brand-global">
-                    <span>Clínica P</span>
-                    <img
-                        src={Logo} width="16px" height="16px" alt="logo-pormarola"
-                        style={{ marginRight: 2, marginBottom: 0 }}
-                    />
-                    <span>marola</span>
-                </div>
-
-                <NavbarToggler onClick={toggle} className="navbar-toggle-global"/>
-            </Navbar> */}
-
             <div className="container-fluid">
                 <div className="row">
-                    <Navbar expand="md" className="sidebar-global">
-                        <Collapse isOpen={isOpen} navbar>
-                            <Nav className="sidebar-content-global position-sticky pt-3 d-flex flex-column p-2">
-
-                                <hr className="divisor-top-sidebar"></hr>
-
-                                <ul className="nav-pills sidebar-nav-global">
-                                    <li>
-                                        <Link to="/cliente" className="sidebar-list-global sidebar-active-global" aria-current="page">
-                                            <User size={16} style={{ marginRight: 10, marginBottom: 4 }} />
-                                            Cliente
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/especialista" className="sidebar-list-global sidebar-inactive-global">
-                                            <Activity size={16} style={{ marginRight: 10, marginBottom: 4 }} />
-                                            Especialista
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/atendimento" className="sidebar-list-global sidebar-inactive-global">
-                                            <Calendar size={16} style={{ marginRight: 10, marginBottom: 4 }} />
-                                            Atendimento
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/prontuário" className="sidebar-list-global sidebar-inactive-global">
-                                            <Clipboard size={16} style={{ marginRight: 10, marginBottom: 4 }} />
-                                            Prontuário
-                                        </Link>
-                                    </li>
-                                    <li className="list-bottom-sidebar">
-                                        <hr className="divisor-bottom-sidebar mb-2"></hr>
-                                        <Link to="/" className="sidebar-list-global sidebar-inactive-global">
-                                            <LogOut size={16} style={{ marginRight: 10, marginBottom: 4 }} />
-                                            Sair
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </Nav>
-                        </Collapse>
-                    </Navbar>
+                    <SideBarGlobal isOpen={isOpen}/>
 
                     <main className="col-md-9 ms-sm-auto col-lg-10">
                         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
