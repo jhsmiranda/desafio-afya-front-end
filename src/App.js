@@ -5,8 +5,8 @@ import Client from './pages/client/client'
 import RegisterClient from './pages/client/register-client'
 import Specialist from './pages/specialist/specialist'
 import RegisterSpecialist from './pages/specialist/register-specialist'
-import Schedule from './pages/attendance/schedule';
 import Attendance from './pages/attendance/attendance';
+import RegisterAttendance from './pages/attendance/register-attendance';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';;
 
 // import { Container } from './styles';
@@ -48,14 +48,14 @@ function App() {
                 />
                 <Route
                     exact
-                    path="/agendamento"
-                    component={Schedule}
-                />
-                 <Route
-                    exact
                     path="/atendimento"
                     component={Attendance}
                 />
+                <Route
+                    exact
+                    path="/cadastro-atendimento"
+                    component={RegisterAttendance}
+                />                 
             </Switch>
         </Router>
     );
