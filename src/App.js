@@ -5,7 +5,9 @@ import Client from './pages/client/client'
 import RegisterClient from './pages/client/register-client'
 import Specialist from './pages/specialist/specialist'
 import RegisterSpecialist from './pages/specialist/register-specialist'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Schedule from './pages/attendance/schedule';
+import Attendance from './pages/attendance/attendance';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';;
 
 // import { Container } from './styles';
 
@@ -43,6 +45,16 @@ function App() {
                     exact
                     path="/cadastro-especialista"
                     component={RegisterSpecialist}
+                />
+                <Route
+                    exact
+                    path="/agendamento"
+                    component={Schedule}
+                />
+                 <Route
+                    exact
+                    path="/atendimento"
+                    component={Attendance}
                 />
             </Switch>
         </Router>

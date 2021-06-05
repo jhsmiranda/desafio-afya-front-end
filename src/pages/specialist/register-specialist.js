@@ -64,7 +64,7 @@ function Dashboard() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/prontuário" className="sidebar-list-global sidebar-inactive-global">
+                                        <Link to="/prontuario" className="sidebar-list-global sidebar-inactive-global">
                                             <Clipboard size={16} style={{ marginRight: 10, marginBottom: 4 }} />
                                             Prontuário
                                         </Link>
