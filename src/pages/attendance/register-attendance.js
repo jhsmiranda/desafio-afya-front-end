@@ -19,7 +19,11 @@ function Schedule() {
 
   const format = "HH:mm";
 
+  const [specialtySelected, setSpecialtySelected] = useState();
+
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  console.log(specialtySelected);
 
   const handleDateChange = useCallback((day, modifiers) => {
     if (modifiers.available) {
@@ -32,6 +36,35 @@ function Schedule() {
   };
 
   const { Option } = Select;
+
+  const mock = [
+    {id:1, name:"Laura Lima do Val Carneiro"},
+    {id:2, name:"Thiago Corrêa Diniz"},
+    {id:3, name:"Sarah Maria de Lucena Silva"},
+    {id:4, name:"Filipe Lauro Matos"},
+    {id:5, name:"Guilherme Santana Tulio"},
+    {id:6, name:"Yuri Martins da Silva"},
+    {id:7, name:"Ricardo julio Carneiro"}
+  ];
+
+  const mockSpecialist = [
+    {id:1, name:"Roberto carlos da Silva", specialtyId:3},
+    {id:2, name:"Roberta carla da Silva", specialtyId:3},
+    {id:3, name:"Francisco Santos Motta", specialtyId:1},
+    {id:4, name:"Tulio Potter", specialtyId:2},
+    {id:5, name:"Pedro matos da silva", specialtyId:4},
+    {id:6, name:"Kaio Jorge Santos", specialtyId:5},
+    {id:7, name:"Matheus Carlos Hagen", specialtyId:6},
+  ]
+
+  const mockSpecialty = [
+    {id:1, name:"Ginecologia"},
+    {id:2, name:"Pediatra"},
+    {id:3, name:"Otorrino"},
+    {id:4, name:"Ortopedista"},
+    {id:5, name:"Urologista"},
+    {id:6, name:"Dentista"}
+  ]
 
   return (
     <DefaultPage atualPage="Atendimento">
@@ -48,30 +81,21 @@ function Schedule() {
             </label>
             <Select 
               className="form-select"
-              id="client"
+              id="client"              
               aria-label="Default select example"
               showSearch                                                     
               placeholder="Pesquisar Cliente"
-              optionFilterProp="childrenprop"
+              optionFilterProp="children"
               filterOption={(input, option) =>
-                option.childrenprop.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               filterSort={(optionA, optionB) =>
-                optionA.childrenprop
+                optionA.children
                   .toLowerCase()
-                  .localeCompare(optionB.childrenprop.toLowerCase())
+                  .localeCompare(optionB.children.toLowerCase())
               }
-            >
-              <Option value="client1">Laura Lima do Val Carneiro</Option>
-              <Option value="client2">Thiago Corrêa Diniz</Option>
-              <Option value="client3">Sarah Maria de Lucena Silva</Option>
-              <Option value="client4">Stephanie Oliver</Option>
-              <Option value="client5">Camila Attico Chirinhan</Option>
-              <Option value="client6">Bruna Barbosa Nunes da Silva</Option>
-              <Option value="client7">Sarah Maria de Lucena Silva</Option>
-              <Option value="client8">Stephanie Oliver</Option>
-              <Option value="client9">Camila Attico Chirinhan</Option>
-              <Option value="client10">Bruna Barbosa Nunes da Silva</Option>
+            >              
+              {mock && mock.map(client => (<Option value={client.id}>{client.name}</Option>))}
             </Select>            
           </div>
           <div className="col-sm-4">
@@ -82,6 +106,7 @@ function Schedule() {
               className="form-select"
               id="client"
               aria-label="Default select example"
+              onChange={e => setSpecialtySelected(e)}
               showSearch                                         
               placeholder="Pesquisar Especialidade"
               optionFilterProp="children"
@@ -94,16 +119,7 @@ function Schedule() {
                   .localeCompare(optionB.children.toLowerCase())
               }
             >
-              <Option value="client1">Laura Lima do Val Carneiro</Option>
-              <Option value="client2">Thiago Corrêa Diniz</Option>
-              <Option value="client3">Sarah Maria de Lucena Silva</Option>
-              <Option value="client4">Stephanie Oliver</Option>
-              <Option value="client5">Camila Attico Chirinhan</Option>
-              <Option value="client6">Bruna Barbosa Nunes da Silva</Option>
-              <Option value="client7">Sarah Maria de Lucena Silva</Option>
-              <Option value="client8">Stephanie Oliver</Option>
-              <Option value="client9">Camila Attico Chirinhan</Option>
-              <Option value="client10">Bruna Barbosa Nunes da Silva</Option>
+             {mockSpecialty && mockSpecialty.map(client => <Option value={client.id}>{client.name}</Option>)}
             </Select>
             {/* <select
               className="form-select"
@@ -127,8 +143,9 @@ function Schedule() {
             </label>
             <Select 
               className="form-select"
+              disabled={!specialtySelected}
               id="client"
-              aria-label="Default select example"
+              aria-label="Default select example"              
               showSearch                                         
               placeholder="Pesquisar Especialista"
               optionFilterProp="children"
@@ -141,16 +158,12 @@ function Schedule() {
                   .localeCompare(optionB.children.toLowerCase())
               }
             >
-              <Option value="client1">Laura Lima do Val Carneiro</Option>
-              <Option value="client2">Thiago Corrêa Diniz</Option>
-              <Option value="client3">Sarah Maria de Lucena Silva</Option>
-              <Option value="client4">Stephanie Oliver</Option>
-              <Option value="client5">Camila Attico Chirinhan</Option>
-              <Option value="client6">Bruna Barbosa Nunes da Silva</Option>
-              <Option value="client7">Sarah Maria de Lucena Silva</Option>
-              <Option value="client8">Stephanie Oliver</Option>
-              <Option value="client9">Camila Attico Chirinhan</Option>
-              <Option value="client10">Bruna Barbosa Nunes da Silva</Option>
+              {mockSpecialist &&
+                mockSpecialist.filter((client) => 
+                  client.specialtyId === specialtySelected).map(option => (
+                    <Option value={option.id}>{option.name}</Option>
+                  ))}               
+
             </Select>
             {/* <select
               className="form-select"
