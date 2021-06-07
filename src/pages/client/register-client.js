@@ -6,7 +6,7 @@ import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
 
-function Dashboard() {
+function RegisterClient() {
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Cliente"
@@ -94,14 +94,12 @@ function Dashboard() {
                         <label htmlFor="state" className="form-label">UF</label>
                         <input type="text" className="form-control" id="state" disabled></input>
                     </div>
-
-                    <hr style={{ marginTop: 50 }}></hr>
-
-                    <button type="submit" className="register-global btn btn-primary w-100">Cadastrar Cliente</button>
                 </div>
+                <hr style={{ marginTop: 40, marginBottom: 30 }}></hr>
+                <button type="submit" className="register-global btn btn-primary w-100">Cadastrar Cliente</button>
             </form>
         </DefaultPage>
     );
 }
 
-export default Dashboard;
+export default RegisterClient;

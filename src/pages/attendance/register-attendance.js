@@ -12,7 +12,10 @@ import { Calendar } from "./styles";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
 
-function Schedule() {
+import { Clients, Specialtys, Specialists } from '../../data'
+
+function RegisterAttendance() {
+
   useEffect(() => {
     document.title = "Clínica Pomarola | Atendimento";
   }, []);
@@ -33,141 +36,153 @@ function Schedule() {
 
   const { Option } = Select;
 
+  const filterOption = (input, option) =>
+    option.children
+      .toLowerCase()
+      .indexOf(input.toLowerCase()) >= 0
+
+  const filterSort = (optionA, optionB) =>
+    optionA.children
+      .toLowerCase()
+      .localeCompare(optionB.children.toLowerCase())
+
+  const listClients = Clients
+    .map(
+      (client) => {
+        return(
+          client.name
+        )
+      }
+    )
+    .sort()
+    .map(
+      (client, index) => {
+        return(
+          <Option key={index+1} value={`client ${index+1}`}>{client}</Option>
+        )
+      }
+    )
+
+  const listSpecialtys = Specialtys
+    .map(
+      (specialty) => {
+        return(
+          specialty.profession
+        )
+      }
+    )
+    .sort()
+    .map(
+      (specialty, index) => {
+        return(
+          <Option key={index+1} value={`specialty ${index+1}`}>{specialty}</Option>
+        )
+      }
+    )
+  
+
+
+  // document.getElementById('specialty').value = ''
+  // const specialtyValue = document.getElementById('specialty').value
+
+  // const teste = Specialists
+  //   .filter(
+  //     (specialist) => {
+  //       return(
+  //         specialist.profession === specialtyValue
+  //       )
+  //     }
+  //   )
+
+  // const listSpecialists = () => {
+  //   if(document.getElementById('specialty').value !== ''){
+  //     document.getElementById('specialty').removeAttribute('disabled')
+  //   }
+  // }
+
+  // console.log(document.getElementById('specialty'))
+  
+
+  const listSpecialists = Specialists
+    .map(
+      (specialist) => {
+        return(
+          specialist.name
+        )
+      }
+    )
+    .sort()
+    .map(
+      (specialist, index) => {
+        return(
+          <Option key={index+1} value={`specialty` + `${index+1}`}>{specialist}</Option>
+        )
+      }
+    )
+
   return (
     <DefaultPage atualPage="Atendimento">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-        <h1 className="h4">Atendimento</h1>
+        <h1 className="h4">Cadastrar Atendimento</h1>
       </div>
-
-      <h5 className="mb-3">Lista de Clientes</h5>
       <form action="/cliente" method="POST" className="p-2">
         <div className="row g-3">
           <div className="col-sm-4">
             <label htmlFor="client" className="form-label">
               Cliente
             </label>
-            <Select 
+            <Select
               className="form-select"
               id="client"
               aria-label="Default select example"
-              showSearch                                                     
+              showSearch
               placeholder="Pesquisar Cliente"
-              optionFilterProp="childrenprop"
-              filterOption={(input, option) =>
-                option.childrenprop.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              filterSort={(optionA, optionB) =>
-                optionA.childrenprop
-                  .toLowerCase()
-                  .localeCompare(optionB.childrenprop.toLowerCase())
-              }
+              optionFilterProp="children"
+              filterOption={filterOption}
+              filterSort={filterSort}
+              disabled
             >
-              <Option value="client1">Laura Lima do Val Carneiro</Option>
-              <Option value="client2">Thiago Corrêa Diniz</Option>
-              <Option value="client3">Sarah Maria de Lucena Silva</Option>
-              <Option value="client4">Stephanie Oliver</Option>
-              <Option value="client5">Camila Attico Chirinhan</Option>
-              <Option value="client6">Bruna Barbosa Nunes da Silva</Option>
-              <Option value="client7">Sarah Maria de Lucena Silva</Option>
-              <Option value="client8">Stephanie Oliver</Option>
-              <Option value="client9">Camila Attico Chirinhan</Option>
-              <Option value="client10">Bruna Barbosa Nunes da Silva</Option>
-            </Select>            
+              {listClients}
+            </Select>
           </div>
           <div className="col-sm-4">
-            <label htmlFor="specialist" className="form-label">
+            <label htmlFor="specialty" className="form-label">
               Especialidade
             </label>
-            <Select 
+            <Select
               className="form-select"
-              id="client"
+              id="specialty"
               aria-label="Default select example"
-              showSearch                                         
+              showSearch
               placeholder="Pesquisar Especialidade"
               optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              filterSort={(optionA, optionB) =>
-                optionA.children
-                  .toLowerCase()
-                  .localeCompare(optionB.children.toLowerCase())
-              }
+              filterOption={filterOption}
+              filterSort={filterSort}
             >
-              <Option value="client1">Laura Lima do Val Carneiro</Option>
-              <Option value="client2">Thiago Corrêa Diniz</Option>
-              <Option value="client3">Sarah Maria de Lucena Silva</Option>
-              <Option value="client4">Stephanie Oliver</Option>
-              <Option value="client5">Camila Attico Chirinhan</Option>
-              <Option value="client6">Bruna Barbosa Nunes da Silva</Option>
-              <Option value="client7">Sarah Maria de Lucena Silva</Option>
-              <Option value="client8">Stephanie Oliver</Option>
-              <Option value="client9">Camila Attico Chirinhan</Option>
-              <Option value="client10">Bruna Barbosa Nunes da Silva</Option>
+              {listSpecialtys}
             </Select>
-            {/* <select
-              className="form-select"
-              id="blood-type"
-              aria-label="Default select example"
-            >
-              <option defaultValue>Selecione a Especialidade</option>
-              <option value="1">Ginecologista</option>
-              <option value="2">Oftalmologista</option>
-              <option value="3">Clínico Geral</option>
-              <option value="1">Pediátra</option>
-              <option value="2">Psicólogo</option>
-              <option value="3">Dermatologista</option>
-              <option value="1">Urologista</option>
-              <option value="2">Ortopedista</option>
-            </select> */}
+
           </div>
           <div className="col-sm-4">
             <label htmlFor="specialist" className="form-label">
               Especialista
             </label>
-            <Select 
-              className="form-select"
-              id="client"
-              aria-label="Default select example"
-              showSearch                                         
-              placeholder="Pesquisar Especialista"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              filterSort={(optionA, optionB) =>
-                optionA.children
-                  .toLowerCase()
-                  .localeCompare(optionB.children.toLowerCase())
-              }
-            >
-              <Option value="client1">Laura Lima do Val Carneiro</Option>
-              <Option value="client2">Thiago Corrêa Diniz</Option>
-              <Option value="client3">Sarah Maria de Lucena Silva</Option>
-              <Option value="client4">Stephanie Oliver</Option>
-              <Option value="client5">Camila Attico Chirinhan</Option>
-              <Option value="client6">Bruna Barbosa Nunes da Silva</Option>
-              <Option value="client7">Sarah Maria de Lucena Silva</Option>
-              <Option value="client8">Stephanie Oliver</Option>
-              <Option value="client9">Camila Attico Chirinhan</Option>
-              <Option value="client10">Bruna Barbosa Nunes da Silva</Option>
-            </Select>
-            {/* <select
+            <Select
               className="form-select"
               id="specialist"
               aria-label="Default select example"
+              showSearch
+              placeholder="Pesquisar Especialista"
+              optionFilterProp="children"
+              filterOption={filterOption}
+              filterSort={filterSort}
             >
-              <option defaultValue>Selecione o Especialista</option>
-              <option value="Especialista1">Gabriela de Araújo Egídio</option>
-              <option value="Especialista2">Gustavo Rodrigues Pereira</option>
-              <option value="Especialista3">
-                Gustavo Henrique Souza Dyonísio
-              </option>
-              <option value="Especialista4">
-                Kimberly Karoline Ramos da Costa
-              </option>
-              <option value="Especialista5">José Weider Pinheiro Neto</option>
-            </select> */}
+              {listSpecialists}
+            </Select>
+          </div>
+          <div className="col-sm-6">
+            <label htmlFor="name" className="form-label">Nome Completo</label>
+            <input type="text" className="form-control" id="name" placeholder="Insira o nome completo" required></input>
           </div>
           <TimePicker
             minuteStep={15}
@@ -226,4 +241,4 @@ function Schedule() {
   );
 }
 
-export default Schedule;
+export default RegisterAttendance;

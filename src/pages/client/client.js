@@ -6,6 +6,7 @@ import { PlusCircle } from 'react-feather'
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
+import { Clients } from '../../data'
 
 function Client() {
 
@@ -13,21 +14,7 @@ function Client() {
         document.title = "Clínica Pomarola | Cliente"
     }, []);
 
-    const clients =[
-        {name:"Laura Lima do Val Carneiro"},
-        {name:"Thiago Corrêa Diniz"},
-        {name:"Sarah Maria de Lucena Silva"},
-        {name:"Stephanie Oliver"},
-        {name:"Camila Attico Chirinhan"},
-        {name:"Bruna Barbosa Nunes da Silva"},
-        {name:"Gabriela de Araújo Egídio"},
-        {name:"Gustavo Rodrigues Pereira"},
-        {name:"Gustavo Henrique Souza Dyonísio"},
-        {name:"Kimberly Karoline Ramos da Costa"},
-        {name:"José Weider Pinheiro Neto"}
-    ];
-
-    const listClients = clients.map(
+    const listClients = Clients.map(
         (client, index) => {
             let id = 1000 + index
 

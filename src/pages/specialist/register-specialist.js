@@ -8,11 +8,21 @@ import DefaultPage from '../../components/defaultpage/defaultPage'
 
 import SearchCep from '../../scripts/searchCep'
 
-function Dashboard() {
+import { Specialtys } from '../../data'
+
+function RegisterSpecialist() {
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Especialista"
     }, []);
+
+    const listSpecialtys = Specialtys.map(
+        (specialty, index) => {
+            return(
+                <option value={index}>{specialty.profession}</option>
+            )
+        }
+    )
     
     return (
         <DefaultPage atualPage='Especialista' className="col-md-9 ms-sm-auto col-lg-10">
@@ -40,15 +50,7 @@ function Dashboard() {
                             </button>
                         </div>
                         <select className="form-select" id="blood-type" aria-label="Default select example">
-                            <option defaultValue>Selecione a Profissão</option>
-                            <option value="1">Ginecologista</option>
-                            <option value="2">Oftalmologista</option>
-                            <option value="3">Clínico Geral</option>
-                            <option value="1">Pediátra</option>
-                            <option value="2">Psicólogo</option>
-                            <option value="3">Dermatologista</option>
-                            <option value="1">Urologista</option>
-                            <option value="2">Ortopedista</option>
+                            {listSpecialtys}
                         </select>
                     </div>
 
@@ -102,13 +104,13 @@ function Dashboard() {
                         <input type="text" className="form-control" id="state" disabled></input>
                     </div>
 
-                    <hr style={{ marginTop: 50 }}></hr>
-
-                    <button type="submit" className="register-global btn btn-primary w-100">Cadastrar Especialista</button>
                 </div>
+                <hr style={{ marginTop: 40, marginBottom: 30 }}></hr>
+
+                <button type="submit" className="register-global btn btn-primary w-100">Cadastrar Especialista</button>
             </form>
         </DefaultPage>
     );
 }
 
-export default Dashboard;
+export default RegisterSpecialist;
