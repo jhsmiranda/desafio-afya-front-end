@@ -22,6 +22,8 @@ function RegisterAttendance() {
 
   const format = "HH:mm";
 
+  const [specialtySelected, setSpecialtySelected] = useState();
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = useCallback((day, modifiers) => {
@@ -78,30 +80,7 @@ function RegisterAttendance() {
           <Option key={index+1} value={`specialty ${index+1}`}>{specialty}</Option>
         )
       }
-    )
-  
-
-
-  // document.getElementById('specialty').value = ''
-  // const specialtyValue = document.getElementById('specialty').value
-
-  // const teste = Specialists
-  //   .filter(
-  //     (specialist) => {
-  //       return(
-  //         specialist.profession === specialtyValue
-  //       )
-  //     }
-  //   )
-
-  // const listSpecialists = () => {
-  //   if(document.getElementById('specialty').value !== ''){
-  //     document.getElementById('specialty').removeAttribute('disabled')
-  //   }
-  // }
-
-  // console.log(document.getElementById('specialty'))
-  
+    )  
 
   const listSpecialists = Specialists
     .map(
@@ -120,6 +99,35 @@ function RegisterAttendance() {
       }
     )
 
+  // const mock = [
+  //   {id:1, name:"Laura Lima do Val Carneiro"},
+  //   {id:2, name:"Thiago Corrêa Diniz"},
+  //   {id:3, name:"Sarah Maria de Lucena Silva"},
+  //   {id:4, name:"Filipe Lauro Matos"},
+  //   {id:5, name:"Guilherme Santana Tulio"},
+  //   {id:6, name:"Yuri Martins da Silva"},
+  //   {id:7, name:"Ricardo julio Carneiro"}
+  // ];
+
+  // const mockSpecialist = [
+  //   {id:1, name:"Roberto carlos da Silva", specialtyId:3},
+  //   {id:2, name:"Roberta carla da Silva", specialtyId:3},
+  //   {id:3, name:"Francisco Santos Motta", specialtyId:1},
+  //   {id:4, name:"Tulio Potter", specialtyId:2},
+  //   {id:5, name:"Pedro matos da silva", specialtyId:4},
+  //   {id:6, name:"Kaio Jorge Santos", specialtyId:5},
+  //   {id:7, name:"Matheus Carlos Hagen", specialtyId:6},
+  // ]
+
+  // const mockSpecialty = [
+  //   {id:1, name:"Ginecologia"},
+  //   {id:2, name:"Pediatra"},
+  //   {id:3, name:"Otorrino"},
+  //   {id:4, name:"Ortopedista"},
+  //   {id:5, name:"Urologista"},
+  //   {id:6, name:"Dentista"}
+  // ]
+
   return (
     <DefaultPage atualPage="Atendimento">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
@@ -133,7 +141,7 @@ function RegisterAttendance() {
             </label>
             <Select
               className="form-select"
-              id="client"
+              id="client"              
               aria-label="Default select example"
               showSearch
               placeholder="Pesquisar Cliente"
@@ -143,7 +151,8 @@ function RegisterAttendance() {
               disabled
             >
               {listClients}
-            </Select>
+              {/* {mock && mock.map(client => (<Option value={client.id}>{client.name}</Option>))} */}
+            </Select>            
           </div>
           <div className="col-sm-4">
             <label htmlFor="specialty" className="form-label">
@@ -153,13 +162,15 @@ function RegisterAttendance() {
               className="form-select"
               id="specialty"
               aria-label="Default select example"
-              showSearch
+              onChange={e => setSpecialtySelected(e)}
+              showSearch                                         
               placeholder="Pesquisar Especialidade"
               optionFilterProp="children"
               filterOption={filterOption}
               filterSort={filterSort}
             >
               {listSpecialtys}
+             {/* {mockSpecialty && mockSpecialty.map(client => <Option value={client.id}>{client.name}</Option>)} */}
             </Select>
 
           </div>
@@ -172,12 +183,19 @@ function RegisterAttendance() {
               id="specialist"
               aria-label="Default select example"
               showSearch
+              disabled={!specialtySelected}
               placeholder="Pesquisar Especialista"
               optionFilterProp="children"
               filterOption={filterOption}
               filterSort={filterSort}
             >
               {listSpecialists}
+              {/* {mockSpecialist &&
+                mockSpecialist.filter((client) => 
+                  client.specialtyId === specialtySelected).map(option => (
+                    <Option value={option.id}>{option.name}</Option>
+                  ))}                */}
+
             </Select>
           </div>
           <div className="col-sm-6">
