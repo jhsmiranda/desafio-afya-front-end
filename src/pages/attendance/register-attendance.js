@@ -23,8 +23,6 @@ function Schedule() {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  console.log(specialtySelected);
-
   const handleDateChange = useCallback((day, modifiers) => {
     if (modifiers.available) {
       setSelectedDate(day);
