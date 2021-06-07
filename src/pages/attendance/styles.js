@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-import ArrowLeftIcon from '../../components/images/ArrowLeftIcon.svg';
-import ArrowRightIcon from '../../components/images/ArrowRightIcon.svg';
+import ArrowLeftIcon from '../../assets/images/ArrowLeftIcon.svg';
+import ArrowRightIcon from '../../assets/images/ArrowRightIcon.svg';
 
 export const Calendar = styled.div`
   width: 380px;

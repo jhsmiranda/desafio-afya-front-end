@@ -94,7 +94,7 @@ function RegisterAttendance() {
     .map(
       (specialist, index) => {
         return(
-          <Option key={index+1} value={`specialty` + `${index+1}`}>{specialist}</Option>
+          <Option key={index+1} value={`specialty ${index+1}`}>{specialist}</Option>
         )
       }
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar, NavbarToggler } from 'reactstrap'
 
-import Logo from '../images/logo16.png'
+import Logo from '../../assets/images/logo16.png'
 
 export default function NavbarGlobal({toggle}) {
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
-import Fundo from '../../components/images/fundo2.png'
+import Fundo from '../../assets/images/fundo1.png'
 
 import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Brand } from '../../styles/styles'
 

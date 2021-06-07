@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
-import Fundo from '../../components/images/fundo4.jpg'
+import Fundo from '../../assets/images/fundo2.jpg'
 
 import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styles'
-import '../../components/assets/dist/css/bootstrap.min.css'
+import '../../assets/dist/css/bootstrap.min.css'
 
 
 function Login() {
