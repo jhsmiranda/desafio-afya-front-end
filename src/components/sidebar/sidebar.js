@@ -73,7 +73,7 @@ export default function SideBarGlobal({isOpen, atualPage}) {
                             </Link>
                         </li>
                         <li className="list-bottom-sidebar">
-                            <hr className="divisor-bottom-sidebar mb-2"></hr>
+                            <hr className="mb-2"></hr>
                             <Link to="/" className="sidebar-list-global sidebar-inactive-global">
                                 <LogOut size={16} style={{ marginRight: 10, marginBottom: 4 }} />
                                 Sair

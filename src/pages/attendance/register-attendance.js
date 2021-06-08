@@ -13,7 +13,9 @@ import { FiClock } from "react-icons/fi";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
 
-function Schedule() {
+// import { Clients, Specialtys, Specialists } from "../../data";
+
+function RegisterAttendance() {
   useEffect(() => {
     document.title = "Clínica Pomarola | Atendimento";
   }, []);
@@ -70,10 +72,8 @@ function Schedule() {
   return (
     <DefaultPage atualPage="Atendimento">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-        <h1 className="h4">Atendimento</h1>
+        <h1 className="h4">Cadastrar Atendimento</h1>
       </div>
-
-      <h5 className="mb-3">Lista de Clientes</h5>
       <form action="/cliente" method="POST" className="p-2">
         <div className="row g-3">
           <div className="col-sm-4">
@@ -107,20 +107,12 @@ function Schedule() {
             </label>
             <Select
               className="form-select"
-              id="client"
+              id="specialty"
               aria-label="Default select example"
               onChange={(e) => setSpecialtySelected(e)}
               showSearch
               placeholder="Pesquisar Especialidade"
               optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              filterSort={(optionA, optionB) =>
-                optionA.children
-                  .toLowerCase()
-                  .localeCompare(optionB.children.toLowerCase())
-              }
             >
               {mockSpecialty &&
                 mockSpecialty.map((client) => (
@@ -133,20 +125,12 @@ function Schedule() {
             </label>
             <Select
               className="form-select"
-              disabled={!specialtySelected}
-              id="client"
+              id="specialist"
               aria-label="Default select example"
               showSearch
+              disabled={!specialtySelected}
               placeholder="Pesquisar Especialista"
               optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              filterSort={(optionA, optionB) =>
-                optionA.children
-                  .toLowerCase()
-                  .localeCompare(optionB.children.toLowerCase())
-              }
             >
               {mockSpecialist &&
                 mockSpecialist
@@ -254,4 +238,4 @@ function Schedule() {
   );
 }
 
-export default Schedule;
+export default RegisterAttendance;

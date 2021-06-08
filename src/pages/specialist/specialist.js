@@ -7,27 +7,17 @@ import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
 
-function Dashboard() {
+import { Specialists } from '../../data'
+
+function Specialist() {
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Especialista"
     }, []);
 
-    const specialists =[
-        {name:"Laura Lima do Val Carneiro", profession: "Clínico Geral"},
-        {name:"Thiago Corrêa Diniz", profession: "Oftalmologista"},
-        {name:"Sarah Maria de Lucena Silva", profession: "Ginecologista"},
-        {name:"Stephanie Oliver", profession: "Psicólogo"},
-        {name:"Camila Attico Chirinhan", profession: "Urologista"},
-        {name:"Bruna Barbosa Nunes da Silva", profession: "Pediatria"},
-        {name:"Gabriela de Araújo Egídio", profession: "Clínico Geral"},
-        {name:"Gustavo Rodrigues Pereira", profession: "Clínico Geral"},
-        {name:"Gustavo Henrique Souza Dyonísio", profession: "Endocrinologista"},
-        {name:"Kimberly Karoline Ramos da Costa", profession: "Ortopedista"},
-        {name:"José Weider Pinheiro Neto", profession: "Ginecologista"}
-    ];
 
-    const listSpecialists = specialists.map(
+
+    const listSpecialists = Specialists.map(
         (spcialist, index) => {
             let id = 1000 + index
 
@@ -76,4 +66,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Specialist;
