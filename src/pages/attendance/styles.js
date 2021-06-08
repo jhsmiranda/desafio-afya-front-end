@@ -5,14 +5,14 @@ import ArrowLeftIcon from '../../components/images/ArrowLeftIcon.svg';
 import ArrowRightIcon from '../../components/images/ArrowRightIcon.svg';
 
 export const Calendar = styled.div`
-  width: 380px;
+  width: 380px;  
 
   .DayPicker {
     border-radius: 10px;
 
     &-wrapper {
       padding-bottom: 0;
-      background: rgb(1,49,69, 0.8);
+      background: #f0e9e1;
       border-radius: 10px;
       z-index: 0;
     }
@@ -25,7 +25,7 @@ export const Calendar = styled.div`
         width: 100%;
         height: 50px;
         position: absolute;
-        background: rgb(0,27,34);
+        background: #3d7a94;
         border-radius: 10px 10px 0 0;
         z-index: -1;
       }
@@ -81,11 +81,11 @@ export const Calendar = styled.div`
 
       &--today {
         font-weight: normal;
-        color: #fff;
+        color: #f00;
       }
 
       &--available:not(.DayPicker-Day--outside) {
-        background: #3e3b47;
+        background: #f0c38d;
         border-radius: 10px;
       }
 
@@ -95,14 +95,57 @@ export const Calendar = styled.div`
       }
 
       &--selected:not(.DayPicker-Day--disabled) {
-        background: #BE9667 !important;
+        background: #bf7f30 !important;
         color: #232129 !important;
       }
     }
 
     &:not(.DayPicker--interactionDisabled)
       .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-      background: ${shade(0.2, '#3e3b47')};
+      background: ${shade(0.2, '#bf7f30')};
+    }
+  }
+`;
+
+export const Appointment = styled.div`
+  display: flex;
+  align-items: center;
+
+  & + div {
+    margin-top: 16px;
+  }
+
+  span {
+    /* margin-left: auto;
+    display: flex;
+    align-items: center;
+    color: #000;
+    background-color: #3e3b47; */
+    flex: 1;
+    background: #f0c38d;
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-radius: 10px;    
+
+    svg {
+      color: #3e3b47;      
+    }
+  }
+
+  div {
+    flex: 1;
+    background: #f0c38d;
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-radius: 10px;
+    margin-left: 24px;    
+
+    strong {
+      margin-left: 24px;
+      color: #fff;
+      font-size: 20px;
     }
   }
 `;
