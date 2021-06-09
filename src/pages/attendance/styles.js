@@ -115,26 +115,25 @@ export const Appointment = styled.div`
     margin-top: 16px;
   }
 
-  span {
-    /* margin-left: auto;
-    display: flex;
-    align-items: center;
-    color: #000;
-    background-color: #3e3b47; */
-    flex: 1;
+  span {   
     background: #f0c38d;
     display: flex;
     align-items: center;
     padding: 16px 24px;
-    border-radius: 10px;    
+    border-radius: 10px;
+    font-size: 16px;
 
     svg {
-      color: #3e3b47;      
+      color: #3e3b47; 
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
     }
   }
 
   div {
     flex: 1;
+    justify-content: left;
     background: #f0c38d;
     display: flex;
     align-items: center;
@@ -142,8 +141,7 @@ export const Appointment = styled.div`
     border-radius: 10px;
     margin-left: 24px;    
 
-    strong {
-      margin-left: 24px;
+    strong {      
       color: #fff;
       font-size: 20px;
     }
