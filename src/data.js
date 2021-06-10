@@ -68,7 +68,7 @@ export const mockSpecialty = [
 
 export const schedules = [
   {
-    hour: "9:00",
+    hour: "09:00",
     client: "Laura Lima do Val Carneiro",
     specialist: "Roberto carlos da Silva",
   },
@@ -85,11 +85,11 @@ export const schedules = [
 ];
 
 export const availableTime = [
-  "8:00", "8:15", "8:30", "8:45",
-  "9:00",
-  "9:15",
-  "9:30",
-  "9:45",
+  "08:00", "08:15", "08:30", "08:45",
+  "09:00",
+  "09:15",
+  "09:30",
+  "09:45",
   "10:00",
   "10:15",
   "10:30",
@@ -117,5 +117,5 @@ export const availableTime = [
   "17:00",
   "17:15",
   "17:30",
-  "17:45",
+  "17:45",  
 ];

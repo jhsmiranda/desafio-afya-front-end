@@ -1,10 +1,13 @@
-import styled from 'styled-components';
-import { shade } from 'polished';
+import styled from "styled-components";
+import { shade, darken } from "polished";
 
-import ArrowLeftIcon from '../../components/images/ArrowLeftIcon.svg';
-import ArrowRightIcon from '../../components/images/ArrowRightIcon.svg';
+import ArrowLeftIcon from "../../components/images/ArrowLeftIcon.svg";
+import ArrowRightIcon from "../../components/images/ArrowRightIcon.svg";
 
 export const Calendar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 380px;  
 
   .DayPicker {
@@ -21,7 +24,7 @@ export const Calendar = styled.div`
       position: relative;
 
       ::before {
-        content: '';
+        content: "";
         width: 100%;
         height: 50px;
         position: absolute;
@@ -102,7 +105,7 @@ export const Calendar = styled.div`
 
     &:not(.DayPicker--interactionDisabled)
       .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-      background: ${shade(0.2, '#bf7f30')};
+      background: ${shade(0.2, "#bf7f30")};
     }
   }
 `;
@@ -115,7 +118,7 @@ export const Appointment = styled.div`
     margin-top: 16px;
   }
 
-  span {   
+  span {
     background: #f0c38d;
     display: flex;
     align-items: center;
@@ -124,7 +127,7 @@ export const Appointment = styled.div`
     font-size: 16px;
 
     svg {
-      color: #3e3b47; 
+      color: #3e3b47;
       width: 20px;
       height: 20px;
       margin-right: 5px;
@@ -139,11 +142,48 @@ export const Appointment = styled.div`
     align-items: center;
     padding: 16px 24px;
     border-radius: 10px;
-    margin-left: 24px;    
+    margin-left: 24px;
 
-    strong {      
+    strong {
       color: #fff;
       font-size: 20px;
     }
   }
+`;
+
+export const Time = styled.div`
+  .ant-radio-button-wrapper {
+    background-color: #f0c38d;
+  }
+
+  .ant-radio-button-wrapper:hover {
+    position: relative;
+    background: ${darken(0.2, "#f0c38d")};
+    color: #fff;
+  }
+  .ant-radio-button-wrapper-disabled {
+    color: darkgray;
+    background-color: lightgrey;
+  }
+
+  .ant-radio-button-wrapper-disabled:first-child,
+  .ant-radio-button-wrapper-disabled:hover {
+    color: darkgray;
+    background-color: lightgray;
+  }
+
+  .ant-radio-group-solid {
+    background-color: ${darken(0.2, "#f0c38d")};
+    color: #fff;
+  }
+
+  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    background-color: ${darken(0.2, "#f0c38d")};
+    color: #fff;
+  }  
+
+  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+    background-color: ${darken(0.2, "#f0c38d")};
+  }
+  
 `;

@@ -3,13 +3,12 @@ import React, { useState, useEffect } from "react";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 
-import { Select, notification } from "antd";
+import { Select, notification, Radio } from "antd";
 
 import "antd/dist/antd.css";
 import "../../styles/styles";
 import "../../styles/globalstyles.css";
-import { Calendar, Appointment } from "./styles";
-import { FiClock } from "react-icons/fi";
+import { Calendar, Time } from "./styles";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
 
@@ -35,15 +34,16 @@ function RegisterAttendance() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (day, modifiers) => {
-    if (modifiers.available) {
-      setSelectedDate(day);
-    }
     if (!specialistSelected) {
       return notification.warning({
         message: "Preencha todos os campos",
         description: "Selecione o Especialista antes de selecionar uma data",
       });
     }
+    if (modifiers.available) {
+      setSelectedDate(day);
+    }
+
     //chamar api passando dia e especialista
   };
 
@@ -82,7 +82,11 @@ function RegisterAttendance() {
                 ))}
             </Select>
 
-            <label htmlFor="specialist" className="form-label">
+            <label
+              htmlFor="specialist"
+              className="form-label"
+              style={{ marginTop: "15px" }}
+            >
               Especialidade
             </label>
             <Select
@@ -100,7 +104,11 @@ function RegisterAttendance() {
                 ))}
             </Select>
 
-            <label htmlFor="specialist" className="form-label">
+            <label
+              htmlFor="specialist"
+              className="form-label"
+              style={{ marginTop: "15px" }}
+            >
               Especialista
             </label>
             <Select
@@ -123,29 +131,12 @@ function RegisterAttendance() {
 
             {mockSpecialist && (
               <div>
-                <div>
-                  <label htmlFor="specialist" className="form-label">
-                    Horário de Atendimento
-                  </label>
-
-                  <div>
-                    <Select placeholder="Horário">
-                      {availableTime
-                        .filter(
-                          (a) => !schedules.map((b) => b.hour).includes(a)
-                        )
-                        .map((c) => (
-                          <Option key={c} value={c}>
-                            {c}
-                          </Option>
-                        ))}
-                    </Select>
-                  </div>
-                </div>
-
                 <div className="d-flex flex-column">
-
-                  <label htmlFor="specialist" className="form-label">
+                  <label
+                    htmlFor="specialist"
+                    className="form-label"
+                    style={{ marginTop: "15px" }}
+                  >
                     Valor da Consulta
                   </label>
 
@@ -155,15 +146,8 @@ function RegisterAttendance() {
                       type="number"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
+                      style={{ marginLeft: "10px", width: "70px" }}
                     />
-                    {/* <InputNumber
-                      value={price}
-                      formatter={(value) =>
-                        `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                      }
-                      parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-                      onChange={setPrice}
-                    /> */}
                   </div>
                 </div>
               </div>
@@ -208,19 +192,34 @@ function RegisterAttendance() {
           </div>
 
           <div className="col-sm-4">
-            <h5>Horários Agendados</h5>
-            {schedules &&
-              schedules.map((schedule) => (
-                <Appointment>
-                  <div>
-                    <span>
-                      <FiClock />
-                      {schedule.hour}
-                    </span>
-                    <strong>{schedule.client}</strong>
-                  </div>
-                </Appointment>
-              ))}
+            <h5>Horários Disponíveis</h5>
+            <div>
+              <div>
+                <Radio.Group
+                  defaultValue="a"
+                  size="large"
+                  buttonStyle="solid"
+                  style={{ display: "flex", flexWrap: "wrap" }}
+                >
+                  {availableTime.map((c) => (
+                    <Time>
+                      <Radio.Button
+                        key={c}
+                        value={c}
+                        disabled={schedules.map((b) => b.hour).includes(c)}
+                        style={{
+                          margin: "5px",                         
+                          borderRadius: "5px",
+                          width: "75px",
+                        }}
+                      >
+                        {c}
+                      </Radio.Button>
+                    </Time>
+                  ))}
+                </Radio.Group>
+              </div>
+            </div>
           </div>
 
           <button
