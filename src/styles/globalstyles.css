@@ -1,5 +1,9 @@
 /*Navbar*/
 
+body{
+  padding-right: 0!important;
+}
+
 .navbar-global{
   /*bg-dark*/  
  background: rgb(1,49,69);;
@@ -155,6 +159,7 @@
  text-decoration: none;
  font-weight: 500;
  line-height: 1.5;
+ font-size: 15px;
  
  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
@@ -209,8 +214,8 @@
 }
 
 td button {
- margin-left: -10px;
- width: 60px;
+ margin-left: -18px;
+ width: auto;
  padding-top: 2px!important;
  padding-bottom: 2px!important;
  margin-top: 2px!important;
@@ -242,6 +247,70 @@ td button {
  display: flex;
  justify-content: space-between;
 }
+
+/*Modal*/
+.modal{
+  top: 10vh;
+}
+
+.modal-backdrop.show{
+  opacity: .1;
+}
+
+.modal-content {
+  background-color: #f7ece0;
+}
+
+.modal-content .modal-body{
+  background-color: rgb(4, 63, 88);
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.modal-content .modal-body strong{
+  color: #BE9667;
+}
+
+.modal-content .modal-body p{
+  color: #e5e5e5!important;
+  margin-bottom: 0;
+  background-color: rgb(25, 76, 99);
+  border-radius: 5px;
+  padding-left: 5px!important;
+}
+
+.modal-content .modal-body .clinica-pomarola{
+  width: 200px!important;
+  margin-top: 16px;
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+
+.modal-content .modal-body .clinica-pomarola span{
+  font-family: 'Dancing Script', serif;
+  font-style: normal;
+  font-weight: 600;
+  color: #BE9667;
+  font-size: 20px;
+}
+
+button.close{
+  display: none;
+}
+
+.reverter-logo-name{
+  display: flex;
+}
+
+.info-name-complete {
+  width: 65%;
+}
+
+.info-logomarca{
+  width: 33.3333333%;
+}
+
+/*Responsividade*/
 
 @media (min-width: 768px){
  .navbar-global {
@@ -302,5 +371,19 @@ td button {
  }
  .register-global{
    margin-bottom: 20px;
- }    
+ }
+ .modal{
+  top: 0vh;
+}
+ .reverter-logo-name{
+    flex-direction: column-reverse;
+  }
+  .info-name-complete {
+    width: 100%;
+  }
+  .modal-content .modal-body .clinica-pomarola{
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 }

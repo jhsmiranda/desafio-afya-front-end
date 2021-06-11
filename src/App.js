@@ -2,7 +2,8 @@ import React from 'react';
 import SignIn from './pages/login/signIn'
 import SignUp from './pages/login/signUp'
 import Client from './pages/client/client'
-import RegisterClient from './pages/client/register-client'
+import RegisterEditClient from './pages/client/register-edit-client'
+// import EditClient from './pages/client/edit-client'
 import Specialist from './pages/specialist/specialist'
 import RegisterSpecialist from './pages/specialist/register-specialist'
 import Attendance from './pages/attendance/attendance';
@@ -34,7 +35,12 @@ function App() {
                 <Route
                     exact
                     path="/cadastro-cliente"
-                    component={RegisterClient}
+                    component={RegisterEditClient}
+                />
+                <Route
+                    exact
+                    path="/editar-cliente/:id"
+                    component={RegisterEditClient}
                 />
                 <Route
                     exact
