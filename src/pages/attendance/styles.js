@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { shade, darken } from "polished";
+import { darken } from "polished";
 
 import ArrowLeftIcon from "../../components/images/ArrowLeftIcon.svg";
 import ArrowRightIcon from "../../components/images/ArrowRightIcon.svg";
@@ -98,14 +98,14 @@ export const Calendar = styled.div`
       }
 
       &--selected:not(.DayPicker-Day--disabled) {
-        background: #bf7f30 !important;
-        color: #232129 !important;
+        background: ${darken(0.2, "#f0c38d")} !important;
+        color: #fff !important;
       }
     }
 
     &:not(.DayPicker--interactionDisabled)
       .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-      background: ${shade(0.2, "#bf7f30")};
+      background: ${darken(0.2, "#f0c38d")};
     }
   }
 `;
