@@ -161,6 +161,7 @@ function RegisterAttendance() {
             <Calendar>
               <DayPicker
                 weekdaysShort={["D", "S", "T", "Q", "Q", "S", "S"]}
+                weekdaysLong={["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]}
                 fromMonth={new Date()}
                 disabledDays={[
                   { daysOfWeek: [0, 6] },
