@@ -208,7 +208,7 @@ function RegisterAttendance() {
                         value={c}
                         disabled={schedules.map((b) => b.hour).includes(c)}
                         style={{
-                          margin: "5px",                         
+                          margin: "5px",
                           borderRadius: "5px",
                           width: "75px",
                         }}
@@ -221,7 +221,7 @@ function RegisterAttendance() {
               </div>
             </div>
           </div>
-
+          <hr style={{ marginTop: 40, marginBottom: 30 }}></hr>
           <button
             type="submit"
             className="register-global btn btn-primary w-100"

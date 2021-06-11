@@ -8,7 +8,7 @@ export const Calendar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 380px;  
+  width: 380px;
 
   .DayPicker {
     border-radius: 10px;
@@ -180,10 +180,9 @@ export const Time = styled.div`
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
     background-color: ${darken(0.2, "#f0c38d")};
     color: #fff;
-  }  
+  }
 
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
     background-color: ${darken(0.2, "#f0c38d")};
   }
-  
 `;
