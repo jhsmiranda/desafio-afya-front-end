@@ -14,7 +14,7 @@ body{
  /*sticky-top*/
  position: sticky!important;
  top: 0;
- z-index: 1020;
+ z-index: 1000;
  /*navbar*/
  position: relative;
  display: flex;
@@ -326,6 +326,12 @@ button.close{
 .info-logomarca{
   width: 33.3333333%;
 }
+
+/* Tela de cadastro de atendimento */
+
+/* .DayPicker{
+  width: 300px;
+} */
 
 /*Responsividade*/
 

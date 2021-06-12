@@ -1,6 +1,6 @@
 export const Clients =[
     {   
-        id: '1',
+        id: 1,
         name:'Laura Maria da Silva',
         mail: 'laura@gmail.com',
         cpf: '05975314701',
@@ -18,7 +18,7 @@ export const Clients =[
         }
     },
     {
-        id: '2',
+        id: 2,
         name:'Thiago Corrêa Diniz',
         mail: 'thiago@gmail.com',
         cpf: '05975314702',
@@ -36,7 +36,7 @@ export const Clients =[
         }
     },
     {
-        id: '3',
+        id: 3,
         name:'Sarah Maria de Lucena Silva',
         mail: 'sarah@hotmail.com',
         cpf: '05975314703',
@@ -54,7 +54,7 @@ export const Clients =[
         }
     },
     {
-        id: '4',
+        id: 4,
         name:'Stephanie Oliver',
         mail: 'stephanie@hotmail.com',
         cpf: '05944014704',
@@ -72,7 +72,7 @@ export const Clients =[
         }
     },
     {
-        id: '5',
+        id: 5,
         name:'Camila Attico Chirinhan',
         mail: 'camila@hotmail.com',
         cpf: '05944014705',
@@ -90,7 +90,7 @@ export const Clients =[
         }
     },
     {
-        id: '6',
+        id: 6,
         name:'Bruna Barbosa Nunes da Silva',
         mail: 'bruna@hotmail.com',
         cpf: '05944014706',
@@ -108,7 +108,7 @@ export const Clients =[
         }
     },
     {
-        id: '7',
+        id: 7,
         name:'Gabriela de Araújo Egídio',
         mail: 'gabriela@hotmail.com',
         cpf: '05944014707',
@@ -126,7 +126,7 @@ export const Clients =[
         }
     },
     {
-        id: '8',
+        id: 8,
         name:'Gustavo Rodrigues Pereira',
         mail: 'gustavo.rodrigues@gmail.com',
         cpf: '05975314708',
@@ -144,7 +144,7 @@ export const Clients =[
         }
     },
     {
-        id: '9',
+        id: 9,
         name:'Gustavo Henrique Souza Dyonísio',
         mail: 'gustavo.henrique@gmail.com',
         cpf: '05975314709',
@@ -162,7 +162,7 @@ export const Clients =[
         }
     },
     {
-        id: '10',
+        id: 10,
         name:'Kimberly Karoline Ramos da Costa',
         mail: 'kinmberly@hotmail.com',
         cpf: '05975314710',
@@ -180,7 +180,7 @@ export const Clients =[
         }
     },
     {
-        id: '11',
+        id: 11,
         name:'José Valdir de Oliveira Neto',
         mail: 'jose.valdir@yahoo.com.br',
         cpf: '05944014711',
@@ -201,13 +201,14 @@ export const Clients =[
 
 export const Specialists =[
     {   
-        id: '1',
+        id: 1,
         name:'Laura Maria da Silva',
         mail: 'laura@clinicapomarola.com',
         register: 'CRM-753101',
         phone: '1131278784',
         cellphone: '11958156528',
         profession: {
+            id: 8,
             name: 'Ginecologista'
         },
         address: {
@@ -221,13 +222,14 @@ export const Specialists =[
         }
     },
     {
-        id: '2',
+        id: 2,
         name:'Thiago Corrêa Diniz',
         mail: 'thiago@clinicapomarola.com',
         register: 'CRM-753102',
         phone: '1231335688',
         cellphone: '12997407121',
         profession: {
+            id: 7,
             name: 'Ortopedista'
         },
         address: {
@@ -241,13 +243,14 @@ export const Specialists =[
         }
     },
     {
-        id: '3',
+        id: 3,
         name:'Sarah Maria de Lucena Silva',
         mail: 'sarah@clinicapomarola.com',
         register: 'CRM-753103',
         phone: '1231312681',
         cellphone: '12981275481',
         profession: {
+            id: 4,
             name: 'Urologista'
         },
         address: {
@@ -261,13 +264,14 @@ export const Specialists =[
         }
     },
     {
-        id: '4',
+        id: 4,
         name:'Stephanie Oliver',
         mail: 'stephanie@clinicapomarola.com',
         register: 'CRM-440104',
         phone: '1234815681',
         cellphone: '12987151293',
         profession: {
+            id: 6,
             name: 'Endocrinologista'
         },
         address: {
@@ -281,13 +285,14 @@ export const Specialists =[
         }
     },
     {
-        id: '5',
+        id: 5,
         name:'Camila Attico Chirinhan',
         mail: 'camila@clinicapomarola.com',
         register: 'CRM-440105',
         phone: '1234872705',
         cellphone: '12988766387',
         profession: {
+            id: 8,
             name: 'Ginecologista'
         },
         address: {
@@ -301,13 +306,14 @@ export const Specialists =[
         }
     },
     {
-        id: '6',
+        id: 6,
         name:'Bruna Barbosa Nunes da Silva',
         mail: 'bruna@clinicapomarola.com',
         register: 'CRM-440106',
         phone: '1234872705',
         cellphone: '12981751165',
         profession: {
+            id: 6,
             name: 'Endocrinologista'
         },
         address: {
@@ -321,13 +327,14 @@ export const Specialists =[
         }
     },
     {
-        id: '7',
+        id: 7,
         name:'Gabriela de Araújo Egídio',
         mail: 'gabriela@clinicapomarola.com',
         register: 'CRM-440107',
         phone: '1233726249',
         cellphone: '12999999326',
         profession: {
+            id: 5,
             name: 'Pediátra'
         },
         address: {
@@ -341,13 +348,14 @@ export const Specialists =[
         }
     },
     {
-        id: '8',
+        id: 8,
         name:'Gustavo Rodrigues Pereira',
         mail: 'gustavo.rodrigues@clinicapomarola.com',
         register: 'CRM-753108',
         phone: '1131278784',
         cellphone: '11958156528',
         profession: {
+            id: 4,
             name: 'Urologista'
         },
         address: {
@@ -361,13 +369,14 @@ export const Specialists =[
         }
     },
     {
-        id: '9',
+        id: 9,
         name:'Gustavo Henrique Souza Dyonísio',
         mail: 'gustavo.henrique@clinicapomarola.com',
         register: 'CRP-753109',
         phone: '1231335688',
         cellphone: '12997407121',
         profession: {
+            id: 3,
             name: 'Psicólogo'
         },
         address: {
@@ -381,13 +390,14 @@ export const Specialists =[
         }
     },
     {
-        id: '10',
+        id: 10,
         name:'Kimberly Karoline Ramos da Costa',
         mail: 'kinmberly@clinicapomarola.com',
         register: 'CRM-753110',
         phone: '1231312681',
         cellphone: '12981275481',
         profession: {
+            id: 1,
             name: 'Clínico Geral'
         },
         address: {
@@ -401,13 +411,14 @@ export const Specialists =[
         }
     },
     {
-        id: '11',
+        id: 11,
         name:'José Valdir de Oliveira Neto',
         mail: 'jose.valdir@clinicapomarola.com',
         register: 'CRM-440111',
         phone: '1234815681',
         cellphone: '12987151293',
         profession: {
+            id: 2,
             name: 'Oftalmologista'
         },
         address: {
@@ -423,63 +434,14 @@ export const Specialists =[
 ];
 
 export const Profession =[
-    {name: "Clínico Geral"},
-    {name: "Oftalmologista"},
-    {name: "Psicólogo"},
-    {name: "Urologista"},
-    {name: "Pediátra"},
-    {name: "Endocrinologista"},
-    {name: "Ortopedista"},
-    {name: "Ginecologista"}
-];
-
-export const Clients = [
-  { name: "Laura Lima do Val Carneiro" },
-  { name: "Thiago Corrêa Diniz" },
-  { name: "Sarah Maria de Lucena Silva" },
-  { name: "Stephanie Oliver" },
-  { name: "Camila Attico Chirinhan" },
-  { name: "Bruna Barbosa Nunes da Silva" },
-  { name: "Gabriela de Araújo Egídio" },
-  { name: "Gustavo Rodrigues Pereira" },
-  { name: "Gustavo Henrique Souza Dyonísio" },
-  { name: "Kimberly Karoline Ramos da Costa" },
-  { name: "José Weider Pinheiro Neto" },
-];
-
-export const Specialists = [
-  { name: "Laura Lima do Val Carneiro", profession: "Clínico Geral" },
-  { name: "Thiago Corrêa Diniz", profession: "Oftalmologista" },
-  { name: "Sarah Maria de Lucena Silva", profession: "Ginecologista" },
-  { name: "Stephanie Oliver", profession: "Psicólogo" },
-  { name: "Camila Attico Chirinhan", profession: "Urologista" },
-  { name: "Bruna Barbosa Nunes da Silva", profession: "Pediatria" },
-  { name: "Gabriela de Araújo Egídio", profession: "Clínico Geral" },
-  { name: "Gustavo Rodrigues Pereira", profession: "Clínico Geral" },
-  { name: "Gustavo Henrique Souza Dyonísio", profession: "Endocrinologista" },
-  { name: "Kimberly Karoline Ramos da Costa", profession: "Ortopedista" },
-  { name: "José Weider Pinheiro Neto", profession: "Ginecologista" },
-];
-
-export const Specialtys = [
-  { profession: "Clínico Geral" },
-  { profession: "Oftalmologista" },
-  { profession: "Psicólogo" },
-  { profession: "Urologista" },
-  { profession: "Pediatria" },
-  { profession: "Endocrinologista" },
-  { profession: "Ortopedista" },
-  { profession: "Ginecologista" },
-];
-
-export const mock = [
-  { id: 1, name: "Laura Lima do Val Carneiro" },
-  { id: 2, name: "Thiago Corrêa Diniz" },
-  { id: 3, name: "Sarah Maria de Lucena Silva" },
-  { id: 4, name: "Filipe Lauro Matos" },
-  { id: 5, name: "Guilherme Santana Tulio" },
-  { id: 6, name: "Yuri Martins da Silva" },
-  { id: 7, name: "Ricardo julio Carneiro" },
+    {id: 1, name: "Clínico Geral"},
+    {id: 2, name: "Oftalmologista"},
+    {id: 3, name: "Psicólogo"},
+    {id: 4, name: "Urologista"},
+    {id: 5, name: "Pediátra"},
+    {id: 6, name: "Endocrinologista"},
+    {id: 7, name: "Ortopedista"},
+    {id: 8, name: "Ginecologista"}
 ];
 
 export const mockSpecialist = [
@@ -490,15 +452,6 @@ export const mockSpecialist = [
   { id: 5, name: "Pedro matos da silva", specialtyId: 4 },
   { id: 6, name: "Kaio Jorge Santos", specialtyId: 5 },
   { id: 7, name: "Matheus Carlos Hagen", specialtyId: 6 },
-];
-
-export const mockSpecialty = [
-  { id: 1, name: "Ginecologia" },
-  { id: 2, name: "Pediatra" },
-  { id: 3, name: "Otorrino" },
-  { id: 4, name: "Ortopedista" },
-  { id: 5, name: "Urologista" },
-  { id: 6, name: "Dentista" },
 ];
 
 export const schedules = [

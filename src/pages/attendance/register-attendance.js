@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 
 import { Select, notification, Radio } from "antd";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import "antd/dist/antd.css";
 import "../../styles/styleLogin";
@@ -13,9 +15,9 @@ import { Calendar, Time } from "./styles";
 import DefaultPage from "../../components/defaultpage/defaultPage";
 
 import {
-  mock,
-  mockSpecialist,
-  mockSpecialty,
+  Clients,
+  Profession,
+  Specialists,
   schedules,
   availableTime,
 } from "../../data";
@@ -24,6 +26,20 @@ function RegisterAttendance() {
   useEffect(() => {
     document.title = "Clínica Pomarola | Atendimento";
   }, []);
+
+  //Modal
+
+  const [modal, setModal] = useState(false);
+
+  const toggle = (e) => {
+    setModal(!modal)
+  }
+
+  const closeModal = () => {
+    setModal(!modal)
+  }
+
+  //
 
   const [price, setPrice] = useState(0);
 
@@ -42,6 +58,7 @@ function RegisterAttendance() {
     }
     if (modifiers.available) {
       setSelectedDate(day);
+      setModal(!modal)
     }
 
     //chamar api passando dia e especialista
@@ -112,43 +129,14 @@ function RegisterAttendance() {
   //     }
   //   )
 
-  // const mock = [
-  //   {id:1, name:"Laura Lima do Val Carneiro"},
-  //   {id:2, name:"Thiago Corrêa Diniz"},
-  //   {id:3, name:"Sarah Maria de Lucena Silva"},
-  //   {id:4, name:"Filipe Lauro Matos"},
-  //   {id:5, name:"Guilherme Santana Tulio"},
-  //   {id:6, name:"Yuri Martins da Silva"},
-  //   {id:7, name:"Ricardo julio Carneiro"}
-  // ];
-
-  // const mockSpecialist = [
-  //   {id:1, name:"Roberto carlos da Silva", professionId:3},
-  //   {id:2, name:"Roberta carla da Silva", professionId:3},
-  //   {id:3, name:"Francisco Santos Motta", professionId:1},
-  //   {id:4, name:"Tulio Potter", professionId:2},
-  //   {id:5, name:"Pedro matos da silva", professionId:4},
-  //   {id:6, name:"Kaio Jorge Santos", professionId:5},
-  //   {id:7, name:"Matheus Carlos Hagen", professionId:6},
-  // ]
-
-  // const mockProfession = [
-  //   {id:1, name:"Ginecologia"},
-  //   {id:2, name:"Pediatra"},
-  //   {id:3, name:"Otorrino"},
-  //   {id:4, name:"Ortopedista"},
-  //   {id:5, name:"Urologista"},
-  //   {id:6, name:"Dentista"}
-  // ]
-
   return (
     <DefaultPage atualPage="Atendimento">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
         <h1 className="h4">Cadastrar Atendimento</h1>
       </div>
-      <form action="/cliente" method="POST" className="p-2">
+      <form action="/cliente" method="POST" className="p-0">
         <div className="row g-3">
-          <div className="col-sm-4">
+          <div className="col-xs-6 col-md-6 col-lg-6">
             <label htmlFor="client" className="form-label">
               Cliente
             </label>
@@ -168,14 +156,14 @@ function RegisterAttendance() {
                   .localeCompare(optionB.children.toLowerCase())
               }
             >
-              {mock &&
-                mock.map((client) => (
+              {Clients &&
+                Clients.map((client) => (
                   <Option value={client.id}>{client.name}</Option>
                 ))}
             </Select>
 
             <label
-              htmlFor="specialist"
+              htmlFor="profession"
               className="form-label"
               style={{ marginTop: "15px" }}
             >
@@ -185,14 +173,14 @@ function RegisterAttendance() {
               className="form-select"
               id="profession"
               aria-label="Default select example"
-              onChange={(e) => setSpecialtySelected(e)}
+              onChange={(e) => setProfessionSelected(e)}
               showSearch
               placeholder="Pesquisar Especialidade"
               optionFilterProp="children"
             >
-              {mockSpecialty &&
-                mockSpecialty.map((client) => (
-                  <Option value={client.id}>{client.name}</Option>
+              {Profession &&
+                Profession.map((profession) => (
+                  <Option value={profession.id}>{profession.name}</Option>
                 ))}
             </Select>
 
@@ -213,16 +201,15 @@ function RegisterAttendance() {
               optionFilterProp="children"
               onChange={(e) => setSpecialistSelected(e)}
             >
-              {mockSpecialist &&
-                mockSpecialist
-                  .filter((client) => client.specialtyId === specialtySelected)
-                  .map((option) => (
-                    <Option value={option.id}>{option.name}</Option>
+              {Specialists &&
+                Specialists
+                  .filter((profession) => profession.profession.id === professionSelected)
+                  .map((specialist) => (
+                    <Option value={specialist.id}>{specialist.name}</Option>
                   ))}
             </Select>
 
-            {mockSpecialist && (
-              <div>
+            {Specialists && (
                 <div className="d-flex flex-column">
                   <label
                     htmlFor="specialist"
@@ -233,21 +220,20 @@ function RegisterAttendance() {
                   </label>
 
                   <div>
-                    R$
-                    <input
-                      type="number"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                      style={{ marginLeft: "10px", width: "70px" }}
-                    />
+                      <input
+                        className="form-control form-control-dark w-100 mb-3"
+                        type="number"
+                        placeholder="Insira o valor"
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price}
+                      ></input>
                   </div>
                 </div>
-              </div>
             )}
           </div>
 
           <div
-            className="col-sm-4"
+            className="col-xs-6 col-md-6 col-lg-6"
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Calendar>
@@ -283,45 +269,50 @@ function RegisterAttendance() {
               />
             </Calendar>
           </div>
-
-          <div className="col-sm-4">
-            <h5>Horários Disponíveis</h5>
-            <div>
-              <div>
-                <Radio.Group
-                  defaultValue="a"
-                  size="large"
-                  buttonStyle="solid"
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                >
-                  {availableTime.map((c) => (
-                    <Time>
-                      <Radio.Button
-                        key={c}
-                        value={c}
-                        disabled={schedules.map((b) => b.hour).includes(c)}
-                        style={{
-                          margin: "5px",
-                          borderRadius: "5px",
-                          width: "75px",
-                        }}
-                      >
-                        {c}
-                      </Radio.Button>
-                    </Time>
-                  ))}
-                </Radio.Group>
+          
+          <Modal isOpen={modal} toggle={toggle} className="">
+            <ModalHeader toggle={toggle}>Horários Disponíveis</ModalHeader>
+            <ModalBody>
+              <div className="row g-3">
+                <div className="col-sm-12">
+                  <Radio.Group
+                    defaultValue="a"
+                    size="large"
+                    buttonStyle="solid"
+                    style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+                  >
+                    {availableTime.map((c) => (
+                      <Time>
+                        <Radio.Button
+                          key={c}
+                          value={c}
+                          disabled={schedules.map((b) => b.hour).includes(c)}
+                          style={{
+                            margin: "5px",
+                            borderRadius: "5px"
+                          }}
+                        >
+                          {c}
+                        </Radio.Button>
+                      </Time>
+                    ))}
+                  </Radio.Group>
+                </div>
               </div>
-            </div>
-          </div>
-          <hr style={{ marginTop: 40, marginBottom: 30 }}></hr>
-          <button
-            type="submit"
-            className="register-global btn btn-primary w-100"
-          >
-            Cadastrar Atendimento
-          </button>
+            </ModalBody>
+            <ModalFooter>
+                <Button type="button" color="primary" onClick={closeModal}>Editar Cliente</Button>
+                <Button color="danger" onClick={closeModal}>Voltar</Button>
+            </ModalFooter>
+          </Modal>
         </div>
+        <hr style={{ marginTop: 40, marginBottom: 30 }}></hr>
+        <button
+          type="submit"
+          className="register-global btn btn-primary w-100"
+        >
+          Cadastrar Atendimento
+        </button>
       </form>
     </DefaultPage>
   );
