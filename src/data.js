@@ -116,7 +116,7 @@ export const Clients =[
         phone: '1233726249',
         cellphone: '12999999326',
         address: {
-            street: 'RRua Braz Cubas',
+            street: 'Rua Braz Cubas',
             number: '680',
             neighborhood: 'Cidade Edson',
             locality: 'Suzano',
@@ -331,7 +331,7 @@ export const Specialists =[
             name: 'Pediátra'
         },
         address: {
-            street: 'RRua Braz Cubas',
+            street: 'Rua Braz Cubas',
             number: '680',
             neighborhood: 'Cidade Edson',
             locality: 'Suzano',

@@ -6,17 +6,17 @@ import { PlusCircle } from 'react-feather'
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
-import { Specialists } from '../../data'
+import { Clients } from '../../data'
 import { mask } from '../../config/helpers'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
 
-function Specialist() {
+function MedicalRecord() {
 
     useEffect(() => {
-        document.title = "Clínica Pomarola | Especialista"
+        document.title = "Clínica Pomarola | Prontuário"
     }, []);
 
     //Modal
@@ -24,10 +24,10 @@ function Specialist() {
     const [modal, setModal] = useState(false);
     const [indice, setIndice] = useState();
 
-    // Lista de Especialistas
+    // Lista de Clientes
     const [nameValue, setNameValue] = useState('')
 
-    const listSpecialists = () => {
+    const listClients = () => {
 
         const toggle = (e) => {
             setModal(!modal)
@@ -39,31 +39,31 @@ function Specialist() {
             setModal(!modal)
         }
 
-        const lastSpecialists = []
+        const lastClients = []
 
-        for (let specialist of Specialists) {
-            if (lastSpecialists.length < 10) {
-                lastSpecialists.push(specialist)
+        for (let client of Clients) {
+            if (lastClients.length < 10) {
+                lastClients.push(client)
             }
         }
 
         if (nameValue === '') {
-            return (lastSpecialists.map(
-                (specialist, index) => {
+            return (lastClients.map(
+                (client, index) => {
                     return (
                         <tr key={index}>
-                            <td>{specialist.register}</td>
-                            <td>{specialist.name}</td>
-                            <td>{specialist.profession.name}</td>
+                            <td>{mask(client.cpf, '###.###.###-##')}</td>
+                            <td>{client.name}</td>
+                            <td>12/06/2021</td>
                             <td><button id={index} onClick={toggle} className="botao btn btn-sm btn-outline-secondary">Detalhes</button></td>
-                            <Modal isOpen={modal} toggle={toggle} className="modal-specialist">
-                                <ModalHeader toggle={toggle}>Informações do Especialista</ModalHeader>
+                            <Modal isOpen={modal} toggle={toggle} className="">
+                                <ModalHeader toggle={toggle}>Informações do Cliente</ModalHeader>
                                 <ModalBody>
                                     <div className="row g-3">
                                         <div className="col-sm-12 reverter-logo-name">
                                             <div className="col-sm-8 info-name-complete">
                                                 <strong>Nome Completo</strong>
-                                                <p>{lastSpecialists[indice || 0].name}</p>
+                                                <p>{lastClients[indice || 0].name}</p>
                                             </div>
                                             <div className="col-sm-4 info-logomarca">
                                                 <div className="clinica-pomarola">
@@ -78,51 +78,47 @@ function Specialist() {
                                         </div>
                                         <div className="col-sm-8">
                                             <strong>E-mail</strong>
-                                            <p>{lastSpecialists[indice || 0].mail}</p>
+                                            <p>{lastClients[indice || 0].mail}</p>
                                         </div>
                                         <div className="col-sm-4">
-                                            <strong>Registro</strong>
-                                            <p>
-                                                {`
-                                                    ${lastSpecialists[indice || 0].register}
-                                                `}
-                                            </p>
+                                            <strong>CPF</strong>
+                                            <p>{mask(lastClients[indice || 0].cpf, '###.###.###-##')}</p>
                                         </div>
                                         <div className="col-sm-4">
-                                            <strong>Especialidade</strong>
-                                            <p>{lastSpecialists[indice || 0].profession.name}</p>
+                                            <strong>Tipo Sanguíneo</strong>
+                                            <p>{lastClients[indice || 0].bloodtype}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Telefone</strong>
                                             <p>
-                                                {mask(lastSpecialists[indice || 0].phone, '(##) ####-####')}
+                                                {mask(lastClients[indice || 0].phone, '(##) ####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Celular</strong>
                                             <p>
-                                                {mask(lastSpecialists[indice || 0].cellphone, '(##) #####-####')}
+                                                {mask(lastClients[indice || 0].cellphone, '(##) #####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-12">
                                             <strong>Endereço</strong>
                                             <p>
                                                 {`
-                                                    ${lastSpecialists[indice || 0].address.street}
-                                                    , nº ${lastSpecialists[indice || 0].address.number}.
-                                                    ${lastSpecialists[indice || 0].address.complement === '' ? '' : `${lastSpecialists[indice || 0].address.complement}.`}
-                                                    ${lastSpecialists[indice || 0].address.neighborhood}.
-                                                    ${lastSpecialists[indice || 0].address.locality}
-                                                    - ${lastSpecialists[indice || 0].address.state}.
-                                                    CEP: ${lastSpecialists[indice || 0].address.cep}
+                                                    ${lastClients[indice || 0].address.street}
+                                                    , nº ${lastClients[indice || 0].address.number}.
+                                                    ${lastClients[indice || 0].address.complement === '' ? '' : `${lastClients[indice || 0].address.complement}.`}
+                                                    ${lastClients[indice || 0].address.neighborhood}.
+                                                    ${lastClients[indice || 0].address.locality}
+                                                    - ${lastClients[indice || 0].address.state}.
+                                                    CEP: ${lastClients[indice || 0].address.cep}
                                                 `}
                                             </p>
                                         </div>
                                     </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Link to={`/editar-especialista/${lastSpecialists[(indice === undefined || '' ? 0 : indice)].id}`}>
-                                        <Button type="button" color="primary">Editar Especialista</Button>
+                                    <Link to={`/editar-cliente/${lastClients[(indice === undefined || '' ? 0 : indice)].id}`}>
+                                        <Button type="button" color="primary">Editar Cliente</Button>
                                     </Link>
                                     <Button color="danger" onClick={closeModal}>Voltar</Button>
                                 </ModalFooter>
@@ -134,8 +130,8 @@ function Specialist() {
         } else {
 
             const filterItems = function (query) {
-                return Specialists.filter(function (specialist) {
-                    return specialist.name.toLowerCase().indexOf(query.toLowerCase()) > -1 || specialist.profession.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
+                return Clients.filter(function (client) {
+                    return client.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
                 });
             };
 
@@ -143,22 +139,22 @@ function Specialist() {
                 return (
                     <tr key={1}>
                         <td></td>
-                        <td>Especialista não encontrado</td>
+                        <td>Usuário não encontrado</td>
                         <td></td>
                         <td></td>
                     </tr>
                 )
             } else {
                 return filterItems(nameValue).map(
-                    (specialist, index) => {
+                    (client, index) => {
                         return (
                             <tr key={index}>
-                                <td>{specialist.register}</td>
-                                <td>{specialist.name}</td>
-                                <td>{specialist.profession.name}</td>
+                                <td>{client.cpf}</td>
+                                <td>{client.name}</td>
+                                <td>12/06/2021</td>
                                 <td><button id={index} onClick={toggle} className="btn btn-sm btn-outline-secondary">Detalhes</button></td>
                                 <Modal isOpen={modal} toggle={toggle} className="">
-                                    <ModalHeader toggle={toggle}>Informações do Especialista</ModalHeader>
+                                    <ModalHeader toggle={toggle}>Informações do Cliente</ModalHeader>
                                     <ModalBody>
                                         <div className="row g-3">
                                             <div className="col-sm-12 reverter-logo-name">
@@ -181,28 +177,24 @@ function Specialist() {
                                                 <strong>E-mail</strong>
                                                 <p>{filterItems(nameValue)[indice || 0].mail}</p>
                                             </div>
-                                            <div className="col-sm-4">
-                                                <strong>Registro</strong>
-                                                <p>
-                                                    {`
-                                                        ${lastSpecialists[indice || 0].register}
-                                                    `}
-                                                </p>
+                                            <div>
+                                                <strong>CPF</strong>
+                                                <p>{mask(lastClients[indice || 0].cpf, '###.###.###-##')}</p>
                                             </div>
                                             <div className="col-sm-4">
-                                                <strong>Especialidade</strong>
-                                                <p>{filterItems(nameValue)[indice || 0].profession.name}</p>
+                                                <strong>Tipo Sanguíneo</strong>
+                                                <p>{lastClients[indice || 0].bloodtype}</p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Telefone</strong>
                                                 <p>
-                                                    {mask(lastSpecialists[indice || 0].phone, '(##) ####-####')}
+                                                    {mask(lastClients[indice || 0].phone, '(##) ####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Celular</strong>
                                                 <p>
-                                                    {mask(lastSpecialists[indice || 0].cellphone, '(##) #####-####')}
+                                                    {mask(lastClients[indice || 0].cellphone, '(##) #####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-12">
@@ -222,8 +214,8 @@ function Specialist() {
                                         </div>
                                     </ModalBody>
                                     <ModalFooter>
-                                        <Link to={`/editar-especialista/${filterItems(nameValue)[(indice === undefined || '' ? 0 : indice)].id}`}>
-                                            <Button type="button" color="primary">Editar Especialista</Button>
+                                        <Link to={`/editar-cliente/${filterItems(nameValue)[(indice === undefined || '' ? 0 : indice)].id}`}>
+                                            <Button type="button" color="primary">Editar Cliente</Button>
                                         </Link>
                                         <Button color="danger" onClick={closeModal}>Voltar</Button>
                                     </ModalFooter>
@@ -236,47 +228,48 @@ function Specialist() {
         }
     }
 
+
     return (
-        <DefaultPage atualPage='Especialista' indice={indice}>
+        <DefaultPage atualPage='Prontuário' indice={indice}>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-                <h1 className="h4">Especialista</h1>
+                <h1 className="h4">Prontuário</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
-                    <Link to="/cadastro-especialista">
+                    <Link to="/cadastro-cliente">
                         <button type="button" className="btn btn-sm btn-outline-secondary mb-2">
                             <PlusCircle size={16} style={{ marginRight: 10, marginBottom: 4 }} />
-                            Cadastrar Especialista
+                            Cadastrar Prontuário
                         </button>
                     </Link>
                 </div>
             </div>
 
             <input
-                id="searchSpecialist"
+                id="searchClient"
                 className="form-control form-control-dark w-100 mb-3"
                 type="text"
-                placeholder="Pesquisar Especialista"
+                placeholder="Pesquisar Cliente"
                 value={nameValue}
                 aria-label="Search"
                 onChange={e => setNameValue(e.target.value)}
             >
             </input>
 
-            <h5 className="mb-3">Lista de Especialistas</h5>
+            <h5 className="mb-3">Lista de Clientes</h5>
             <div className="table-responsive">
                 <table className="table table-striped table-sm">
                     <thead>
                         <tr>
-                            <th className="col-xs-2 col-md-2 col-lg-2">Registro</th>
-                            <th className="col-xs-4 col-md-4 col-lg-4">Nome Completo</th>
-                            <th className="col-xs-4 col-md-4 col-lg-4">Especialidade</th>
+                            <th className="col-xs-2 col-md-2 col-lg-2">CPF</th>
+                            <th className="col-xs-8 col-md-8 col-lg-5">Nome Completo</th>
+                            <th className="col-xs-8 col-md-8 col-lg-3">Data</th>
                             <th className="col-xs-2 col-md-2 col-lg-2">INFO</th>
                         </tr>
                     </thead>
-                    <tbody>{listSpecialists()}</tbody>
+                    <tbody>{listClients()}</tbody>
                 </table>
             </div>
         </DefaultPage>
     );
 }
 
-export default Specialist;
+export default MedicalRecord;

@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 
 import Fundo from '../../assets/images/fundo2.jpg'
 
-import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styles'
+import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styleLogin'
 import '../../assets/dist/css/bootstrap.min.css'
 
 

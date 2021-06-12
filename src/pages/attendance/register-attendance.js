@@ -6,7 +6,7 @@ import "react-day-picker/lib/style.css";
 import { TimePicker, InputNumber, Select } from "antd";
 
 import "antd/dist/antd.css";
-import "../../styles/styles";
+import "../../styles/styleLogin";
 import "../../styles/globalstyles.css";
 import { Calendar } from "./styles";
 

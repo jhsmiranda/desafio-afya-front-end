@@ -7,6 +7,7 @@ import Specialist from './pages/specialist/specialist'
 import RegisterEditSpecialist from './pages/specialist/registerEdit-specialist'
 import Attendance from './pages/attendance/attendance';
 import RegisterAttendance from './pages/attendance/register-attendance';
+import MedicalRecord from './pages/medicalRecord/medicalRecord';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';;
 
 // import { Container } from './styles';
@@ -65,6 +66,11 @@ function App() {
                     exact
                     path="/cadastro-atendimento"
                     component={RegisterAttendance}
+                />                 
+                <Route
+                    exact
+                    path="/prontuario"
+                    component={MedicalRecord}
                 />                 
             </Switch>
         </Router>

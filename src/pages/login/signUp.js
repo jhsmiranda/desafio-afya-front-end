@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 
 import Fundo from '../../assets/images/fundo1.png'
 
-import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Brand } from '../../styles/styles'
+import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Brand } from '../../styles/styleLogin'
 
 function Register() {
 

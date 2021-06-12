@@ -265,6 +265,7 @@ td button {
   background-color: rgb(4, 63, 88);
   border-radius: 20px;
   margin: 10px;
+
 }
 
 .modal-content .modal-body strong{
@@ -292,6 +293,22 @@ td button {
   font-weight: 600;
   color: #BE9667;
   font-size: 20px;
+}
+
+.modal-specialist .modal-content .modal-body{
+  background-color: #58978f!important;
+}
+
+.modal-specialist .modal-content .modal-body strong{
+  color: rgb(4, 63, 88);
+}
+
+.modal-specialist .modal-content .modal-body p{
+  background-color: #64a399;
+}
+
+.modal-specialist .modal-content .modal-body .clinica-pomarola span{
+  color: #e71d1d;
 }
 
 button.close{
