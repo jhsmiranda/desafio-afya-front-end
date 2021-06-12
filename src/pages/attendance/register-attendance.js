@@ -1,103 +1,116 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 
-import { TimePicker, InputNumber, Select } from "antd";
+import { Select, notification, Radio } from "antd";
 
 import "antd/dist/antd.css";
 import "../../styles/styleLogin";
 import "../../styles/globalstyles.css";
-import { Calendar } from "./styles";
+import { Calendar, Time } from "./styles";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
 
-import { Clients, Profession, Specialists } from '../../data'
+import {
+  mock,
+  mockSpecialist,
+  mockSpecialty,
+  schedules,
+  availableTime,
+} from "../../data";
 
 function RegisterAttendance() {
-
   useEffect(() => {
     document.title = "Clínica Pomarola | Atendimento";
   }, []);
 
-  const format = "HH:mm";
+  const [price, setPrice] = useState(0);
+
+  const [specialistSelected, setSpecialistSelected] = useState();
 
   const [professionSelected, setProfessionSelected] = useState();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = useCallback((day, modifiers) => {
+  const handleDateChange = (day, modifiers) => {
+    if (!specialistSelected) {
+      return notification.warning({
+        message: "Preencha todos os campos",
+        description: "Selecione o Especialista antes de selecionar uma data",
+      });
+    }
     if (modifiers.available) {
       setSelectedDate(day);
     }
-  }, []);
 
-  const onChange = (value) => {
-    console.log("changed", value);
+    //chamar api passando dia e especialista
   };
 
   const { Option } = Select;
 
-  const filterOption = (input, option) =>
-    option.children
-      .toLowerCase()
-      .indexOf(input.toLowerCase()) >= 0
+  //MInhas constantes
 
-  const filterSort = (optionA, optionB) =>
-    optionA.children
-      .toLowerCase()
-      .localeCompare(optionB.children.toLowerCase())
+  // const filterOption = (input, option) =>
+  //   option.children
+  //     .toLowerCase()
+  //     .indexOf(input.toLowerCase()) >= 0
 
-  const listClients = Clients
-    .map(
-      (client) => {
-        return(
-          client.name
-        )
-      }
-    )
-    .sort()
-    .map(
-      (client, index) => {
-        return(
-          <Option key={index+1} value={`client ${index+1}`}>{client}</Option>
-        )
-      }
-    )
+  // const filterSort = (optionA, optionB) =>
+  //   optionA.children
+  //     .toLowerCase()
+  //     .localeCompare(optionB.children.toLowerCase())
 
-  const listProfessions = Profession
-    .map(
-      (profession) => {
-        return(
-          profession.name
-        )
-      }
-    )
-    .sort()
-    .map(
-      (profession, index) => {
-        return(
-          <Option key={index+1} value={`profession ${index+1}`}>{profession}</Option>
-        )
-      }
-    )  
+  // const listClients = Clients
+  //   .map(
+  //     (client) => {
+  //       return(
+  //         client.name
+  //       )
+  //     }
+  //   )
+  //   .sort()
+  //   .map(
+  //     (client, index) => {
+  //       return(
+  //         <Option key={index+1} value={`client ${index+1}`}>{client}</Option>
+  //       )
+  //     }
+  //   )
 
-  const listSpecialists = Specialists
-    .map(
-      (specialist) => {
-        return(
-          specialist.name
-        )
-      }
-    )
-    .sort()
-    .map(
-      (specialist, index) => {
-        return(
-          <Option key={index+1} value={`profession ${index+1}`}>{specialist}</Option>
-        )
-      }
-    )
+  // const listProfessions = Profession
+  //   .map(
+  //     (profession) => {
+  //       return(
+  //         profession.name
+  //       )
+  //     }
+  //   )
+  //   .sort()
+  //   .map(
+  //     (profession, index) => {
+  //       return(
+  //         <Option key={index+1} value={`profession ${index+1}`}>{profession}</Option>
+  //       )
+  //     }
+  //   )  
+
+  // const listSpecialists = Specialists
+  //   .map(
+  //     (specialist) => {
+  //       return(
+  //         specialist.name
+  //       )
+  //     }
+  //   )
+  //   .sort()
+  //   .map(
+  //     (specialist, index) => {
+  //       return(
+  //         <Option key={index+1} value={`profession ${index+1}`}>{specialist}</Option>
+  //       )
+  //     }
+  //   )
 
   // const mock = [
   //   {id:1, name:"Laura Lima do Val Carneiro"},
@@ -141,41 +154,53 @@ function RegisterAttendance() {
             </label>
             <Select
               className="form-select"
-              id="client"              
+              id="client"
               aria-label="Default select example"
               showSearch
               placeholder="Pesquisar Cliente"
               optionFilterProp="children"
-              filterOption={filterOption}
-              filterSort={filterSort}
-              disabled
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+              filterSort={(optionA, optionB) =>
+                optionA.children
+                  .toLowerCase()
+                  .localeCompare(optionB.children.toLowerCase())
+              }
             >
-              {listClients}
-              {/* {mock && mock.map(client => (<Option value={client.id}>{client.name}</Option>))} */}
-            </Select>            
-          </div>
-          <div className="col-sm-4">
-            <label htmlFor="profession" className="form-label">
+              {mock &&
+                mock.map((client) => (
+                  <Option value={client.id}>{client.name}</Option>
+                ))}
+            </Select>
+
+            <label
+              htmlFor="specialist"
+              className="form-label"
+              style={{ marginTop: "15px" }}
+            >
               Especialidade
             </label>
             <Select
               className="form-select"
               id="profession"
               aria-label="Default select example"
-              onChange={e => setProfessionSelected(e)}
-              showSearch                                         
+              onChange={(e) => setSpecialtySelected(e)}
+              showSearch
               placeholder="Pesquisar Especialidade"
               optionFilterProp="children"
-              filterOption={filterOption}
-              filterSort={filterSort}
             >
-              {listProfessions}
-             {/* {mockProfession && mockProfession.map(client => <Option value={client.id}>{client.name}</Option>)} */}
+              {mockSpecialty &&
+                mockSpecialty.map((client) => (
+                  <Option value={client.id}>{client.name}</Option>
+                ))}
             </Select>
 
-          </div>
-          <div className="col-sm-4">
-            <label htmlFor="specialist" className="form-label">
+            <label
+              htmlFor="specialist"
+              className="form-label"
+              style={{ marginTop: "15px" }}
+            >
               Especialista
             </label>
             <Select
@@ -186,67 +211,110 @@ function RegisterAttendance() {
               disabled={!professionSelected}
               placeholder="Pesquisar Especialista"
               optionFilterProp="children"
-              filterOption={filterOption}
-              filterSort={filterSort}
+              onChange={(e) => setSpecialistSelected(e)}
             >
-              {listSpecialists}
-              {/* {mockSpecialist &&
-                mockSpecialist.filter((client) => 
-                  client.professionId === professionSelected).map(option => (
+              {mockSpecialist &&
+                mockSpecialist
+                  .filter((client) => client.specialtyId === specialtySelected)
+                  .map((option) => (
                     <Option value={option.id}>{option.name}</Option>
-                  ))}                */}
-
+                  ))}
             </Select>
+
+            {mockSpecialist && (
+              <div>
+                <div className="d-flex flex-column">
+                  <label
+                    htmlFor="specialist"
+                    className="form-label"
+                    style={{ marginTop: "15px" }}
+                  >
+                    Valor da Consulta
+                  </label>
+
+                  <div>
+                    R$
+                    <input
+                      type="number"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      style={{ marginLeft: "10px", width: "70px" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-          <div className="col-sm-6">
-            <label htmlFor="name" className="form-label">Nome Completo</label>
-            <input type="text" className="form-control" id="name" placeholder="Insira o nome completo" required></input>
+
+          <div
+            className="col-sm-4"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Calendar>
+              <DayPicker
+                weekdaysShort={["D", "S", "T", "Q", "Q", "S", "S"]}
+                weekdaysLong={["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]}
+                fromMonth={new Date()}
+                disabledDays={[
+                  { daysOfWeek: [0, 6] },
+                  {
+                    before: new Date(),
+                  },
+                ]}
+                modifiers={{
+                  available: { daysOfWeek: [1, 2, 3, 4, 5] },
+                }}
+                selectedDays={selectedDate}
+                onDayClick={handleDateChange}
+                months={[
+                  "Janeiro",
+                  "Fevereiro",
+                  "Março",
+                  "Abril",
+                  "Maio",
+                  "Junho",
+                  "Julho",
+                  "Agosto",
+                  "Setembro",
+                  "Outubro",
+                  "Novembro",
+                  "Dezembro",
+                ]}
+              />
+            </Calendar>
           </div>
-          <TimePicker
-            minuteStep={15}
-            format={format}
-            size="large"
-            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 19, 20, 21, 22, 23]}
-            hideDisabledOptions={true}
-          />
-          <InputNumber
-            formatter={(value) =>
-              `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-            onChange={onChange}
-          />
-          <Calendar>
-            <DayPicker
-              weekdaysShort={["D", "S", "T", "Q", "Q", "S", "S"]}
-              fromMonth={new Date()}
-              disabledDays={[
-                { daysOfWeek: [0, 6] },
-                {
-                  before: new Date(),
-                },
-              ]}
-              modifiers={{
-                available: { daysOfWeek: [1, 2, 3, 4, 5] },
-              }}
-              selectedDays={selectedDate}
-              onDayClick={handleDateChange}
-              months={[
-                "Janeiro",
-                "Fevereiro",
-                "Março",
-                "Abril",
-                "Maio",
-                "Junho",
-                "Julho",
-                "Agosto",
-                "Setembro",
-                "Outubro",
-                "Novembro",
-                "Dezembro",
-              ]}
-            />
-          </Calendar>
+
+          <div className="col-sm-4">
+            <h5>Horários Disponíveis</h5>
+            <div>
+              <div>
+                <Radio.Group
+                  defaultValue="a"
+                  size="large"
+                  buttonStyle="solid"
+                  style={{ display: "flex", flexWrap: "wrap" }}
+                >
+                  {availableTime.map((c) => (
+                    <Time>
+                      <Radio.Button
+                        key={c}
+                        value={c}
+                        disabled={schedules.map((b) => b.hour).includes(c)}
+                        style={{
+                          margin: "5px",
+                          borderRadius: "5px",
+                          width: "75px",
+                        }}
+                      >
+                        {c}
+                      </Radio.Button>
+                    </Time>
+                  ))}
+                </Radio.Group>
+              </div>
+            </div>
+          </div>
+          <hr style={{ marginTop: 40, marginBottom: 30 }}></hr>
           <button
             type="submit"
             className="register-global btn btn-primary w-100"
