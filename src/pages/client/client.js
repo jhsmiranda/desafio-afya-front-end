@@ -7,19 +7,19 @@ import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
 import { Clients } from '../../data'
+import { mask } from '../../config/helpers'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
 
-function Client(props) {
+function Client() {
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Cliente"
     }, []);
 
     //Modal
-    const { className } = props;
 
     const [modal, setModal] = useState(false);
     const [indice, setIndice] = useState();
@@ -52,17 +52,17 @@ function Client(props) {
                 (client, index) => {
                     return (
                         <tr key={index}>
-                            <td>{client.cpf}</td>
+                            <td>{mask(client.cpf, '###.###.###-##')}</td>
                             <td>{client.name}</td>
                             <td><button id={index} onClick={toggle} className="botao btn btn-sm btn-outline-secondary">Detalhes</button></td>
-                            <Modal isOpen={modal} toggle={toggle} className={className}>
+                            <Modal isOpen={modal} toggle={toggle} className="">
                                 <ModalHeader toggle={toggle}>Informações do Cliente</ModalHeader>
                                 <ModalBody>
                                     <div className="row g-3">
                                         <div className="col-sm-12 reverter-logo-name">
                                             <div className="col-sm-8 info-name-complete">
                                                 <strong>Nome Completo</strong>
-                                                <p>{lastClients[indice ? indice : 0].name}</p>
+                                                <p>{lastClients[indice || 0].name}</p>
                                             </div>
                                             <div className="col-sm-4 info-logomarca">
                                                 <div className="clinica-pomarola">
@@ -77,50 +77,39 @@ function Client(props) {
                                         </div>
                                         <div className="col-sm-8">
                                             <strong>E-mail</strong>
-                                            <p>{lastClients[indice ? indice : 0].mail}</p>
+                                            <p>{lastClients[indice || 0].mail}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>CPF</strong>
-                                            <p>
-                                                {`
-                                                    ${lastClients[indice ? indice : 0].cpf[0]}${lastClients[indice ? indice : 0].cpf[1]}${lastClients[indice ? indice : 0].cpf[2]}.${lastClients[indice ? indice : 0].cpf[3]}${lastClients[indice ? indice : 0].cpf[4]}${lastClients[indice ? indice : 0].cpf[5]}.${lastClients[indice ? indice : 0].cpf[6]}${lastClients[indice ? indice : 0].cpf[7]}${lastClients[indice ? indice : 0].cpf[8]}-
-                                                    ${lastClients[indice ? indice : 0].cpf[9]}${lastClients[indice ? indice : 0].cpf[10]}
-                                                `}
-                                            </p>
+                                            <p>{mask(lastClients[indice || 0].cpf, '###.###.###-##')}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Tipo Sanguíneo</strong>
-                                            <p>{lastClients[indice ? indice : 0].bloodtype}</p>
+                                            <p>{lastClients[indice || 0].bloodtype}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Telefone</strong>
                                             <p>
-                                                {`
-                                                    (${lastClients[indice ? indice : 0].phone[0]}${lastClients[indice ? indice : 0].phone[1]}) ${lastClients[indice ? indice : 0].phone[2]}${lastClients[indice ? indice : 0].phone[3]}${lastClients[indice ? indice : 0].phone[4]}${lastClients[indice ? indice : 0].phone[5]}
-                                                    - ${lastClients[indice ? indice : 0].phone[6]}${lastClients[indice ? indice : 0].phone[7]}${lastClients[indice ? indice : 0].phone[8]}${lastClients[indice ? indice : 0].phone[9]}
-                                                `}
+                                                {mask(lastClients[indice || 0].phone, '(##) ####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Celular</strong>
                                             <p>
-                                                {`
-                                                    (${lastClients[indice ? indice : 0].cellphone[0]}${lastClients[indice ? indice : 0].cellphone[1]}) ${lastClients[indice ? indice : 0].cellphone[2]}${lastClients[indice ? indice : 0].cellphone[3]}${lastClients[indice ? indice : 0].cellphone[4]}${lastClients[indice ? indice : 0].cellphone[5]}${lastClients[indice ? indice : 0].cellphone[6]}
-                                                    - ${lastClients[indice ? indice : 0].cellphone[7]}${lastClients[indice ? indice : 0].cellphone[8]}${lastClients[indice ? indice : 0].cellphone[9]}${lastClients[indice ? indice : 0].cellphone[10]}
-                                                `}
+                                                {mask(lastClients[indice || 0].cellphone, '(##) #####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-12">
                                             <strong>Endereço</strong>
                                             <p>
                                                 {`
-                                                    ${lastClients[indice ? indice : 0].address.street}
-                                                    , nº ${lastClients[indice ? indice : 0].address.number}.
-                                                    ${lastClients[indice ? indice : 0].address.complement === '' ? '' : `${lastClients[indice ? indice : 0].address.complement}.`}
-                                                    ${lastClients[indice ? indice : 0].address.neighborhood}.
-                                                    ${lastClients[indice ? indice : 0].address.locality}
-                                                    - ${lastClients[indice ? indice : 0].address.state}.
-                                                    CEP: ${lastClients[indice ? indice : 0].address.cep}
+                                                    ${lastClients[indice || 0].address.street}
+                                                    , nº ${lastClients[indice || 0].address.number}.
+                                                    ${lastClients[indice || 0].address.complement === '' ? '' : `${lastClients[indice || 0].address.complement}.`}
+                                                    ${lastClients[indice || 0].address.neighborhood}.
+                                                    ${lastClients[indice || 0].address.locality}
+                                                    - ${lastClients[indice || 0].address.state}.
+                                                    CEP: ${lastClients[indice || 0].address.cep}
                                                 `}
                                             </p>
                                         </div>
@@ -161,14 +150,14 @@ function Client(props) {
                                 <td>{client.cpf}</td>
                                 <td>{client.name}</td>
                                 <td><button id={index} onClick={toggle} className="btn btn-sm btn-outline-secondary">Detalhes</button></td>
-                                <Modal isOpen={modal} toggle={toggle} className={className}>
+                                <Modal isOpen={modal} toggle={toggle} className="">
                                     <ModalHeader toggle={toggle}>Informações do Cliente</ModalHeader>
                                     <ModalBody>
                                         <div className="row g-3">
                                             <div className="col-sm-12 reverter-logo-name">
                                                 <div className="col-sm-8 info-name-complete">
                                                     <strong>Nome Completo</strong>
-                                                    <p>{filterItems(nameValue)[indice ? indice : 0].name}</p>
+                                                    <p>{filterItems(nameValue)[indice || 0].name}</p>
                                                 </div>
                                                 <div className="col-sm-4 info-logomarca">
                                                     <div className="clinica-pomarola">
@@ -183,50 +172,39 @@ function Client(props) {
                                             </div>
                                             <div className="col-sm-8">
                                                 <strong>E-mail</strong>
-                                                <p>{filterItems(nameValue)[indice ? indice : 0].mail}</p>
+                                                <p>{filterItems(nameValue)[indice || 0].mail}</p>
                                             </div>
-                                            <div className="col-sm-4">
+                                            <div>
                                                 <strong>CPF</strong>
-                                                <p>
-                                                    {`
-                                                    ${filterItems(nameValue)[indice ? indice : 0].cpf[0]}${filterItems(nameValue)[indice ? indice : 0].cpf[1]}${filterItems(nameValue)[indice ? indice : 0].cpf[2]}.${filterItems(nameValue)[indice ? indice : 0].cpf[3]}${filterItems(nameValue)[indice ? indice : 0].cpf[4]}${filterItems(nameValue)[indice ? indice : 0].cpf[5]}.${filterItems(nameValue)[indice ? indice : 0].cpf[6]}${filterItems(nameValue)[indice ? indice : 0].cpf[7]}${filterItems(nameValue)[indice ? indice : 0].cpf[8]}-
-                                                    ${filterItems(nameValue)[indice ? indice : 0].cpf[9]}${filterItems(nameValue)[indice ? indice : 0].cpf[10]}
-                                                `}
-                                                </p>
+                                                <p>{mask(lastClients[indice || 0].cpf, '###.###.###-##')}</p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Tipo Sanguíneo</strong>
-                                                <p>{filterItems(nameValue)[indice ? indice : 0].bloodtype}</p>
+                                                <p>{lastClients[indice || 0].bloodtype}</p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Telefone</strong>
                                                 <p>
-                                                    {`
-                                                    (${filterItems(nameValue)[indice ? indice : 0].phone[0]}${filterItems(nameValue)[indice ? indice : 0].phone[1]}) ${filterItems(nameValue)[indice ? indice : 0].phone[2]}${filterItems(nameValue)[indice ? indice : 0].phone[3]}${filterItems(nameValue)[indice ? indice : 0].phone[4]}${filterItems(nameValue)[indice ? indice : 0].phone[5]}
-                                                    - ${filterItems(nameValue)[indice ? indice : 0].phone[6]}${filterItems(nameValue)[indice ? indice : 0].phone[7]}${filterItems(nameValue)[indice ? indice : 0].phone[8]}${filterItems(nameValue)[indice ? indice : 0].phone[9]}
-                                                `}
+                                                    {mask(lastClients[indice || 0].phone, '(##) ####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Celular</strong>
                                                 <p>
-                                                    {`
-                                                    (${filterItems(nameValue)[indice ? indice : 0].cellphone[0]}${filterItems(nameValue)[indice ? indice : 0].cellphone[1]}) ${filterItems(nameValue)[indice ? indice : 0].cellphone[2]}${filterItems(nameValue)[indice ? indice : 0].cellphone[3]}${filterItems(nameValue)[indice ? indice : 0].cellphone[4]}${filterItems(nameValue)[indice ? indice : 0].cellphone[5]}${filterItems(nameValue)[indice ? indice : 0].cellphone[6]}
-                                                    - ${filterItems(nameValue)[indice ? indice : 0].cellphone[7]}${filterItems(nameValue)[indice ? indice : 0].cellphone[8]}${filterItems(nameValue)[indice ? indice : 0].cellphone[9]}${filterItems(nameValue)[indice ? indice : 0].cellphone[10]}
-                                                `}
+                                                    {mask(lastClients[indice || 0].cellphone, '(##) #####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-12">
                                                 <strong>Endereço</strong>
                                                 <p>
                                                     {`
-                                                    ${filterItems(nameValue)[indice ? indice : 0].address.street}
-                                                    , nº ${filterItems(nameValue)[indice ? indice : 0].address.number}.
-                                                    ${filterItems(nameValue)[indice ? indice : 0].address.complement === '' ? '' : `${filterItems(nameValue)[indice ? indice : 0].address.complement}.`}
-                                                    ${filterItems(nameValue)[indice ? indice : 0].address.neighborhood}.
-                                                    ${filterItems(nameValue)[indice ? indice : 0].address.locality}
-                                                    - ${filterItems(nameValue)[indice ? indice : 0].address.state}.
-                                                    CEP: ${filterItems(nameValue)[indice ? indice : 0].address.cep}
+                                                    ${filterItems(nameValue)[indice || 0].address.street}
+                                                    , nº ${filterItems(nameValue)[indice || 0].address.number}.
+                                                    ${filterItems(nameValue)[indice || 0].address.complement === '' ? '' : `${filterItems(nameValue)[indice || 0].address.complement}.`}
+                                                    ${filterItems(nameValue)[indice || 0].address.neighborhood}.
+                                                    ${filterItems(nameValue)[indice || 0].address.locality}
+                                                    - ${filterItems(nameValue)[indice || 0].address.state}.
+                                                    CEP: ${filterItems(nameValue)[indice || 0].address.cep}
                                                 `}
                                                 </p>
                                             </div>

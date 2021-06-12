@@ -2,10 +2,9 @@ import React from 'react';
 import SignIn from './pages/login/signIn'
 import SignUp from './pages/login/signUp'
 import Client from './pages/client/client'
-import RegisterEditClient from './pages/client/register-edit-client'
-// import EditClient from './pages/client/edit-client'
+import RegisterEditClient from './pages/client/registerEdit-client'
 import Specialist from './pages/specialist/specialist'
-import RegisterSpecialist from './pages/specialist/register-specialist'
+import RegisterEditSpecialist from './pages/specialist/registerEdit-specialist'
 import Attendance from './pages/attendance/attendance';
 import RegisterAttendance from './pages/attendance/register-attendance';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';;
@@ -50,7 +49,12 @@ function App() {
                 <Route
                     exact
                     path="/cadastro-especialista"
-                    component={RegisterSpecialist}
+                    component={RegisterEditSpecialist}
+                />
+                <Route
+                    exact
+                    path="/editar-especialista/:id"
+                    component={RegisterEditSpecialist}
                 />
                 <Route
                     exact
