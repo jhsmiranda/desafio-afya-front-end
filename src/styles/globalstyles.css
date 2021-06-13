@@ -295,22 +295,6 @@ td button {
   font-size: 20px;
 }
 
-.modal-specialist .modal-content .modal-body{
-  background-color: #58978f!important;
-}
-
-.modal-specialist .modal-content .modal-body strong{
-  color: rgb(4, 63, 88);
-}
-
-.modal-specialist .modal-content .modal-body p{
-  background-color: #64a399;
-}
-
-.modal-specialist .modal-content .modal-body .clinica-pomarola span{
-  color: #e71d1d;
-}
-
 button.close{
   display: none;
 }
@@ -327,11 +311,88 @@ button.close{
   width: 33.3333333%;
 }
 
-/* Tela de cadastro de atendimento */
+/* Modal Especialista */
 
-/* .DayPicker{
-  width: 300px;
-} */
+.modal-specialist .modal-content .modal-body{
+  background-color: #58978f!important;
+}
+
+.modal-specialist .modal-content .modal-body strong{
+  color: rgb(4, 63, 88);
+}
+
+.modal-specialist .modal-content .modal-body p{
+  background-color: #64a399;
+}
+
+.modal-specialist .modal-content .modal-body .clinica-pomarola span{
+  color: #e71d1d;
+}
+
+/* Modal Profissão */
+
+.modal-profession .modal-content .modal-body, .modal-profession .modal-content{
+  background-color: #dee2e6;
+}
+
+.modal-profession .modal-content{
+  top: 5vh;
+  border: 1px solid #2125294f;
+  box-shadow: 2px 10px 10px #2125294f;
+}
+
+.modal-profession .modal-header {
+  border-bottom: 1px solid #2125294f;
+}
+.modal-profession .modal-footer {
+  border-top: 1px solid #2125294f;
+}
+
+/* Modal Horários Disponíves */
+
+.modal-attendance .modal-content{
+  border: 1px solid #2125294f;
+  box-shadow: 2px 10px 10px #2125294f;
+}
+
+.modal-attendance .modal-content .modal-body, .modal-attendance .modal-content{
+  background-color: #dee2e6;
+}
+
+.modal-attendance .modal-content{
+  top: 8vh;
+  width: 30vw;
+}
+
+@media (max-width: 575px) {
+  .modal-attendance .modal-content{
+    top: 20.5vh;
+    left: 10px;
+    width: 90vw;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .modal-attendance .modal-content{
+    top: 20.5vh;
+    left: -30px;
+    width: 80vw;
+  }
+}
+@media (min-width: 769px) and (max-width: 878px) {
+  .modal-attendance .modal-content{
+    top: 20.5vh;
+    left: -30px;
+    width: 70vw;
+  }
+}
+
+.modal-attendance .modal-header {
+  border-bottom: 1px solid #2125294f;
+}
+.modal-attendance .modal-footer {
+  border-top: 1px solid #2125294f;
+}
+
 
 /*Responsividade*/
 

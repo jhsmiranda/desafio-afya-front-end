@@ -13,13 +13,46 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
 
+const initialProfession = {
+    id: '',
+    name: '',
+}
+
 function Specialist() {
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Especialista"
     }, []);
 
-    //Modal
+    //Modal Cadastrar Profissão
+
+    const [professionData, setProfessionData] = useState(initialProfession);
+    const [modalProfession, setModalProfession] = useState(false);
+
+    const toggleProfession = () => {
+        setModalProfession(!modalProfession)
+    }
+
+    const closeModalProfession = () => {
+        setModalProfession(!modalProfession)
+    }
+
+    const onChange = (input, value, addressInput = null) => {
+        if (input === 'profession-name') {
+            setProfessionData({ ...professionData, [addressInput]: value});
+        }
+    }
+
+    const saveProfession = () => {
+        setModalProfession(!modalProfession)
+        console.log(professionData)
+    }
+
+    useEffect(() => {
+        console.log('professionData', professionData)
+    }, [professionData]);
+
+    //Modal Detalhes do Especialista
 
     const [modal, setModal] = useState(false);
     const [indice, setIndice] = useState();
@@ -142,8 +175,8 @@ function Specialist() {
             if (filterItems(nameValue).length === 0) {
                 return (
                     <tr key={1}>
-                        <td></td>
-                        <td>Especialista não encontrado</td>
+                        <td>Não encontrado.</td>
+                        <td>Cadastre a Profissão ou Especialista</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -241,6 +274,10 @@ function Specialist() {
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
                 <h1 className="h4">Especialista</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" onClick={toggleProfession} className="btn btn-sm btn-outline-secondary mb-2 me-4">
+                        <PlusCircle size={16} style={{ marginRight: 10, marginBottom: 4 }} />
+                        Cadastrar Profissão
+                    </button>
                     <Link to="/cadastro-especialista">
                         <button type="button" className="btn btn-sm btn-outline-secondary mb-2">
                             <PlusCircle size={16} style={{ marginRight: 10, marginBottom: 4 }} />
@@ -249,6 +286,28 @@ function Specialist() {
                     </Link>
                 </div>
             </div>
+
+            <Modal isOpen={modalProfession} toggle={toggleProfession} className="modal-profession">
+                <ModalHeader toggle={toggleProfession}>Cadastro de Profissão</ModalHeader>
+                <ModalBody>
+                    <div className="row g-3">
+                        <div className="col-sm-12">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Insira a profissão"
+                                value={professionData.name}
+                                onChange={(e) => onChange('profession-name', e.target.value, 'name')}
+                                required
+                            />
+                        </div>
+                    </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button type="button" color="primary" onClick={saveProfession}>Cadastrar Profissão</Button>
+                    <Button color="danger" onClick={closeModalProfession}>Voltar</Button>
+                </ModalFooter>
+            </Modal>
 
             <input
                 id="searchSpecialist"

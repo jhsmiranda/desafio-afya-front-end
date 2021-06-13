@@ -270,7 +270,7 @@ function RegisterAttendance() {
             </Calendar>
           </div>
           
-          <Modal isOpen={modal} toggle={toggle} className="">
+          <Modal isOpen={modal} toggle={toggle} className="modal-attendance">
             <ModalHeader toggle={toggle}>Horários Disponíveis</ModalHeader>
             <ModalBody>
               <div className="row g-3">
@@ -301,7 +301,7 @@ function RegisterAttendance() {
               </div>
             </ModalBody>
             <ModalFooter>
-                <Button type="button" color="primary" onClick={closeModal}>Editar Cliente</Button>
+                <Button type="button" color="primary" onClick={closeModal}>Confirmar Horário</Button>
                 <Button color="danger" onClick={closeModal}>Voltar</Button>
             </ModalFooter>
           </Modal>

@@ -60,9 +60,9 @@ export const Calendar = styled.div`
 
     &-Month {
       border-collapse: separate;
-      border-spacing: 3px;
+      border-spacing: 6px;
       margin: 0;
-      padding: 0 10px 10px;
+      padding: 0 20px 5px;
     }
 
     &-Caption {
@@ -80,7 +80,7 @@ export const Calendar = styled.div`
     }
 
     &-Day {
-      width: 40px;
+      width: 45px;
       height: 40px;
       transition: all 0.2s ease;
       border-radius: 10px;

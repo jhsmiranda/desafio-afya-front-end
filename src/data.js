@@ -444,16 +444,6 @@ export const Profession =[
     {id: 8, name: "Ginecologista"}
 ];
 
-export const mockSpecialist = [
-  { id: 1, name: "Roberto carlos da Silva", specialtyId: 3 },
-  { id: 2, name: "Roberta carla da Silva", specialtyId: 3 },
-  { id: 3, name: "Francisco Santos Motta", specialtyId: 1 },
-  { id: 4, name: "Tulio Potter", specialtyId: 2 },
-  { id: 5, name: "Pedro matos da silva", specialtyId: 4 },
-  { id: 6, name: "Kaio Jorge Santos", specialtyId: 5 },
-  { id: 7, name: "Matheus Carlos Hagen", specialtyId: 6 },
-];
-
 export const schedules = [
   {
     hour: "09:00",
@@ -482,4 +472,99 @@ export const availableTime = [
   "15:00",  
   "16:00",  
   "17:00",    
+];
+
+export const Attendance =[
+    {   
+        id: 1,
+        status:'agendado',
+        date_scheduling:'14/06/2021',
+        date_attendance:'16/06/2021',
+        date_hour:'09:00',
+        value:'50,00',
+        client: {
+            id: 1,
+            name:'Laura Maria da Silva'
+        },
+        specialist: {
+            id: 2,
+            name:'Thiago Corrêa Diniz'
+        },
+    },
+    {
+        id: 2,
+        date_scheduling:'15/06/2021',
+        date_attendance:'17/06/2021',
+        date_hour:'10:00',
+        value:'50,00',
+        client: {
+            id: 2,
+            name:'Thiago Corrêa Diniz',
+        },
+        specialist: {
+            id: 3,
+            name:'Sarah Maria de Lucena Silva'
+        },
+    },
+    {   
+        id: 3,
+        date_scheduling:'16/06/2021',
+        date_attendance:'18/06/2021',
+        date_hour:'11:00',
+        value:'50,00',
+        client: {
+            id: 2,
+            name:'Sarah Maria de Lucena Silva',
+        },
+        specialist: {
+            id: 6,
+            name:'Bruna Barbosa Nunes da Silva'
+        },
+    },
+    {
+        id: 4,
+        client: {
+            id: 4,
+            name:'Stephanie Oliver',
+        },
+        date_scheduling:'17/06/2021',
+        date_attendance:'18/06/2021',
+        date_hour:'09:00',
+        value:'50,00',
+        specialist: {
+            id: 6,
+            name:'Bruna Barbosa Nunes da Silva'
+        },
+    },
+    {
+        id: 5,
+        client: {
+            id: 5,
+            name:'Camila Attico Chirinhan',
+        },
+        date_scheduling:'18/06/2021',
+        date_attendance:'22/06/2021',
+        date_hour:'13:00',
+        value:'50,00',
+        specialist: {
+            id: 8,
+            name:'Gustavo Rodrigues Pereira'
+        },
+
+    },
+    {
+        id: 6,
+        client: {
+            id:'',
+            name:'Bruna Barbosa Nunes da Silva',
+        },
+        date_scheduling:'11/06/2021',
+        date_attendance:'14/06/2021',
+        date_hour:'14:00',
+        value:'50,00',
+        specialist: {
+            id: 11,
+            name:'José Valdir de Oliveira Neto'
+        },
+    }
 ];
