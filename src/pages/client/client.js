@@ -6,47 +6,66 @@ import { PlusCircle } from 'react-feather'
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
-import { Clients } from '../../data'
+// import { Clients } from '../../data'
 import { mask } from '../../config/helpers'
+import { useHistory } from 'react-router-dom'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
+import axios from 'axios'
 
 function Client() {
+    let history = useHistory();
 
+    const token = localStorage.getItem('Authorization')
+    if (!token) {
+        history.push('/');
+    }
+
+    
     useEffect(() => {
         document.title = "Clínica Pomarola | Cliente"
     }, []);
-
+    
     //Modal
-
+    
     const [modal, setModal] = useState(false);
     const [indice, setIndice] = useState();
 
     // Lista de Clientes
     const [nameValue, setNameValue] = useState('')
-
+    
+    const Clients = axios.get('https://clinica-pomarola-api.herokuapp.com/clients', { headers: { Authorization:localStorage.getItem('Authorization') } }).then((res) => {
+        console.log(res.data);
+        return res.data;
+    }).catch((err) => {
+        return err.response;
+    })
+  
     const listClients = () => {
-
+        
         const toggle = (e) => {
             setModal(!modal)
             setIndice(e.target.id) 
             e.preventDefault()
         }
-
+        
         const closeModal = () => {
             setModal(!modal)
         }
-
+        
+        
         const lastClients = []
-
-        for (let client of Clients) {
-            if (lastClients.length < 10) {
-                lastClients.push(client)
+        
+        if (Clients.length > 0) {
+            for (let client of Clients) {
+                if (lastClients.length < 10) {
+                    lastClients.push(client)
+                }
             }
         }
-
+            
         if (nameValue === '') {
             return (lastClients.map(
                 (client, index) => {
@@ -70,7 +89,7 @@ function Client() {
                                                     <img
                                                         src={Logo} width="16px" height="16px" alt="logo-pormarola"
                                                         style={{ marginRight: 2, marginBottom: 0 }}
-                                                    />
+                                                        />
                                                     <span>marola</span>
                                                 </div>
                                             </div>
@@ -127,7 +146,6 @@ function Client() {
                 }
             ))
         } else {
-
             const filterItems = function (query) {
                 return Clients.filter(function (client) {
                     return client.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
