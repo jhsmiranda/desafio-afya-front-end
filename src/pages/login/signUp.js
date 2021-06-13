@@ -33,10 +33,11 @@ function Register() {
     e.preventDefault();
     // Faz requisição a API
     axios.post('https://clinica-pomarola-api.herokuapp.com/users', formData).then((res) => {
-      // Se bem sucedida, retorna os dados inseridos no res.data
+      // Se bem sucedida, retorna os dados inseridos no res.data e faz o push
       console.log(res.data);
+      history.push('/');
   }).catch((err) => {
-    // Se contem erros, envia a mensagem de erro no err.respose.data[0].msg
+   // Retorna array de erros, abaixo acessa o primeiro
     console.log(err.response.data[0].msg);
   })
 }
@@ -55,9 +56,9 @@ function Register() {
             </Link>
           </ul>
           <form>
-            <input type="text" value={formData.name} onChange={handleFormDataName}  placeholder="Nome Completo" required />
-            <input type="text" value={formData.login} onChange={handleFormDataLogin} maxLength="20" placeholder="Nome de usuário" required/>
-            <input type="password" value={formData.password} onChange={handleFormDataPassword} placeholder="Senha" required/>
+            <input type="text" value={formData.name} onChange={handleFormDataName} placeholder="Nome Completo" />
+            <input type="text" value={formData.login} onChange={handleFormDataLogin} maxLength="20" placeholder="Nome de usuário" />
+            <input type="password" value={formData.password} onChange={handleFormDataPassword} placeholder="Senha" />
           </form>
           <button onClick={handleSubmit} style={{ marginTop: 30 }}>CADASTRAR</button>
         </ContainerContent>
