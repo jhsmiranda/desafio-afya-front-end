@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+<h1 align="center">
+<img src="https://i.imgur.com/nwfkVsb.png" title="Clínica Pomarola" />
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">
+  Pomalabs Web
+</h3>
 
-## Available Scripts
+<p align="center">
+  <a href="#sobre o projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#iniciando">Iniciando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#funcionalidades">Funcionalidades</a>
+</p>
 
-In the project directory, you can run:
+## 👨🏻‍💻 Sobre o projeto
 
-### `npm start`
+- <p style="color: red;">A PomaLabs teve como desafio desenvolver um sistema para possibilitar o cadastro de clientes, atendimentos e prontuários dos pacientes de um consultório.</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Para ver a **api**, clique aqui: [PomaLabs api](https://github.com/fdutrac/desafio-afya-api)</br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 💻 Desenvolvedores
+- [José Henrique da Silva Miranda](https://github.com/jhsmiranda)
+- [Gustavo Lening Godoy de Oliveira](https://github.com/gustavolening)
+- [Fábio Henrique Dutra Costa](https://github.com/fdutrac)
+- [Filipe Galdino Dantas](https://github.com/flipdantas)
 
-### `npm test`
+## 🚀 Tecnologias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tecnologias que utilizamos para desenvolver este web client:
 
-### `npm run build`
+- [ReactJS](https://reactjs.org/)
+- [React Router DOM](https://reacttraining.com/react-router/)
+- [Styled Components](https://styled-components.com/)
+- [Polished](https://github.com/styled-components/polished)
+- [Axios](https://github.com/axios/axios)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 💻 Iniciando
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pré-requisitos
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- A [API](https://github.com/fdutrac/desafio-afya-api) do projeto deve estar em execução.
 
-### `npm run eject`
+**Clone o projeto e acesse a pasta**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+$ git clone https://github.com/jhsmiranda/desafio-afya-front-end.git && cd desafio-afya-front-end
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Siga as etapas abaixo**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Instale as dependências
+$ yarn
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Inicie o client
+$ yarn start
+```
+## ⚙️ Funcionalidades
+Funcionalidades que o sistema oferece:
+- Cadastro e Login de administrador
+- Cadastro de Clientes e Especialistas
+- Tela de Clientes e Especialistas com:
+	- Pesquisa e listagem 
+	- Botão de detalhes com opção de edição dos dados do usuário selecionado
+- Tela de Atendimentos
+	- Pesquisa e Listagem
+	- Busca de atendimentos por Status, Paciente, Especialista, Data de agendamento ou de atendimento
+- Criação de Agendamentos
+- Tela de Prontuários
+	- Pesquisa e Listagem
+	- Emissão de prontuários após atendimento realizado
+	
+## 🖥️🖱️ Telas 
 
-## Learn More
+Nesta seção serão exibidas as telas do sistema e sua navegabilidade.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🔑️ Menu: Login e cadastro
+<p align="center">
+<img src="https://i.imgur.com/JeljKp6l.png" title="tela de login e cadastro" />
+</p>
+Nesta tela inicial é possível cadastrar um usuário administrador e, caso tenha sucesso, será redirecionado para a tela de login, para acesso ao sistema. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 👥️ Tela de Clientes
+<p align="center">
+<img src="https://i.imgur.com/6ynsJeIl.png" title="listagem de clientes" />
+</p>
+Após o login, o usuário será redirecionado para a tela acima, onde haverá a possibilidade de pesquisa de clientes e cadastro de novos clientes. Caso seja necessário sair, basta selecionar o botão "sair" no canto inferior esquerdo, voltando à tela de login/cadastro. Ao selecionar a opção "detalhes", será disponibilizado o modal de informações do cliente, conforme a imagem abaixo: 
+<p align="center">
+<img src="https://i.imgur.com/kOizPQ8l.png" title="modal dos clientes" />
+</p>
+Caso o usuário escolha editar o cliente, o mesmo será redirecionado para a tela abaixo, onde terá as opções de edição para o cliente selecionado (os dados anteriores já estarão preenchidos, bastando apenas editar o dado necessário)
+<p align="center">
+<img src="https://i.imgur.com/aUbmjw5l.png" title="edição de clientes" />
+</p>
+Caso o usuário queira cadastrar um novo cliente, basta clicar na opção "Cadastrar cliente" na tela principal de clientes, sendo exibida a tela abaixo para preenchimento com as informações do cliente e cadastro do mesmo.
+<p align="center">
+<img src="https://i.imgur.com/lZW27rVl.png" title="source: imgur.com" />
+</p>
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 👩‍⚕️️ Tela de Especialistas
+<p align="center">
+<img src="https://i.imgur.com/eA5UfQUl.png" title="tela dos especialistas" />
+</p>
+Ao selecionar a opção "Especialista" na barra de navegação no lado esquerdo da tela, o usuário será direcionado à tela acima, que terá o mesmo padrão que a tela de clientes: Pesquisa, cadastro, modal com informações ao selecionar detalhes e edição.
 
-### Making a Progressive Web App
+Ao selecionar detalhes de um especialista será exibido um modal como o da tela abaixo:
+<p align="center">
+<img src="https://i.imgur.com/8MEdn4il.png" title="modal dos especialistas" />
+</p>
+Ao clicar no botão "Cadastrar especialista", o usuário será direcionado à tela abaixo, onde poderá cadastrar um novo especialista.
+<p align="center">
+<img src="https://i.imgur.com/8PUT36Cl.png" title="source: imgur.com" />
+</p>
+Exemplo de edição de dados de um especialista ao selecionar "Editar especialista" no modal (mesma regra de edição do cliente):
+<p align="center">
+<img src="https://i.imgur.com/s3FDzCUl.png" title="tela de edição de especialistas" />
+</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 📅️⚕️ Tela de Atendimentos
+<p align="center">
+<img src="https://i.imgur.com/kGctZdAl.png" title="tela de atendimentos" />
+</p>
+Ao selecionar a opção "Atendimento" na barra de navegação no lado esquerdo da tela, o usuário será direcionado à tela de atendimento acima, onde poderá agendar atendimentos. A tela é composta de três colunas. Na primeira o usuário deve inserir o nome do cliente que terá a consulta, a especialidade e o especialista que realizará a consulta. A opção "Especialista" só será habilitada caso seja selecionada uma especialidade e a seleção de data só será habilitada ao selecionar o especialista. Após isso os horários disponíveis serão disponibilizados para seleção.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 📝️⚕️ Tela de prontuários
+<p align="center">
+<img src="https://i.imgur.com/yNfKAA6l.png" title="tela de prontuários" />
+</p>
+A tela de prontuários disponibiliza os prontuários dos atendimento que já foram realizados. A tela consiste de uma barra de pesquisa de prontuários e a listagem dos mesmos abaixo. 

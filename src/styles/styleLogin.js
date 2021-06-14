@@ -22,8 +22,12 @@ export const FilterImage = styled.div`
     left: 0;
     right: 0;
     background: rgb(1,49,69);
-    background: linear-gradient(90deg, rgba(1,49,69,1) 0%, rgba(0,36,50,0.85) 100%);
+    background: linear-gradient(90deg, rgba(1,49,69,1) 30%, rgba(0,36,50,0.85) 100%);
     z-index: 1;
+
+    @media (max-width:754px){
+        background: linear-gradient(90deg, rgba(1,49,69,1) 0%, rgba(0,36,50,0.85) 100%);
+    }
 `
 
 export const ContainerLogin = styled.div`
