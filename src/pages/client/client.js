@@ -6,49 +6,58 @@ import { PlusCircle } from 'react-feather'
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
-import { Clients } from '../../data'
 import { mask } from '../../config/helpers'
+import { useHistory } from 'react-router-dom'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
+import axios from 'axios'
 
 function Client() {
+    let history = useHistory();
 
+    const token = localStorage.getItem('Authorization')
+    if (!token) {
+        history.push('/');
+    }
+    
     useEffect(() => {
         document.title = "Clínica Pomarola | Cliente"
     }, []);
-
+    
     //Modal
-
+    
     const [modal, setModal] = useState(false);
     const [indice, setIndice] = useState();
 
     // Lista de Clientes
     const [nameValue, setNameValue] = useState('')
+    
+    const [Clients, setClients] = useState([]);
 
+    useEffect(() => {
+        axios.get('https://clinica-pomarola-api.herokuapp.com/clients', { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                setClients(res.data); 
+            }).catch((err) => {
+                console.log(err);
+            })
+    }, []);
+    
     const listClients = () => {
-
         const toggle = (e) => {
             setModal(!modal)
             setIndice(e.target.id) 
             e.preventDefault()
         }
-
+        
         const closeModal = () => {
             setModal(!modal)
         }
-
-        const lastClients = []
-
-        for (let client of Clients) {
-            if (lastClients.length < 10) {
-                lastClients.push(client)
-            }
-        }
-
+               
         if (nameValue === '') {
-            return (lastClients.map(
+            return (Clients.map(
                 (client, index) => {
                     return (
                         <tr key={index}>
@@ -62,7 +71,7 @@ function Client() {
                                         <div className="col-sm-12 reverter-logo-name">
                                             <div className="col-sm-8 info-name-complete">
                                                 <strong>Nome Completo</strong>
-                                                <p>{lastClients[indice || 0].name}</p>
+                                                <p>{Clients[indice || 0].name}</p>
                                             </div>
                                             <div className="col-sm-4 info-logomarca">
                                                 <div className="clinica-pomarola">
@@ -70,53 +79,53 @@ function Client() {
                                                     <img
                                                         src={Logo} width="16px" height="16px" alt="logo-pormarola"
                                                         style={{ marginRight: 2, marginBottom: 0 }}
-                                                    />
+                                                        />
                                                     <span>marola</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-sm-8">
                                             <strong>E-mail</strong>
-                                            <p>{lastClients[indice || 0].mail}</p>
+                                            <p>{Clients[indice || 0].mail}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>CPF</strong>
-                                            <p>{mask(lastClients[indice || 0].cpf, '###.###.###-##')}</p>
+                                            <p>{mask(Clients[indice || 0].cpf, '###.###.###-##')}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Tipo Sanguíneo</strong>
-                                            <p>{lastClients[indice || 0].bloodtype}</p>
+                                            <p>{Clients[indice || 0].bloodtype}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Telefone</strong>
                                             <p>
-                                                {mask(lastClients[indice || 0].phone, '(##) ####-####')}
+                                                {mask(Clients[indice || 0].phone, '(##) ####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Celular</strong>
                                             <p>
-                                                {mask(lastClients[indice || 0].cellphone, '(##) #####-####')}
+                                                {mask(Clients[indice || 0].cellphone, '(##) #####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-12">
                                             <strong>Endereço</strong>
                                             <p>
                                                 {`
-                                                    ${lastClients[indice || 0].address.street}
-                                                    , nº ${lastClients[indice || 0].address.number}.
-                                                    ${lastClients[indice || 0].address.complement === '' ? '' : `${lastClients[indice || 0].address.complement}.`}
-                                                    ${lastClients[indice || 0].address.neighborhood}.
-                                                    ${lastClients[indice || 0].address.locality}
-                                                    - ${lastClients[indice || 0].address.state}.
-                                                    CEP: ${lastClients[indice || 0].address.cep}
+                                                    ${Clients[indice || 0].address.street}
+                                                    , nº ${Clients[indice || 0].address.number}.
+                                                    ${Clients[indice || 0].address.complement === '' ? '' : `${Clients[indice || 0].address.complement}.`}
+                                                    ${Clients[indice || 0].address.neighborhood}.
+                                                    ${Clients[indice || 0].address.locality}
+                                                    - ${Clients[indice || 0].address.state}.
+                                                    CEP: ${Clients[indice || 0].address.cep}
                                                 `}
                                             </p>
                                         </div>
                                     </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Link to={`/editar-cliente/${lastClients[(indice === undefined || '' ? 0 : indice)].id}`}>
+                                    <Link to={`/editar-cliente/${Clients[(indice === undefined || '' ? 0 : indice)].id}`}>
                                         <Button type="button" color="primary">Editar Cliente</Button>
                                     </Link>
                                     <Button color="danger" onClick={closeModal}>Voltar</Button>
@@ -127,7 +136,6 @@ function Client() {
                 }
             ))
         } else {
-
             const filterItems = function (query) {
                 return Clients.filter(function (client) {
                     return client.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
@@ -176,22 +184,22 @@ function Client() {
                                             </div>
                                             <div>
                                                 <strong>CPF</strong>
-                                                <p>{mask(lastClients[indice || 0].cpf, '###.###.###-##')}</p>
+                                                <p>{mask(Clients[indice || 0].cpf, '###.###.###-##')}</p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Tipo Sanguíneo</strong>
-                                                <p>{lastClients[indice || 0].bloodtype}</p>
+                                                <p>{Clients[indice || 0].bloodtype}</p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Telefone</strong>
                                                 <p>
-                                                    {mask(lastClients[indice || 0].phone, '(##) ####-####')}
+                                                    {mask(Clients[indice || 0].phone, '(##) ####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Celular</strong>
                                                 <p>
-                                                    {mask(lastClients[indice || 0].cellphone, '(##) #####-####')}
+                                                    {mask(Clients[indice || 0].cellphone, '(##) #####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-12">
