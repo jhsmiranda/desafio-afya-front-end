@@ -30,15 +30,18 @@ function Login() {
   const handleLogin = async (e) => {
       e.preventDefault();
     // Faz requisição à API
+    let wasLogged = null
     axios.post('https://clinica-pomarola-api.herokuapp.com/login', formData).then((res) => {
       // Se bem sucedida, retorna os dados inseridos no res.data e faz o push
-      console.log(res.data);
       localStorage.setItem('Authorization', `Bearer ${res.data.token}`)
-      history.push('/cliente')
+      wasLogged = res.data.id
     }).catch((err) => {
       // Retorna array de erros, abaixo acessa o primeiro
-      // console.log(err.response.data[0].msg);
-      console.log('', err);
+      console.log(err.response.data[0].msg);
+    }).finally(() => {
+      if (wasLogged){
+        history.push('/cliente');
+      }
     })
   };
 
