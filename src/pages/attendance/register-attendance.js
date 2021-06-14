@@ -15,7 +15,7 @@ import { Calendar, Time } from "./styles";
 import DefaultPage from "../../components/defaultpage/defaultPage";
 
 import {
-  Clients,
+  getClients,
   Profession,
   Specialists,
   schedules,
@@ -23,8 +23,10 @@ import {
 } from "../../data";
 
 function RegisterAttendance() {
+  let Clients = [];
+
   useEffect(() => {
-    document.title = "Clínica Pomarola | Atendimento";
+    document.title = "Clínica Pomarola | Atendimento"
   }, []);
 
   //Modal
