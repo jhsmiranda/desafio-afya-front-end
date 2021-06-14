@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/globalstyles.css';
 import DefaultPage from '../../components/defaultpage/defaultPage';
-// import { Specialists, Profession } from '../../data';
 
 const Specialist = {
     name: '',
@@ -56,24 +55,25 @@ function RegisterEditSpecialist() {
         axios.get(`https://clinica-pomarola-api.herokuapp.com/specialists/${id}`, { headers: { Authorization:localStorage.getItem('Authorization') } })
         .then((res) => {
             setSpecialistData(res.data); 
-            }).catch((err) => {
-                console.log(err.response);
-            })
-        }, [id]);
+        }).catch((err) => {
+            console.log(err.response);
+        })
+    }, [id]);
         
-        const [streetEmpty, setStreetEmpty] = useState(false);
-        const [neighborhoodEmpty, setNeighborhoodEmpty] = useState(false);
-        
-        const [Professions, setProfessions] = useState([]);
+    const [streetEmpty, setStreetEmpty] = useState(false);
 
-        const listProfession = Professions.map(
+    const [neighborhoodEmpty, setNeighborhoodEmpty] = useState(false);
+        
+    const [Professions, setProfessions] = useState([]);
+        
+    const listProfession = Professions.map(
         (profession, index) => {
             return (
                 <option key={profession.id}>{profession.name}</option>
+                )
+            }
             )
-        }
-    )
-
+                
     const onChange = (input, value, addressInput = null) => {
         switch (input) {
             case 'address':
@@ -87,14 +87,14 @@ function RegisterEditSpecialist() {
                 });
             break;
             case 'profession':
-                const profession = addressInput ? { [addressInput]: value } : value;
-                setSpecialistData({
-                    ...specialistData,
-                    profession: {
-                        ...specialistData.profession,
-                        ...profession
-                    }
-                });
+            const profession = addressInput ? { [addressInput]: value } : value;
+            setSpecialistData({
+                ...specialistData,
+                profession: {
+                    ...specialistData.profession,
+                    ...profession
+                }
+            });
             break;
             case 'cellphone':
             case 'phone':
@@ -102,7 +102,7 @@ function RegisterEditSpecialist() {
             break;
             default:
                 setSpecialistData({ ...specialistData, [input]: value });
-        }
+            }
     };
 
     const saveSpecialist = (e) => {
