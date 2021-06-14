@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import { PlusCircle } from "react-feather";
-
 import "../../styles/globalstyles.css";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
