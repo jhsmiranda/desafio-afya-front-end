@@ -83,7 +83,7 @@ function MedicalRecord() {
         return (
           <tr key={1}>
             <td></td>
-            <td>Usuário não encontrado</td>
+            <td>Prontuário do paciente não encontrado</td>
             <td></td>
             <td></td>
           </tr>
@@ -98,136 +98,12 @@ function MedicalRecord() {
               <td>
                 <button
                   id={index}
-                  onClick={toggle}
+                  onClick={() => handleClick(client.name)}
                   className="btn btn-sm btn-outline-secondary"
                 >
                   Detalhes
                 </button>
               </td>
-              <Modal isOpen={modal} toggle={toggle} className="">
-                <ModalHeader toggle={toggle}>
-                  Informações do Cliente
-                </ModalHeader>
-                <ModalBody>
-                  <div className="row g-3">
-                    <div className="col-sm-12 reverter-logo-name">
-                      <div className="col-sm-8 info-name-complete">
-                        <strong>Nome Completo</strong>
-                        <p>{filterItems(nameValue)[indice || 0].name}</p>
-                      </div>
-                      <div className="col-sm-4 info-logomarca">
-                        <div className="clinica-pomarola">
-                          <span>Clínica P</span>
-                          <img
-                            src={Logo}
-                            width="16px"
-                            height="16px"
-                            alt="logo-pormarola"
-                            style={{ marginRight: 2, marginBottom: 0 }}
-                          />
-                          <span>marola</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-8">
-                      <strong>E-mail</strong>
-                      <p>{filterItems(nameValue)[indice || 0].mail}</p>
-                    </div>
-                    <div>
-                      <strong>CPF</strong>
-                      <p>
-                        {mask(lastClients[indice || 0].cpf, "###.###.###-##")}
-                      </p>
-                    </div>
-                    <div className="col-sm-4">
-                      <strong>Tipo Sanguíneo</strong>
-                      <p>{lastClients[indice || 0].bloodtype}</p>
-                    </div>
-                    <div className="col-sm-4">
-                      <strong>Telefone</strong>
-                      <p>
-                        {mask(lastClients[indice || 0].phone, "(##) ####-####")}
-                      </p>
-                    </div>
-                    <div className="col-sm-4">
-                      <strong>Celular</strong>
-                      <p>
-                        {mask(
-                          lastClients[indice || 0].cellphone,
-                          "(##) #####-####"
-                        )}
-                      </p>
-                    </div>
-                    <div className="col-sm-12">
-                      <strong>Endereço</strong>
-                      <p>
-                        {`
-                          ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.street
-                          }
-                          , nº ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.number
-                          }.
-                          ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.complement ===
-                            ""
-                              ? ""
-                              : `${
-                                  filterItems(
-                                    nameValue
-                                  )[indice || 0]
-                                    .address
-                                    .complement
-                                }.`
-                          }
-                          ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.neighborhood
-                          }.
-                          ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.locality
-                          }
-                          - ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.state
-                          }.
-                          CEP: ${
-                            filterItems(nameValue)[
-                              indice || 0
-                            ].address.cep
-                          }
-                        `}
-                      </p>
-                    </div>
-                  </div>
-                </ModalBody>
-                <ModalFooter>
-                  <Link
-                    to={`/editar-cliente/${
-                      filterItems(nameValue)[
-                        indice === undefined || "" ? 0 : indice
-                      ].id
-                    }`}
-                  >
-                    <Button type="button" color="primary">
-                      Editar Cliente
-                    </Button>
-                  </Link>
-                  <Button color="danger" onClick={closeModal}>
-                    Voltar
-                  </Button>
-                </ModalFooter>
-              </Modal>
             </tr>
           );
         });
@@ -245,19 +121,19 @@ function MedicalRecord() {
         id="searchClient"
         className="form-control form-control-dark w-100 mb-3"
         type="text"
-        placeholder="Pesquisar Cliente"
+        placeholder="Pesquisar prontuário pelo nome do paciente"
         value={nameValue}
         aria-label="Search"
         onChange={(e) => setNameValue(e.target.value)}
       ></input>
 
-      <h5 className="mb-3">Lista de Clientes</h5>
+      <h5 className="mb-3">Lista de Prontuários</h5>
       <div className="table-responsive">
         <table className="table table-striped table-sm">
           <thead>
             <tr>
-              <th className="col-xs-2 col-md-2 col-lg-2">Id</th>
-              <th className="col-xs-8 col-md-8 col-lg-5">Nome Completo</th>
+              <th className="col-xs-2 col-md-2 col-lg-2">CPF</th>
+              <th className="col-xs-8 col-md-8 col-lg-5">Paciente</th>
               <th className="col-xs-8 col-md-8 col-lg-3">Data de Criação</th>
               <th className="col-xs-2 col-md-2 col-lg-2">INFO</th>
             </tr>

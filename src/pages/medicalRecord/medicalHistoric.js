@@ -46,9 +46,8 @@ function MedicalHistoric() {
       <tr key={index}>
         <td>{client.data}</td>
         <td>{client.hour}</td>
-        <td>
-          {client.profession} / {client.specialist}
-        </td>
+        <td>{client.specialist}</td>
+        <td>{client.profession}</td>
         <td>
           <button
             id={index}
@@ -73,13 +72,12 @@ function MedicalHistoric() {
           <thead>
             <tr>
               <th className="col-xs-2 col-md-2 col-lg-2">
-                data de atendimento
+                Data de atendimento
               </th>
-              <th className="col-xs-8 col-md-8 col-lg-5">hora</th>
-              <th className="col-xs-8 col-md-8 col-lg-3">
-                especialista/especialidade
-              </th>
-              <th className="col-xs-2 col-md-2 col-lg-2"></th>
+              <th className="col-xs-8 col-md-8 col-lg-2">Hora</th>
+              <th className="col-xs-8 col-md-8 col-lg-3">Especialista</th>
+              <th className="col-xs-8 col-md-8 col-lg-3">Especialidade</th>
+              <th className="col-xs-2 col-md-2 col-lg-2">Registro</th>
             </tr>
           </thead>
           <tbody>{listHistoric}</tbody>
