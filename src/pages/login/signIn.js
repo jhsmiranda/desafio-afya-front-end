@@ -34,10 +34,11 @@ function Login() {
       // Se bem sucedida, retorna os dados inseridos no res.data e faz o push
       console.log(res.data);
       localStorage.setItem('Authorization', `Bearer ${res.data.token}`)
-      history.push('/cliente');
+      history.push('/cliente')
     }).catch((err) => {
       // Retorna array de erros, abaixo acessa o primeiro
-      console.log(err.response.data[0].msg);
+      // console.log(err.response.data[0].msg);
+      console.log('', err);
     })
   };
 
