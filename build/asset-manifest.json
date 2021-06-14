@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9b721ca8.chunk.css",
+    "main.js": "/static/js/main.ac750cad.chunk.js",
+    "main.js.map": "/static/js/main.ac750cad.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cc85cbe0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cc85cbe0.js.map",
+    "static/css/2.64a3bd2a.chunk.css": "/static/css/2.64a3bd2a.chunk.css",
+    "static/js/2.ce5afbb5.chunk.js": "/static/js/2.ce5afbb5.chunk.js",
+    "static/js/2.ce5afbb5.chunk.js.map": "/static/js/2.ce5afbb5.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.64a3bd2a.chunk.css.map": "/static/css/2.64a3bd2a.chunk.css.map",
+    "static/css/main.9b721ca8.chunk.css.map": "/static/css/main.9b721ca8.chunk.css.map",
+    "static/js/2.ce5afbb5.chunk.js.LICENSE.txt": "/static/js/2.ce5afbb5.chunk.js.LICENSE.txt",
+    "static/media/ArrowLeftIcon.8b2b2a78.svg": "/static/media/ArrowLeftIcon.8b2b2a78.svg",
+    "static/media/ArrowRightIcon.265b86a7.svg": "/static/media/ArrowRightIcon.265b86a7.svg",
+    "static/media/fundo1.6f2dd5e8.png": "/static/media/fundo1.6f2dd5e8.png",
+    "static/media/fundo2.8b32bcf7.jpg": "/static/media/fundo2.8b32bcf7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cc85cbe0.js",
+    "static/css/2.64a3bd2a.chunk.css",
+    "static/js/2.ce5afbb5.chunk.js",
+    "static/css/main.9b721ca8.chunk.css",
+    "static/js/main.ac750cad.chunk.js"
+  ]
+}
