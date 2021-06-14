@@ -474,15 +474,15 @@ export const availableTime = [
   "17:00",    
 ];
 
-export const Attendance =[
+export const Attendances =[
     {   
         id: 1,
-        status:'agendado',
+        status:'Agendado',
         date_scheduling:'14/06/2021',
         date_attendance:'16/06/2021',
         date_hour:'09:00',
         value:'50,00',
-        client: {
+        patient: {
             id: 1,
             name:'Laura Maria da Silva'
         },
@@ -493,11 +493,12 @@ export const Attendance =[
     },
     {
         id: 2,
+        status:'Agendado',
         date_scheduling:'15/06/2021',
         date_attendance:'17/06/2021',
         date_hour:'10:00',
         value:'50,00',
-        client: {
+        patient: {
             id: 2,
             name:'Thiago Corrêa Diniz',
         },
@@ -508,11 +509,12 @@ export const Attendance =[
     },
     {   
         id: 3,
+        status:'Cancelado',
         date_scheduling:'16/06/2021',
         date_attendance:'18/06/2021',
         date_hour:'11:00',
         value:'50,00',
-        client: {
+        patient: {
             id: 2,
             name:'Sarah Maria de Lucena Silva',
         },
@@ -523,14 +525,15 @@ export const Attendance =[
     },
     {
         id: 4,
-        client: {
-            id: 4,
-            name:'Stephanie Oliver',
-        },
+        status:'Realizado',
         date_scheduling:'17/06/2021',
         date_attendance:'18/06/2021',
         date_hour:'09:00',
         value:'50,00',
+        patient: {
+            id: 4,
+            name:'Stephanie Oliver',
+        },
         specialist: {
             id: 6,
             name:'Bruna Barbosa Nunes da Silva'
@@ -538,14 +541,15 @@ export const Attendance =[
     },
     {
         id: 5,
-        client: {
-            id: 5,
-            name:'Camila Attico Chirinhan',
-        },
+        status:'Realizado',
         date_scheduling:'18/06/2021',
         date_attendance:'22/06/2021',
         date_hour:'13:00',
         value:'50,00',
+        patient: {
+            id: 5,
+            name:'Camila Attico Chirinhan',
+        },
         specialist: {
             id: 8,
             name:'Gustavo Rodrigues Pereira'
@@ -554,17 +558,18 @@ export const Attendance =[
     },
     {
         id: 6,
-        client: {
-            id:'',
-            name:'Bruna Barbosa Nunes da Silva',
-        },
+        status:'Cancelado',
         date_scheduling:'11/06/2021',
         date_attendance:'14/06/2021',
         date_hour:'14:00',
         value:'50,00',
+        patient: {
+            id:'',
+            name:'Bruna Barbosa Nunes da Silva',
+        },
         specialist: {
             id: 11,
             name:'José Valdir de Oliveira Neto'
-        },
+        }
     }
 ];
