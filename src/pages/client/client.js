@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 import { PlusCircle } from 'react-feather'
 
@@ -7,12 +8,10 @@ import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
 import { mask } from '../../config/helpers'
-import { useHistory } from 'react-router-dom'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
-import axios from 'axios'
 
 function Client() {
     let history = useHistory();
@@ -113,8 +112,8 @@ function Client() {
                                             <p>
                                                 {`
                                                     ${Clients[indice || 0].address.street}
-                                                    , nº ${Clients[indice || 0].address.number}.
-                                                    ${Clients[indice || 0].address.complement === '' ? '' : `${Clients[indice || 0].address.complement}.`}
+                                                    , nº ${Clients[indice || 0].address.number === null ? 'N/A' : `${Clients[indice || 0].address.number}.`}
+                                                    ${Clients[indice || 0].address.complement === null ? ' ' : `${Clients[indice || 0].address.complement}.`}
                                                     ${Clients[indice || 0].address.neighborhood}.
                                                     ${Clients[indice || 0].address.locality}
                                                     - ${Clients[indice || 0].address.state}.

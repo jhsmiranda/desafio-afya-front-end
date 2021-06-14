@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 import { PlusCircle } from 'react-feather'
 
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
-import { Specialists } from '../../data'
+// import { Specialists } from '../../data'
 import { mask } from '../../config/helpers'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -19,6 +20,12 @@ const initialProfession = {
 }
 
 function Specialist() {
+    let history = useHistory();
+
+    const token = localStorage.getItem('Authorization')
+    if (!token) {
+        history.push('/');
+    }
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Especialista"
@@ -60,6 +67,17 @@ function Specialist() {
     // Lista de Especialistas
     const [nameValue, setNameValue] = useState('')
 
+    const [Specialists, setSpecialists] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://clinica-pomarola-api.herokuapp.com/specialists', { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                setSpecialists(res.data); 
+            }).catch((err) => {
+                console.log(err);
+            })
+    }, []);
+
     const listSpecialists = () => {
 
         const toggle = (e) => {
@@ -72,16 +90,8 @@ function Specialist() {
             setModal(!modal)
         }
 
-        const lastSpecialists = []
-
-        for (let specialist of Specialists) {
-            if (lastSpecialists.length < 10) {
-                lastSpecialists.push(specialist)
-            }
-        }
-
         if (nameValue === '') {
-            return (lastSpecialists.map(
+            return (Specialists.map(
                 (specialist, index) => {
                     return (
                         <tr key={index}>
@@ -96,7 +106,7 @@ function Specialist() {
                                         <div className="col-sm-12 reverter-logo-name">
                                             <div className="col-sm-8 info-name-complete">
                                                 <strong>Nome Completo</strong>
-                                                <p>{lastSpecialists[indice || 0].name}</p>
+                                                <p>{Specialists[indice || 0].name}</p>
                                             </div>
                                             <div className="col-sm-4 info-logomarca">
                                                 <div className="clinica-pomarola">
@@ -111,50 +121,50 @@ function Specialist() {
                                         </div>
                                         <div className="col-sm-8">
                                             <strong>E-mail</strong>
-                                            <p>{lastSpecialists[indice || 0].mail}</p>
+                                            <p>{Specialists[indice || 0].mail}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Registro</strong>
                                             <p>
                                                 {`
-                                                    ${lastSpecialists[indice || 0].register}
+                                                    ${Specialists[indice || 0].register}
                                                 `}
                                             </p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Especialidade</strong>
-                                            <p>{lastSpecialists[indice || 0].profession.name}</p>
+                                            <p>{Specialists[indice || 0].profession.name}</p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Telefone</strong>
                                             <p>
-                                                {mask(lastSpecialists[indice || 0].phone, '(##) ####-####')}
+                                                {mask(Specialists[indice || 0].phone, '(##) ####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-4">
                                             <strong>Celular</strong>
                                             <p>
-                                                {mask(lastSpecialists[indice || 0].cellphone, '(##) #####-####')}
+                                                {mask(Specialists[indice || 0].cellphone, '(##) #####-####')}
                                             </p>
                                         </div>
                                         <div className="col-sm-12">
                                             <strong>Endereço</strong>
                                             <p>
                                                 {`
-                                                    ${lastSpecialists[indice || 0].address.street}
-                                                    , nº ${lastSpecialists[indice || 0].address.number}.
-                                                    ${lastSpecialists[indice || 0].address.complement === '' ? '' : `${lastSpecialists[indice || 0].address.complement}.`}
-                                                    ${lastSpecialists[indice || 0].address.neighborhood}.
-                                                    ${lastSpecialists[indice || 0].address.locality}
-                                                    - ${lastSpecialists[indice || 0].address.state}.
-                                                    CEP: ${lastSpecialists[indice || 0].address.cep}
+                                                    ${Specialists[indice || 0].address.street}
+                                                    , nº ${Specialists[indice || 0].address.number === null ? 'N/A' : `${Specialists[indice || 0].address.number}.`}
+                                                    ${Specialists[indice || 0].address.complement === null ? ' ' : `${Specialists[indice || 0].address.complement}.`}
+                                                    ${Specialists[indice || 0].address.neighborhood}.
+                                                    ${Specialists[indice || 0].address.locality}
+                                                    - ${Specialists[indice || 0].address.state}.
+                                                    CEP: ${Specialists[indice || 0].address.cep}
                                                 `}
                                             </p>
                                         </div>
                                     </div>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Link to={`/editar-especialista/${lastSpecialists[(indice === undefined || '' ? 0 : indice)].id}`}>
+                                    <Link to={`/editar-especialista/${Specialists[(indice === undefined || '' ? 0 : indice)].id}`}>
                                         <Button type="button" color="primary">Editar Especialista</Button>
                                     </Link>
                                     <Button color="danger" onClick={closeModal}>Voltar</Button>
@@ -218,7 +228,7 @@ function Specialist() {
                                                 <strong>Registro</strong>
                                                 <p>
                                                     {`
-                                                        ${lastSpecialists[indice || 0].register}
+                                                        ${Specialists[indice || 0].register}
                                                     `}
                                                 </p>
                                             </div>
@@ -229,13 +239,13 @@ function Specialist() {
                                             <div className="col-sm-4">
                                                 <strong>Telefone</strong>
                                                 <p>
-                                                    {mask(lastSpecialists[indice || 0].phone, '(##) ####-####')}
+                                                    {mask(Specialists[indice || 0].phone, '(##) ####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-4">
                                                 <strong>Celular</strong>
                                                 <p>
-                                                    {mask(lastSpecialists[indice || 0].cellphone, '(##) #####-####')}
+                                                    {mask(Specialists[indice || 0].cellphone, '(##) #####-####')}
                                                 </p>
                                             </div>
                                             <div className="col-sm-12">
