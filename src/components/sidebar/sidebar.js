@@ -1,14 +1,13 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Activity, User, Clipboard, Calendar, LogOut } from 'react-feather'
 import { Collapse, Nav, Navbar } from 'reactstrap';
 
 export default function SideBarGlobal({isOpen, atualPage}) {
-    let history = useHistory();
-    function logOut() {
-        console.log('to aqui')
+
+    const logOut = (e) => {
+        e.preventDefault();
         localStorage.removeItem('Authorization')
-        history.push('/');
     }
 
     const client = 'Cliente';
@@ -80,8 +79,8 @@ export default function SideBarGlobal({isOpen, atualPage}) {
                         </li>
                         <li className="list-bottom-sidebar">
                             <hr className="mb-2"></hr>
-                            <div className="sidebar-list-global sidebar-inactive-global">
-                                <LogOut onClick={logOut()} size={16} style={{ marginRight: 10, marginBottom: 4 }} />
+                            <div onClick={logOut} className="sidebar-list-global sidebar-inactive-global">
+                                <LogOut size={16} style={{ marginRight: 10, marginBottom: 4 }} />
                                 Sair
                             </div>
                         </li>
