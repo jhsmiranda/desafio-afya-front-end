@@ -337,7 +337,7 @@ function AttendanceConsult() {
                 <ModalBody>
                     <div className="row g-3">
                         <div className="col-sm-12">
-                            <strong>Insira as informações do atendimento</strong>
+                            <strong>Insira a descrição do atendimento realizado</strong>
                             <textarea value={textValue} onChange={onChangeText} style={{width: "100%", height:"200px"}}></textarea>
                         </div>
                     </div>

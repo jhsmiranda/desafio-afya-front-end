@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/globalstyles.css';
 import DefaultPage from '../../components/defaultpage/defaultPage';
+import { notification } from "antd";
 
 
 const Client = {
@@ -54,7 +55,7 @@ function RegisterEditClient() {
     const listBloodType = ['A+','A-','B+','B-','AB+','AB-','O+','O-'].map(
         (bloodtype, index) => {
             return(
-                <option value={bloodtype}>{bloodtype}</option>
+                <option key={index} value={bloodtype}>{bloodtype}</option>
             )
         }
     )
@@ -87,18 +88,46 @@ function RegisterEditClient() {
     const saveClient = (e) => {
         e.preventDefault();
         if (id) {
+            let success = null
             axios.put(`https://clinica-pomarola-api.herokuapp.com/clients/${id}`, clientData, { headers: { Authorization:localStorage.getItem('Authorization') } })
             .then((res) => {
+                success = true
                 console.log('Editado com sucesso!', res.data)
+                notification.success({
+                    message: "Cliente Editado",
+                    description: 'Cliente editado com sucesso!'
+                })
             }).catch((err) => {
+                notification.warning({
+                    message: "Cliente Não Editado",
+                    description: 'Insira as informações corretamente!'
+                })
                 console.log(err.response);  
+            }).finally(() => {
+                if (success){
+                  history.push('/cliente');
+                }
             })
         } else {
+            let success = null
             axios.post('https://clinica-pomarola-api.herokuapp.com/clients', clientData, { headers: { Authorization:localStorage.getItem('Authorization') } })
             .then((res) => {
+                success = true
+                notification.success({
+                    message: "Cliente Cadastrado",
+                    description: 'Cadastrado realizado com sucesso!'
+                })
                 console.log('Cadastrado com sucesso!', res.data)
             }).catch((err) => {
+                notification.warning({
+                    message: "Cliente Não Cadastrado",
+                    description: 'Insira as informações corretamente!'
+                })
                 console.log(err.response);
+            }).finally(() => {
+                if (success){
+                  history.push('/cliente');
+                }
             })
         }
     }
@@ -113,7 +142,10 @@ function RegisterEditClient() {
                 setNeighborhoodEmpty(data?.bairro === '')
 
                 if (data.hasOwnProperty('erro')) {
-                    alert('Cep inválido')
+                    notification.warning({
+                        message: 'CEP Inválido',
+                        description: 'Digite um CEP válido'
+                    })
                 } else {
                     onChange('address', {
                         street: data.logradouro,
@@ -201,7 +233,7 @@ function RegisterEditClient() {
 
                   <div className="col-sm-3">
                       <label htmlFor="phone" className="form-label">
-                          Telefone<span className="text-muted"> (Opcional)</span>
+                          Telefone
                       </label>
                       <input
                         type="tel"
@@ -321,9 +353,9 @@ function RegisterEditClient() {
                   </div>
               </div>
               <hr style={{ marginTop: 40, marginBottom: 30 }} />
-              <button className="register-global btn btn-primary w-100" onClick={saveClient}>
-                  {!id ? 'Cadastrar' : 'Editar'} Cliente
-              </button>
+            <button className="register-global btn btn-primary w-100" onClick={saveClient}>
+                {!id ? 'Cadastrar' : 'Editar'} Cliente
+            </button>
             </form>
       </DefaultPage>
     );

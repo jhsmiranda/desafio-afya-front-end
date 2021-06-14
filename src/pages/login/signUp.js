@@ -4,6 +4,8 @@ import { useHistory, Link } from 'react-router-dom'
 
 import Fundo from '../../assets/images/fundo1.png'
 
+import { notification } from "antd";
+
 import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Brand } from '../../styles/styleLogin'
 
 function Register() {
@@ -38,7 +40,10 @@ function Register() {
       history.push('/');
   }).catch((err) => {
    // Retorna array de erros, abaixo acessa o primeiro
-    console.log(err.response.data[0].msg);
+    notification.warning({
+      message: "Atenção",
+      description: err.response.data[0].msg,
+    })
   })
 }
   return (

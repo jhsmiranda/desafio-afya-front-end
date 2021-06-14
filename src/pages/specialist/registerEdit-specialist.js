@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/globalstyles.css';
 import DefaultPage from '../../components/defaultpage/defaultPage';
+import { notification } from "antd";
 
 const Specialist = {
     name: '',
@@ -10,9 +11,7 @@ const Specialist = {
     register: '',
     phone: '',
     cellphone: '',
-    profession: {
-        name: ''
-    },
+    profession: '',
     address: {
         street: '',
         number: '',
@@ -69,7 +68,7 @@ function RegisterEditSpecialist() {
     const listProfession = Professions.map(
         (profession, index) => {
             return (
-                <option key={profession.id}>{profession.name}</option>
+                <option key={index} value={profession.id}>{profession.name}</option>
                 )
             }
             )
@@ -87,14 +86,8 @@ function RegisterEditSpecialist() {
                 });
             break;
             case 'profession':
-            const profession = addressInput ? { [addressInput]: value } : value;
             setSpecialistData({
-                ...specialistData,
-                profession: {
-                    ...specialistData.profession,
-                    ...profession
-                }
-            });
+                ...specialistData, [input]: value });
             break;
             case 'cellphone':
             case 'phone':
@@ -107,21 +100,49 @@ function RegisterEditSpecialist() {
 
     const saveSpecialist = (e) => {
         e.preventDefault();
+        let success = null
         if (id) {
             axios.put(`https://clinica-pomarola-api.herokuapp.com/specialists/${id}`, specialistData, { headers: { Authorization:localStorage.getItem('Authorization') } })
             .then((res) => {
+                success = true
                 console.log('Editado com sucesso!', res.data)
+                notification.success({
+                    message: "Especialista Editado",
+                    description: 'Especialista editado com sucesso!'
+                })
             }).catch((err) => {
+                notification.warning({
+                    message: "Especialista Não Editado",
+                    description: 'Insira as informações corretamente!'
+                })
                 console.log(err.response);  
+            }).finally(() => {
+                if (success){
+                  history.push('/especialista');
+                }
             })
-            console.log(specialistData.profession.id)
         } else {
             axios.post('https://clinica-pomarola-api.herokuapp.com/specialists', specialistData, { headers: { Authorization:localStorage.getItem('Authorization') } })
             .then((res) => {
+                success = true
                 console.log('Cadastrado com sucesso!', res.data)
+                notification.success({
+                    message: "Especialista cadastrado",
+                    description: 'Especialista cadastrado com sucesso!'
+                })
             }).catch((err) => {
                 console.log(err.response);
+                notification.warning({
+                    message: "Especialista Não Cadastrado",
+                    description: 'Insira as informações corretamente!'
+                })
+            }).finally(() => {
+                if (success){
+                  history.push('/especialista');
+                }
             })
+            console.log('console do cadastrar: ',specialistData.profession.id)
+            console.log(specialistData)
         }
     }
 
@@ -199,7 +220,7 @@ function RegisterEditSpecialist() {
                         <select
                             className="form-select"
                             aria-label="Default select example"
-                            onChange={(e) => onChange('profession', e.target.value, 'name')}
+                            onChange={(e) => onChange('profession', e.target.value, 'id')}
                         >
                             <option defaultValue>{id ? specialistData.profession.name : 'Escolha a especialidade'}</option>
                             {listProfession}
@@ -222,7 +243,7 @@ function RegisterEditSpecialist() {
 
                     <div className="col-sm-3">
                         <label htmlFor="phone" className="form-label">
-                            Telefone<span className="text-muted"> (Opcional)</span>
+                            Telefone
                         </label>
                         <input
                             type="tel"

@@ -7,15 +7,16 @@ import { PlusCircle } from 'react-feather'
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
-// import { Specialists } from '../../data'
+
 import { mask } from '../../config/helpers'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Logo from '../../assets/images/logo16.png'
 
+import { notification } from "antd";
+
 const initialProfession = {
-    id: '',
     name: '',
 }
 
@@ -51,8 +52,21 @@ function Specialist() {
     }
 
     const saveProfession = () => {
-        setModalProfession(!modalProfession)
-        console.log(professionData)
+        axios.post('https://clinica-pomarola-api.herokuapp.com/professions', professionData, { headers: { Authorization:localStorage.getItem('Authorization') } })
+        .then((res) => {
+            setModalProfession(!modalProfession)
+            notification.success({
+                message: "Profissão Cadastrada",
+                description: 'Profissão cadastrada com sucesso!'
+            })
+            console.log('Profissão Cadastrada!', res.data)
+        }).catch((err) => {
+            notification.warning({
+                message: "Profissão Não Cadastrado",
+                description: 'Insira as informações corretamente!'
+            })
+            console.log(err.response);
+        })
     }
 
     useEffect(() => {

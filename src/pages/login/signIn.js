@@ -7,6 +7,8 @@ import Fundo from '../../assets/images/fundo2.jpg'
 import { BodyLogin, FilterImage, ContainerLogin, ContainerContent, ListLogin, Forget, Brand } from '../../styles/styleLogin'
 import '../../assets/dist/css/bootstrap.min.css'
 
+import { notification } from "antd";
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -37,7 +39,10 @@ function Login() {
       wasLogged = res.data.id
     }).catch((err) => {
       // Retorna array de erros, abaixo acessa o primeiro
-      console.log(err.response.data[0].msg);
+      notification.warning({
+        message: "Atenção",
+        description: err.response.data[0].msg,
+      })
     }).finally(() => {
       if (wasLogged){
         history.push('/cliente');
