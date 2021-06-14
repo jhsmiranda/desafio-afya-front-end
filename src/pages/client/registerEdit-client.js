@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/globalstyles.css';
 import DefaultPage from '../../components/defaultpage/defaultPage';
-import { Clients } from '../../data';
 
-const initialValue = {
-    id: '',
+
+const Client = {
     name: '',
     mail: '',
     cpf: '',
@@ -25,21 +24,41 @@ const initialValue = {
 };
 
 function RegisterEditClient() {
+    let history = useHistory();
+
+    const token = localStorage.getItem('Authorization')
+    if (!token) {
+        history.push('/');
+    }
+
     useEffect(() => {
         document.title = 'Clínica Pomarola | Cliente';
     }, []);
 
     const { id } = useParams();
 
+    // const [editClient, setEditClient] = useState()
+    
+    const [clientData, setClientData] = useState(Client);
+
+    useEffect(() => {
+        axios.get(`https://clinica-pomarola-api.herokuapp.com/clients/${id}`, { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                setClientData(res.data); 
+            }).catch((err) => {
+                console.log(err);
+            })
+    }, [id]);
+      
+
     const listBloodType = ['A+','A-','B+','B-','AB+','AB-','O+','O-'].map(
         (bloodtype, index) => {
             return(
-                <option value={index}>{bloodtype}</option>
+                <option value={bloodtype}>{bloodtype}</option>
             )
         }
     )
 
-    const [clientData, setClientData] = useState(!id ? initialValue : Clients[id - 1]);
     const [streetEmpty, setStreetEmpty] = useState(false);
     const [neighborhoodEmpty, setNeighborhoodEmpty] = useState(false);
 
@@ -65,8 +84,23 @@ function RegisterEditClient() {
         }
     };
 
-    const saveClient = () => {
-        console.log(clientData)
+    const saveClient = (e) => {
+        e.preventDefault();
+        if (id) {
+            axios.put(`https://clinica-pomarola-api.herokuapp.com/clients/${id}`, clientData, { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                console.log('Editado com sucesso!', res.data)
+            }).catch((err) => {
+                console.log(err.response);  
+            })
+        } else {
+            axios.post('https://clinica-pomarola-api.herokuapp.com/clients', clientData, { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                console.log('Cadastrado com sucesso!', res.data)
+            }).catch((err) => {
+                console.log(err.response);
+            })
+        }
     }
 
     const changeCep = async (event) => {
@@ -98,10 +132,6 @@ function RegisterEditClient() {
             alert(e)
         }
     }
-
-    useEffect(() => {
-        console.log('clientData', clientData)
-    }, [clientData]);
 
     return (
       <DefaultPage atualPage="Cliente">
@@ -149,6 +179,7 @@ function RegisterEditClient() {
                         value={clientData.cpf}
                         className="form-control"
                         placeholder="Insira o CPF"
+                        maxLength="11"
                         onChange={(e) => onChange('cpf', e.target.value)}
                         required
                       />
@@ -163,7 +194,7 @@ function RegisterEditClient() {
                         aria-label="Default select example"
                         onChange={(e) => onChange('bloodtype', e.target.value)}
                       >
-                        <option defaultValue>{id ? Clients[id - 1].bloodtype : 'Escolha o tipo'}</option>
+                        <option defaultValue>{id ? clientData.bloodtype : 'Escolha o tipo'}</option>
                         {listBloodType}
                       </select>
                   </div>

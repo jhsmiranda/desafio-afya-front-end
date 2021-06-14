@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/globalstyles.css';
 import DefaultPage from '../../components/defaultpage/defaultPage';
-import { Specialists, Profession } from '../../data';
 
-const initialValue = {
-    id: '',
+const Specialist = {
     name: '',
     mail: '',
     register: '',
@@ -27,23 +25,55 @@ const initialValue = {
 };
 
 function RegisterEditSpecialist() {
+    let history = useHistory();
+
+    const token = localStorage.getItem('Authorization')
+    if (!token) {
+        history.push('/');
+    }
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios.get('https://clinica-pomarola-api.herokuapp.com/professions/', { headers: { Authorization:localStorage.getItem('Authorization') } })
+        .then((res) => {
+            console.log(res.data);
+            setProfessions(res.data); 
+            }).catch((err) => {
+                console.log(err.response);
+            })
+        }, [id]);
+    
     useEffect(() => {
         document.title = 'Clínica Pomarola | Especialista';
     }, []);
-
-    const { id } = useParams();
-    const [specialistData, setSpecialistData] = useState(!id ? initialValue : Specialists[id - 1]);
+    
+    
+    const [specialistData, setSpecialistData] = useState(Specialist);
+    
+    useEffect(() => {
+        axios.get(`https://clinica-pomarola-api.herokuapp.com/specialists/${id}`, { headers: { Authorization:localStorage.getItem('Authorization') } })
+        .then((res) => {
+            setSpecialistData(res.data); 
+        }).catch((err) => {
+            console.log(err.response);
+        })
+    }, [id]);
+        
     const [streetEmpty, setStreetEmpty] = useState(false);
-    const [neighborhoodEmpty, setNeighborhoodEmpty] = useState(false);
 
-    const listProfession = Profession.map(
+    const [neighborhoodEmpty, setNeighborhoodEmpty] = useState(false);
+        
+    const [Professions, setProfessions] = useState([]);
+        
+    const listProfession = Professions.map(
         (profession, index) => {
             return (
-                <option key={index}>{profession.name}</option>
+                <option key={profession.id}>{profession.name}</option>
+                )
+            }
             )
-        }
-    )
-
+                
     const onChange = (input, value, addressInput = null) => {
         switch (input) {
             case 'address':
@@ -57,14 +87,14 @@ function RegisterEditSpecialist() {
                 });
             break;
             case 'profession':
-                const profession = addressInput ? { [addressInput]: value } : value;
-                setSpecialistData({
-                    ...specialistData,
-                    profession: {
-                        ...specialistData.profession,
-                        ...profession
-                    }
-                });
+            const profession = addressInput ? { [addressInput]: value } : value;
+            setSpecialistData({
+                ...specialistData,
+                profession: {
+                    ...specialistData.profession,
+                    ...profession
+                }
+            });
             break;
             case 'cellphone':
             case 'phone':
@@ -72,11 +102,27 @@ function RegisterEditSpecialist() {
             break;
             default:
                 setSpecialistData({ ...specialistData, [input]: value });
-        }
+            }
     };
 
-    const saveSpecialist = () => {
-        console.log(specialistData)
+    const saveSpecialist = (e) => {
+        e.preventDefault();
+        if (id) {
+            axios.put(`https://clinica-pomarola-api.herokuapp.com/specialists/${id}`, specialistData, { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                console.log('Editado com sucesso!', res.data)
+            }).catch((err) => {
+                console.log(err.response);  
+            })
+            console.log(specialistData.profession.id)
+        } else {
+            axios.post('https://clinica-pomarola-api.herokuapp.com/specialists', specialistData, { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                console.log('Cadastrado com sucesso!', res.data)
+            }).catch((err) => {
+                console.log(err.response);
+            })
+        }
     }
 
     const changeCep = async (event) => {
@@ -108,10 +154,6 @@ function RegisterEditSpecialist() {
             alert(e)
         }
     }
-
-    useEffect(() => {
-        console.log('specialistData', specialistData)
-    }, [specialistData]);
 
     return (
         <DefaultPage atualPage="Especialista">
@@ -159,7 +201,7 @@ function RegisterEditSpecialist() {
                             aria-label="Default select example"
                             onChange={(e) => onChange('profession', e.target.value, 'name')}
                         >
-                            <option defaultValue>{id ? Specialists[id - 1].profession.name : 'Escolha a especialidade'}</option>
+                            <option defaultValue>{id ? specialistData.profession.name : 'Escolha a especialidade'}</option>
                             {listProfession}
                         </select>
                     </div>
