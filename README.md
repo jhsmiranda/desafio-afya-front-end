@@ -7,10 +7,10 @@
 </h3>
 
 <p align="center">
-  <a href="#sobre o projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#iniciando">Iniciando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#funcionalidades">Funcionalidades</a>
+  <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-iniciando">Iniciando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-funcionalidades">Funcionalidades</a>
 </p>
 
 ## 👨🏻‍💻 Sobre o projeto
@@ -25,7 +25,7 @@ Para ver a **api**, clique aqui: [PomaLabs api](https://github.com/fdutrac/desaf
 - [Fábio Henrique Dutra Costa](https://github.com/fdutrac)
 - [Filipe Galdino Dantas](https://github.com/flipdantas)
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias 
 
 Tecnologias que utilizamos para desenvolver este web client:
 
@@ -105,10 +105,15 @@ Caso o usuário queira cadastrar um novo cliente, basta clicar na opção "Cadas
 
 ### 👩‍⚕️️ Tela de Especialistas
 <p align="center">
-<img src="https://i.imgur.com/eA5UfQUl.png" title="tela dos especialistas" />
+<img src="https://i.imgur.com/ukSux1ul.png" title="tela dos especialistas" />
 </p>
 Ao selecionar a opção "Especialista" na barra de navegação no lado esquerdo da tela, o usuário será direcionado à tela acima, que terá o mesmo padrão que a tela de clientes: Pesquisa, cadastro, modal com informações ao selecionar detalhes e edição.
 
+Ao selecionar a opção de Cadastrar Profissão, será apresentado um modal com a opção de inserção na nova profissão, como mostrado abaixo:
+
+<p align="center">
+<img src="https://i.imgur.com/Mtr58Arl.png" title="tela dos especialistas" />
+</p>
 Ao selecionar detalhes de um especialista será exibido um modal como o da tela abaixo:
 <p align="center">
 <img src="https://i.imgur.com/8MEdn4il.png" title="modal dos especialistas" />
@@ -124,12 +129,35 @@ Exemplo de edição de dados de um especialista ao selecionar "Editar especialis
 
 ### 📅️⚕️ Tela de Atendimentos
 <p align="center">
-<img src="https://i.imgur.com/kGctZdAl.png" title="tela de atendimentos" />
+<img src="https://i.imgur.com/fFn7b8jl.png"  title="tela de atendimentos" />
 </p>
-Ao selecionar a opção "Atendimento" na barra de navegação no lado esquerdo da tela, o usuário será direcionado à tela de atendimento acima, onde poderá agendar atendimentos. A tela é composta de três colunas. Na primeira o usuário deve inserir o nome do cliente que terá a consulta, a especialidade e o especialista que realizará a consulta. A opção "Especialista" só será habilitada caso seja selecionada uma especialidade e a seleção de data só será habilitada ao selecionar o especialista. Após isso os horários disponíveis serão disponibilizados para seleção.
+Ao selecionar a opção "Atendimento" na barra de navegação no lado esquerdo da tela, o usuário será direcionado à tela de atendimento acima, onde haverá a listagem de todos os atendimentos já marcados. Nesta tela há um campo de pesquisa onde se deve selecionar a opção de busca (por status, paciente, data ou especialista) e pesquisar no campo à direita.
+
+Quando o atendimento for realizado, o usuário deve selecionar essa opção ao clicar em "Detalhes", e ao salvar as alterações será disponibilizado um modal para inserir uma descrição da consulta.
+
+Obs: essa descrição constará na tela de histórico de prontuários
+
+<p align="center">
+<img src="https://i.imgur.com/xpOcXRjm.png"  title="modal atendimento" />
+<img src="https://i.imgur.com/2MVz6Gxm.png" title="modal descrição" />
+</p>
+
+Caso o usuário queira cadastrar um atendimento, basta clicar no botão de cadastro, sendo redirecionado para a tela abaixo:
+<p align="center">
+<img src="https://i.imgur.com/foZG1tUl.png"  title="tela de atendimentos" />
+</p>
+A tela de cadastro de atendimentos é composta de duas colunas. Na primeira o usuário deve inserir o nome do cliente que terá a consulta, a especialidade e o especialista que realizará a consulta. A opção "Especialista" só será habilitada caso seja selecionada uma especialidade e a seleção de data só será habilitada ao selecionar o especialista. Após isso os horários disponíveis serão disponibilizados para seleção.
+
+Quando o cadastro for efetuado, o atendimento será exibido na listagem da tela de atendimentos.
 
 ### 📝️⚕️ Tela de prontuários
 <p align="center">
-<img src="https://i.imgur.com/yNfKAA6l.png" title="tela de prontuários" />
+<img src="https://i.imgur.com/tQp5nIYl.png" title="tela de prontuários" />
 </p>
-A tela de prontuários disponibiliza os prontuários dos atendimento que já foram realizados. A tela consiste de uma barra de pesquisa de prontuários e a listagem dos mesmos abaixo. 
+A tela de prontuários disponibiliza os prontuários dos atendimento que já foram realizados. A tela consiste de uma barra de pesquisa de prontuários e a listagem dos mesmos abaixo. Ao selecionar "Detalhes" o usuário será direcionado ao histórico de atendimentos daquele cliente selecionado, com todos os atendimentos e detalhes de prescrição, conforme imagens abaixo:
+<p align="center">
+<img src="https://i.imgur.com/udE4dLyl.png" title="histórico do cliente exemplo" />
+</p>
+<p align="center">
+<img src="https://i.imgur.com/8JrXZuEl.png" title="descrição do atendimento" />
+</p>
