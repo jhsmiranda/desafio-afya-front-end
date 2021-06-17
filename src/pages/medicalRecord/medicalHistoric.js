@@ -1,24 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams, useHistory } from "react-router-dom";
+import axios from 'axios';
 
 import "../../styles/globalstyles.css";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
-import { Historic } from "../../data";
+// import { Historics } from "../../data";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import Logo from "../../assets/images/logo16.png";
 
 function MedicalHistoric() {
+  let history = useHistory();
+
+  const token = localStorage.getItem('Authorization')
+  if (!token) {
+      history.push('/');
+  }
+
+  const { id } = useParams();
+
   useEffect(() => {
     document.title = "Clínica Pomarola | Histórico";
   }, []);
 
-  const location = useLocation();
-
-  console.log(location?.state.name);
-
+  
+  const [Historics, setHistoric] = useState([]);
+  
+  useEffect(() => {
+    axios.get(`https://clinica-pomarola-api.herokuapp.com/medical-records/${id}`, { headers: { Authorization:localStorage.getItem('Authorization') } })
+    .then((res) => {
+          setHistoric(res.data); 
+          console.log(res.data)
+        }).catch((err) => {
+          console.log(err);
+        })
+      }, [id]);
+      
+      const location = useLocation();
   //Modal
 
   const [modal, setModal] = useState(false);
@@ -41,17 +61,17 @@ function MedicalHistoric() {
     setModal(true);
   };
 
-  const listHistoric = Historic.map((client, index) => {
+  const listHistoric = Historics?.histories?.map((historic, index) => {
     return (
       <tr key={index}>
-        <td>{client.data}</td>
-        <td>{client.hour}</td>
-        <td>{client.specialist}</td>
-        <td>{client.profession}</td>
+        <td>{historic.date}</td>
+        <td>{historic.hour}</td>
+        <td>{historic.specialist?.name}</td>
+        {/* <td>{historic.profession}</td> */}
         <td>
           <button
             id={index}
-            onClick={() => openModal(client.description)}
+            onClick={() => openModal(historic.description)}
             className="botao btn btn-sm btn-outline-secondary"
           >
             Ver Descrição
@@ -76,7 +96,7 @@ function MedicalHistoric() {
               </th>
               <th className="col-xs-8 col-md-8 col-lg-2">Hora</th>
               <th className="col-xs-8 col-md-8 col-lg-3">Especialista</th>
-              <th className="col-xs-8 col-md-8 col-lg-3">Especialidade</th>
+              {/* <th className="col-xs-8 col-md-8 col-lg-3">Especialidade</th> */}
               <th className="col-xs-2 col-md-2 col-lg-2">Registro</th>
             </tr>
           </thead>

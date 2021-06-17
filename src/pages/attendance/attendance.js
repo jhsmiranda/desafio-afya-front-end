@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link, useHistory } from 'react-router-dom'
 import { PlusCircle, Search } from 'react-feather'
+import axios from 'axios';
 
 import '../../styles/globalstyles.css'
 
 import DefaultPage from '../../components/defaultpage/defaultPage'
-
-import { Attendances } from '../../data'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -28,9 +26,26 @@ const medicalRecordHistory = {
 };
 
 function AttendanceConsult() {
+    let history = useHistory();
+
+    const token = localStorage.getItem('Authorization')
+    if (!token) {
+        history.push('/');
+    }
 
     useEffect(() => {
         document.title = "Clínica Pomarola | Atendimento"
+    }, []);
+
+    const [Attendances, setAttendances] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://clinica-pomarola-api.herokuapp.com/attendances', { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+                setAttendances(res.data); 
+            }).catch((err) => {
+                console.log(err);
+            })
     }, []);
 
     const [inputValue, setInputValue] = useState('')
@@ -65,16 +80,16 @@ function AttendanceConsult() {
         const idPatient = filterItems(inputValue)[indice]?.patient.id
         const namePatient = filterItems(inputValue)[indice]?.patient.name
         const data = {
-            ['description']: textValue,
-            ['date']: date,
-            ['hour']: hour,
-            ['specialist']: {
-                ['id']: idSpecialist,
-                ['name']: nameSpecialist
+            'description': textValue,
+            'date': date,
+            'hour': hour,
+            'specialist': {
+                'id': idSpecialist,
+                'name': nameSpecialist
             },
-            ['patient']: {
-                ['id']: idPatient,
-                ['name']: namePatient
+            'patient': {
+                'id': idPatient,
+                'name': namePatient
             },
         };
         setSpecialistData({

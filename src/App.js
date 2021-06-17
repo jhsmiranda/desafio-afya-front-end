@@ -76,7 +76,7 @@ function App() {
                 />    
                 <Route
                     exact
-                    path="/historico-prontuario"
+                    path="/historico-prontuario/:id"
                     component={MedicalRecordHistoric}
                 />                
             </Switch>

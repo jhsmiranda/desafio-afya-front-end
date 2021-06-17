@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 import "../../styles/globalstyles.css";
 
 import DefaultPage from "../../components/defaultpage/defaultPage";
-import { Clients } from "../../data";
 import { mask } from "../../config/helpers";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -12,15 +12,32 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Logo from "../../assets/images/logo16.png";
 
 function MedicalRecord() {
+  let history = useHistory();
+
+  const token = localStorage.getItem('Authorization')
+  if (!token) {
+      history.push('/');
+  }
+
   useEffect(() => {
     document.title = "Clínica Pomarola | Prontuário";
   }, []);
 
-  const history = useHistory();
+  const [MedicalRecords, setMedicalRecords] = useState([]);
 
-  function handleClick(name) {
+    useEffect(() => {
+        axios.get('https://clinica-pomarola-api.herokuapp.com/medical-records', { headers: { Authorization:localStorage.getItem('Authorization') } })
+            .then((res) => {
+              setMedicalRecords(res.data); 
+              console.log(res.data)
+            }).catch((err) => {
+              console.log(err);
+            })
+    }, []);
+
+  function handleClick(name, id) {
     history.push({
-      pathname: "/historico-prontuario",
+      pathname: `/historico-prontuario/${id}`,
       state: {
         name: name,
       },
@@ -47,23 +64,23 @@ function MedicalRecord() {
 
     const lastClients = [];
 
-    for (let client of Clients) {
+    for (let medicalRecord of MedicalRecords) {
       if (lastClients.length < 10) {
-        lastClients.push(client);
+        lastClients.push(medicalRecord);
       }
     }
 
     if (nameValue === "") {
-      return lastClients.map((client, index) => {
+      return lastClients.map((medicalRecord, index) => {
         return (
           <tr key={index}>
-            <td>{mask(client.cpf, "###.###.###-##")}</td>
-            <td>{client.name}</td>
-            <td>12/06/2021</td>
+            {/* <td>{mask(medicalRecord.cpf, "###.###.###-##")}</td> */}
+            <td>{medicalRecord?.client?.name}</td>
+            <td>{medicalRecord?.openingDate}</td>
             <td>
               <button
                 id={index}
-                onClick={() => handleClick(client.name)}
+                onClick={() => handleClick(medicalRecord.client.name, medicalRecord.id )}
                 className="botao btn btn-sm btn-outline-secondary"
               >
                 Detalhes
@@ -74,8 +91,8 @@ function MedicalRecord() {
       });
     } else {
       const filterItems = function (query) {
-        return Clients.filter(function (client) {
-          return client.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
+        return MedicalRecords.filter(function (medicalRecord) {
+          return medicalRecord?.client?.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
         });
       };
 
@@ -89,16 +106,16 @@ function MedicalRecord() {
           </tr>
         );
       } else {
-        return filterItems(nameValue).map((client, index) => {
+        return filterItems(nameValue).map((medicalRecord, index) => {
           return (
             <tr key={index}>
-              <td>{client.cpf}</td>
-              <td>{client.name}</td>
+              {/* <td>{medicalRecord.cpf}</td> */}
+              <td>{medicalRecord?.client?.name}</td>
               <td>12/06/2021</td>
               <td>
                 <button
                   id={index}
-                  onClick={() => handleClick(client.name)}
+                  onClick={() => handleClick(medicalRecord?.client?.name)}
                   className="btn btn-sm btn-outline-secondary"
                 >
                   Detalhes
@@ -132,7 +149,7 @@ function MedicalRecord() {
         <table className="table table-striped table-sm">
           <thead>
             <tr>
-              <th className="col-xs-2 col-md-2 col-lg-2">CPF</th>
+              {/* <th className="col-xs-2 col-md-2 col-lg-2">CPF</th> */}
               <th className="col-xs-8 col-md-8 col-lg-5">Paciente</th>
               <th className="col-xs-8 col-md-8 col-lg-3">Data de Criação</th>
               <th className="col-xs-2 col-md-2 col-lg-2">INFO</th>
